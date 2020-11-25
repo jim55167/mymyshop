@@ -1,0 +1,136 @@
+.home {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+
+  .home-gif {
+    width: 25%;
+    float: left;
+
+    img {
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      display: block;
+    }
+  }
+}
+.home-banner1 {
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+  }
+}
+.home-banner2 {
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+  }
+}
+.home-banner3 {
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+  }
+}
+.home-banner4 {
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+  }
+}
+.home-banner5 {
+  margin: 0 auto;
+
+  img {
+    margin: 0 auto;
+    width: 100%;
+    display: block;
+  }
+}
+.home-footer {
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+
+  .footer-img {
+    width: 25%;
+    float: left;
+
+    img {
+      width: 100%;
+    }
+  }
+}
+.app {
+  display: flex;
+  margin: 0 auto;
+  justify-content: center;
+  position: relative;
+  width: 50%;
+  @media screen and (max-width: 1024px){
+    width: 70%;
+  };
+  @media screen and (max-width: 767px){
+    width: 90%;
+  };
+  @media screen and (max-width: 576px){
+    width: 100%;
+  };
+
+  .home-store {
+    width: 31%;
+    float: left;
+
+    img {
+      background-image: url('~@/assets/calendar/Store.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      display: block;
+
+    }
+  }
+
+  .home-app {
+    width: 31%;
+    float: left;
+
+    img {
+      background-image: url('~@/assets/calendar/APP.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  .home-ig {
+    width: 31%;
+    float: left;
+
+    img {
+      background-image: url('~@/assets/calendar/IG.jpg');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      display: block;
+    }
+  }
+}
