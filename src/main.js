@@ -39,6 +39,13 @@ import router from './router';
 import './bus';
 import currencyFilter from './filters/currency'; //千分號
 import dateFilter from './filters/date';
+import VueLazyload from 'vue-lazyload';
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  error: '../src/assets/calendar/erro.png',
+  loading: '../src/assets/calendar/loading.gif',
+  attempt: 1
+})
 
 Vue.component('Loading', Loading);
 Vue.filter('currency',  currencyFilter);

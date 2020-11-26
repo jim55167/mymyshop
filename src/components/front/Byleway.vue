@@ -15,10 +15,15 @@
           <div class="row mt-4" style="margin-top: initial !important;">
             <div class="bg">
               <div class='content'>
+                <div class="h6" style="margin-top:2rem; margin-left:1rem;margin-bottom:initial;">
+                  <router-link href="#" to="/morestyle"> 
+                    樂の日常
+                  </router-link>
+                </div>
                 <ul class="girl clearfix" >
                   <li v-for="(item, key) in byleway.slice(pageStart, pageStart + countPage)" :key="key">             
                     <a href="#" @click.prevent="getProduct(item.id)" target="_parent">
-                      <div class="bodycard" :style="{backgroundImage: `url(${item.imageUrl})`}"></div>
+                      <div class="bodycard" v-lazy:background-image="item.imageUrl"></div>
                       <div class="overlay-girl">
                         <h1>{{ item.title }}</h1>
                         <div class="align-items-baseline">
@@ -72,7 +77,7 @@ export default {
       products: [],
       isLoading: false,
       current_page: 1,
-      countPage: 12,
+      countPage: 18,
       byleway: [],      
     };
   },

@@ -4,21 +4,34 @@
         <div class="banner_open_line">
           <a href="https://line.me/ti/p/dKAzJfqWhb"><img src="~@/assets/calendar/LINEAPP.png"/></a>
         </div>
+
+        <swiper class="swiper" :options="swiperOption">
+          <swiper-slide class="swiper-slide games"
+            v-for="item in imgs" :key="item">
+            <img v-lazy="item" alt="">
+          </swiper-slide>
+          <div class="swiper-pagination" slot="pagination"></div>
+          <div class="swiper-button-prev" slot="button-prev"></div>
+          <div class="swiper-button-next" slot="button-next"></div>
+        </swiper>
+
         <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
             <img src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div>
-        <div class="swiper-slide games">
-            <img src="~@/assets/calendar/BT21.jpg" alt="Banner">
-        </div>
           <div class="row mt-4" style="margin-top: initial !important;">
             <div class="bg">
               <div class='content'>
-                <ul class="girl clearfix" >
+                <div class="h6" style="margin-top:2rem; margin-left:1rem;margin-bottom:initial;">
+                  <router-link href="#" to="/morestyle"> 
+                    BT21全系列
+                  </router-link>
+                </div>
+                <ul class="girl clearfix">
                   <li v-for="(item, key) in BT21.slice(pageStart, pageStart + countPage)" :key="key">             
                     <a href="#" @click.prevent="getProduct(item.id)" target="_parent">
-                      <div class="bodycard" :style="{backgroundImage: `url(${item.imageUrl})`}"></div>
+                      <div class="bodycard" v-lazy:background-image="item.imageUrl"></div>
                       <div class="overlay-girl">
                         <h1>{{ item.title }}</h1>
                         <div class="align-items-baseline">
@@ -73,8 +86,30 @@ export default {
       product: {},
       isLoading: false,
       current_page: 1,
-      countPage: 12, 
-      BT21: [],     
+      countPage: 18, 
+      BT21: [], 
+      imgs: [
+        require('../../assets/BT21/banner01.jpg'),
+        require('../../assets/BT21/banner02.jpg'),
+        require('../../assets/BT21/banner03.jpg'),
+        require('../../assets/BT21/banner04.jpg'),
+      ],
+      swiperOption: {
+              spaceBetween: 30,
+              centeredSlides: true,
+              autoplay: {
+                delay: 3000, //自動循環時間
+                disableOnInteraction: false, //用戶操作後是否禁止自動循環
+              },
+              pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+              },
+              navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+              }
+            },    
     };
   },
   components: {

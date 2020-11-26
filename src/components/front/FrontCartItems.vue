@@ -102,6 +102,7 @@ export default {
           });        
         } 
       });
+      console.log(cartItem_id, product_id);
     },
 
     addtoCart(id, qty) {
@@ -135,12 +136,14 @@ export default {
       if (item.qty > 1) {
         this.updateCart(item.id, item.product_id, item.qty - 1);
       }
+      console.log(item.id, item.product_id);
     },
 
     quantityPlus(item) {
       if (item.qty < 10) {
         this.updateCart(item.id, item.product_id, item.qty + 1);
       }
+      console.log(item.id, item.product_id);
     },
     addCouponCode() {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;

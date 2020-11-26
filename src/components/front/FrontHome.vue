@@ -4,89 +4,89 @@
         <swiper></swiper>
         <div class="home">
             <div class="home-gif">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/g1.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="home-gif">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/g2.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="home-gif">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/g3.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="home-gif">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/g4.jpg">
-              </a>
+              </router-link>
             </div>
         </div>
         <div class="home-banner1">
-            <a href="#" target="_blank">
+            <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/B1.jpg">
-            </a>
+            </router-link>
         </div>
         <div class="home-banner2">
-            <a href="#" target="_blank">
+            <router-link href="#" to="/daze">
                 <img src="~@/assets/calendar/B2.jpg">
                 <img src="~@/assets/calendar/B3.jpg">
-            </a>
+            </router-link>
         </div>
         <div class="home-banner3">
-            <a href="#" target="_blank">
+            <router-link href="#" to="/desinger">
                 <img src="~@/assets/calendar/B4.jpg">
-            </a>
+            </router-link>
         </div>
         <div class="home-banner4">
-            <a href="#" target="_blank">
+            <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/B5.jpg">
-            </a>
+            </router-link>
         </div>
         <div class="home-banner5">
-            <a href="#" target="_blank">
+            <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/B6.jpg">
-            </a>
+            </router-link>
         </div>
         <div class="home-footer">
             <div class="footer-img">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/daze">
                   <img src="~@/assets/calendar/F1.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="footer-img">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/desinger">
                   <img src="~@/assets/calendar/F2.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="footer-img">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/normcore">
                   <img src="~@/assets/calendar/F3.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="footer-img">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/bt21">
                   <img src="~@/assets/calendar/F4.jpg">
-              </a>
+              </router-link>
             </div>
         </div>
         <div class="app">
             <div class="home-store">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/home">
                 <img src="~@/assets/calendar/Store.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="home-app">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/home">
                 <img src="~@/assets/calendar/APP.jpg">
-              </a>
+              </router-link>
             </div>
             <div class="home-ig">
-              <a href="#" target="_blank">
+              <router-link href="#" to="/home">
                 <img src="~@/assets/calendar/IG.jpg">
-              </a>
+              </router-link>
             </div>
         </div>
       <GoTop></GoTop>

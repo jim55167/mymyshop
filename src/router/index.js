@@ -18,6 +18,9 @@ import FrontShoppingCart from '@/components/front/FrontShoppingCart';
 import FrontEnd from '@/components/front/FrontEnd';
 import FrontSingleProduct from '@/components/front/FrontSingleProduct';
 import FrontOrder from '@/components/front/FrontOrder';
+import GirlsUnique from '@/components/front/GirlsUnique';
+import Desinger from '@/components/front/Desinger';
+import Daze from '@/components/front/Daze';
 
 
 //自訂的分頁元件
@@ -74,6 +77,21 @@ export default new VueRouter({
                     path: 'morestyle',
                     name: 'MoreStyle',
                     component: MoreStyle,
+                },
+                {
+                    path: 'girls_unique',
+                    name: 'GirlsUnique',
+                    component: GirlsUnique,
+                },
+                {
+                    path: 'desinger',
+                    name: 'Desinger',
+                    component: Desinger,
+                },
+                {
+                    path: 'daze',
+                    name: 'Daze',
+                    component: Daze,
                 },
                 {
                     path: 'front_single_product/:productID',

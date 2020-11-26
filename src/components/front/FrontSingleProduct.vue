@@ -11,7 +11,7 @@
         <div class="product-wrap col-12 col-md-6">
           <div class="product-img">
             <div class="abs-wrap">
-              <img :src="product.imageUrl" alt />
+              <img v-lazy="product.imageUrl" alt />
             </div>
           </div>
         </div>

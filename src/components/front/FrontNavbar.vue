@@ -57,7 +57,6 @@ export default {
     return {
         showMenu: false, 
         is_login: false,
-
         currentFilter: 'ALL'
     }
   },
