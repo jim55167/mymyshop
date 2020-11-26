@@ -42,8 +42,8 @@ import dateFilter from './filters/date';
 import VueLazyload from 'vue-lazyload';
 Vue.use(VueLazyload, {
   preLoad: 1.3,
-  error: '../src/assets/calendar/erro.png',
-  loading: '../src/assets/calendar/loading.gif',
+  error: '~@/assets/calendar/erro.png',
+  loading: '~@/assets/calendar/loading.gif',
   attempt: 1
 })
 

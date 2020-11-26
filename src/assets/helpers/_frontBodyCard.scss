@@ -96,6 +96,9 @@
                 width: 100vw;
                 height: 70vh;
             }
+            @media screen and (max-width: 375px){
+                height: 80vh;
+            }
         }
 
         .overlay-girl{
