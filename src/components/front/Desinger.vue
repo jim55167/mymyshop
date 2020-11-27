@@ -17,12 +17,53 @@
             <div class="bg">
               <div class='content'>
                   <div class="h6" style="margin-top:2rem; margin-left:1rem;margin-bottom:initial;">
-                    <router-link href="#" to="/morestyle">                   
-                      獨家設計 Designer collection
-                    </router-link>
+                    <div class="bt21">
+                      <router-link href="#" to="/morestyle">                   
+                        獨家設計 Designer collection
+                      </router-link>
+                      <div class="btlist">
+                        <tr style="display:flex;">商品分類：
+                          <td> 
+                            <a href="#" class="nav-linl"
+                            :class="{'active': visibility == '全部商品'}"
+                            @click.prevent="visibility = '全部商品'">全部商品</a>
+                          </td>
+                          <td>
+                            <a href="#" class="nav-linl"
+                            :class="{'active': visibility == '上衣'}"
+                            @click.prevent="visibility = '上衣'">上衣</a>
+                          </td>
+                          <td>
+                            <a href="#" class="nav-linl"
+                            :class="{'active': visibility == '長褲'}"
+                            @click.prevent="visibility = '長褲'">長褲</a>
+                          </td>
+                          <td>
+                            <a href="#" class="nav-linl"
+                            :class="{'active': visibility == '外套'}"
+                            @click.prevent="visibility = '外套'">外套</a>
+                          </td> 
+                          <td>
+                            <a href="#" class="nav-linl"
+                            :class="{'active': visibility == '裙子'}"
+                            @click.prevent="visibility = '裙子'">裙子</a>
+                          </td>                           
+                          <td>
+                            <a href="#" class="nav-linl"
+                            :class="{'active': visibility == '背心'}"
+                            @click.prevent="visibility = '背心'">背心</a>
+                          </td>       
+                          <td>
+                            <a href="#" class="nav-linl"
+                            :class="{'active': visibility == '穿搭配件'}"
+                            @click.prevent="visibility = '穿搭配件'">穿搭配件</a>
+                          </td> 
+                        </tr>
+                      </div>
+                    </div>
                   </div>
                 <ul class="girl clearfix" >
-                  <li v-for="(item, key) in desinger.slice(pageStart, pageStart + countPage)" :key="key">             
+                  <li v-for="(item, key) in categoryData.slice(pageStart, pageStart + countPage)" :key="key">             
                     <a href="#" @click.prevent="getProduct(item.id)" target="_parent">
                       <div class="bodycard" v-lazy:background-image="item.imageUrl"></div>
                       <div class="overlay-girl">
@@ -79,6 +120,7 @@ export default {
       current_page: 1,
       countPage: 18,
       desinger: [],
+      visibility: '全部商品',
     };
   },
   components: {
@@ -122,8 +164,61 @@ export default {
       return (this.current_page - 1) * this.countPage;
     },
     totalPage() {
-      return Math.ceil( this.desinger.length / this.countPage);
+      return Math.ceil( this.categoryData.length / this.countPage);
     },
+    categoryData() {
+      if (this.visibility == '全部商品') {
+        return this.desinger;
+      } else if (this.visibility == '上衣'){
+        let categoryList = [];
+        this.desinger.forEach(function(item) {
+          if(item.category =='DESIGNER/上衣'){
+            categoryList.push(item);
+          }          
+        });
+        return categoryList;
+      } else if (this.visibility == '長褲'){
+        let categoryList = [];
+        this.desinger.forEach(function(item) {
+          if(item.category =='DESIGNER/長褲'){
+            categoryList.push(item);
+          }          
+        });
+        return categoryList;
+      } else if (this.visibility == '外套'){
+        let categoryList = [];
+        this.desinger.forEach(function(item) {
+          if(item.category =='DESIGNER/外套'){
+            categoryList.push(item);
+          }          
+        });
+        return categoryList;
+      } else if (this.visibility == '裙子'){
+        let categoryList = [];
+        this.desinger.forEach(function(item) {
+          if(item.category =='DESIGNER/裙子'){
+            categoryList.push(item);
+          }          
+        });
+        return categoryList;
+      } else if (this.visibility == '穿搭配件'){
+        let categoryList = [];
+        this.desinger.forEach(function(item) {
+          if(item.category =='DESIGNER/穿搭配件'){
+            categoryList.push(item);
+          }          
+        });
+        return categoryList;
+      } else if (this.visibility == '背心'){
+        let categoryList = [];
+        this.desinger.forEach(function(item) {
+          if(item.category =='DESIGNER/背心'){
+            categoryList.push(item);
+          }          
+        });
+        return categoryList;
+      }   
+    }
   },
   created() {
     this.getAllProducts();

@@ -27,17 +27,48 @@
                   <router-link href="#" to="/morestyle"> 
                     BT21全系列
                   </router-link>
-                  <tr style="display:flex;">商品分類：
-                    <td>上衣</td>
-                    <td>長褲</td>                    
-                    <td>外套</td>
-                    <td>裙子</td>
-                    <td>吊帶褲</td>
-                    <td>穿搭配件</td>
-                  </tr>
+                  <div class="btlist">
+                    <tr style="display:flex;">商品分類：
+                      <td> 
+                        <a href="#" class="nav-linl"
+                        :class="{'active': visibility == '全部商品'}"
+                        @click.prevent="visibility = '全部商品'">全部商品</a>
+                      </td>
+                      <td>
+                        <a href="#" class="nav-linl"
+                        :class="{'active': visibility == '上衣'}"
+                        @click.prevent="visibility = '上衣'">上衣</a>
+                      </td>
+                      <td>
+                        <a href="#" class="nav-linl"
+                        :class="{'active': visibility == '長褲'}"
+                        @click.prevent="visibility = '長褲'">長褲</a>
+                      </td>                    
+                      <td>
+                        <a href="#" class="nav-linl"
+                        :class="{'active': visibility == '外套'}"
+                        @click.prevent="visibility = '外套'">外套</a>
+                      </td>       
+                      <td>
+                        <a href="#" class="nav-linl"
+                        :class="{'active': visibility == '裙子'}"
+                        @click.prevent="visibility = '裙子'">裙子</a>
+                      </td>       
+                      <td>
+                        <a href="#" class="nav-linl"
+                        :class="{'active': visibility == '吊帶褲'}"
+                        @click.prevent="visibility = '吊帶褲'">吊帶褲</a>
+                      </td> 
+                      <td>
+                        <a href="#" class="nav-linl"
+                        :class="{'active': visibility == '穿搭配件'}"
+                        @click.prevent="visibility = '穿搭配件'">穿搭配件</a>
+                      </td> 
+                    </tr>
+                  </div>
                 </div>
                 <ul class="girl clearfix">
-                  <li v-for="(item, key) in BT21.slice(pageStart, pageStart + countPage)" :key="key">             
+                  <li v-for="(item, key) in categoryData.slice(pageStart, pageStart + countPage)" :key="key">             
                     <a href="#" @click.prevent="getProduct(item.id)" target="_parent">
                       <div class="bodycard" v-lazy:background-image="item.imageUrl"></div>
                       <div class="overlay-girl">
@@ -95,6 +126,7 @@ export default {
       current_page: 1,
       countPage: 18, 
       BT21: [],
+      visibility: '全部商品',
       imgs: [
         require('../../assets/BT21/banner01.jpg'),
         require('../../assets/BT21/banner02.jpg'),
@@ -139,7 +171,7 @@ export default {
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
       this.isLoading = true;
-      localStorage.setItem('cateFilteredList', JSON.stringify(this.BT21))
+      localStorage.setItem('cateFilteredList', JSON.stringify(this.products))
       this.$http.get(url).then((response) => {
         console.log(this.response);
         if(response.data.success) {
@@ -160,7 +192,60 @@ export default {
       return (this.current_page - 1) * this.countPage;
     },
     totalPage() {
-      return Math.ceil( this.BT21.length / this.countPage);
+      return Math.ceil( this.categoryData.length / this.countPage);
+    },
+    categoryData() {
+      if (this.visibility == '全部商品') {
+        return this.BT21;
+      } else if (this.visibility == '上衣'){
+        let categoryList = [];
+        this.BT21.forEach(function(item) {
+          if(item.category =='BT21/上衣'){
+            categoryList.push(item);
+          }          
+        })
+        return categoryList;
+      } else if (this.visibility == '長褲'){
+        let categoryList = [];
+        this.BT21.forEach(function(item) {
+          if(item.category =='BT21/長褲'){
+            categoryList.push(item);
+          }          
+        })
+        return categoryList;
+      } else if (this.visibility == '外套'){
+        let categoryList = [];
+        this.BT21.forEach(function(item) {
+          if(item.category =='BT21/外套'){
+            categoryList.push(item);
+          }          
+        })
+        return categoryList;
+      } else if (this.visibility == '裙子'){
+        let categoryList = [];
+        this.BT21.forEach(function(item) {
+          if(item.category =='BT21/裙子'){
+            categoryList.push(item);
+          }          
+        })
+        return categoryList;
+      } else if (this.visibility == '吊帶褲'){
+        let categoryList = [];
+        this.BT21.forEach(function(item) {
+          if(item.category =='BT21/吊帶褲'){
+            categoryList.push(item);
+          }          
+        })
+        return categoryList;
+      } else if (this.visibility == '穿搭配件'){
+        let categoryList = [];
+        this.BT21.forEach(function(item) {
+          if(item.category =='BT21/穿搭配件'){
+            categoryList.push(item);
+          }          
+        })
+        return categoryList;
+      }  
     }
   },
   created() {
