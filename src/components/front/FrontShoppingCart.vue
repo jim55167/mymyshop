@@ -22,7 +22,7 @@
 
     <div class="emptyCart-wrap" v-if="!cartHasItem">
       <h4>SHOPPING CART IS EMPTY</h4>
-      <router-link class="btn btn-primary shopping-link" to="/frontProducts/all">SHOPPING NOW!</router-link>
+      <router-link class="btn btn-primary shopping-link" to="/home">SHOPPING NOW!</router-link>
     </div>
   </div>
 </template>

@@ -23,10 +23,18 @@
           <div class="row mt-4" style="margin-top: initial !important;">
             <div class="bg">
               <div class='content'>
-                <div class="h6" style="margin-top:2rem; margin-left:1rem;margin-bottom:initial;">
+                <div class="bt21">
                   <router-link href="#" to="/morestyle"> 
                     BT21全系列
                   </router-link>
+                  <tr style="display:flex;">商品分類：
+                    <td>上衣</td>
+                    <td>長褲</td>                    
+                    <td>外套</td>
+                    <td>裙子</td>
+                    <td>吊帶褲</td>
+                    <td>穿搭配件</td>
+                  </tr>
                 </div>
                 <ul class="girl clearfix">
                   <li v-for="(item, key) in BT21.slice(pageStart, pageStart + countPage)" :key="key">             
@@ -83,11 +91,10 @@ export default {
   data() {
     return {
       products: [],
-      product: {},
       isLoading: false,
       current_page: 1,
       countPage: 18, 
-      BT21: [], 
+      BT21: [],
       imgs: [
         require('../../assets/BT21/banner01.jpg'),
         require('../../assets/BT21/banner02.jpg'),
@@ -132,8 +139,9 @@ export default {
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
       this.isLoading = true;
-      localStorage.setItem('cateFilteredList', JSON.stringify(this.products))
+      localStorage.setItem('cateFilteredList', JSON.stringify(this.BT21))
       this.$http.get(url).then((response) => {
+        console.log(this.response);
         if(response.data.success) {
           this.isLoading = false;
           this.$router.push(`../front_single_product/${response.data.product.id}`)
