@@ -103,6 +103,14 @@ a {
 
 }
 
+main{
+  margin-top: 75px;
+  
+  @media screen and (max-width: 414px) {
+    margin-top: 65px;
+  }
+}
+
 .btn {
   border-radius: 0;
 }

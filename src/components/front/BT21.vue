@@ -194,18 +194,18 @@ export default {
     totalPage() {
       return Math.ceil( this.categoryData.length / this.countPage);
     },
-    categoryData() {
-      if (this.visibility == '全部商品') {
-        return this.BT21;
-      } else if (this.visibility == '上衣'){
-        let categoryList = [];
-        this.BT21.forEach(function(item) {
-          if(item.category =='BT21/上衣'){
-            categoryList.push(item);
-          }          
+    categoryData() {     
+      if (this.visibility == '全部商品') {                     
+        return this.BT21;      
+      } else if (this.visibility == '上衣'){            
+        let categoryList = [];                          
+        this.BT21.forEach(function(item) {           
+          if(item.category =='BT21/上衣'){                                           
+            categoryList.push(item);                        
+          }                            
         })
-        return categoryList;
-      } else if (this.visibility == '長褲'){
+        return categoryList;        
+      } else if (this.visibility == '長褲'){        
         let categoryList = [];
         this.BT21.forEach(function(item) {
           if(item.category =='BT21/長褲'){
@@ -245,7 +245,7 @@ export default {
           }          
         })
         return categoryList;
-      }  
+      }
     }
   },
   created() {

@@ -2,7 +2,7 @@
   <div>
     <FrontNavbar></FrontNavbar>
     <div class="container-fluid px-0">
-      <main style="margin-top: 75px;">
+      <main>
         <router-view></router-view>
       </main>
     </div>
