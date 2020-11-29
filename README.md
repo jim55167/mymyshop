@@ -2,20 +2,9 @@
 
 > A Vue.js project
 
-## Build Setup
+##### 製作專案的契機
+前年和朋友一起出資合夥，並創立了一家服飾電商，但各大購物電商平台的成交手續費日漸調漲，導致利潤逐漸下滑不敷成本！
+後來與夥伴討論以不虧損為主，並採取薄利多銷的營運模式累積客源提升品牌知名度，想將客源導入自己的品牌網站做消費，
+但礙於當時架設網站成本過高且精費不足下，而取消了架設網站的念頭，而後也因為利潤過低只好默默的退出服飾市場。
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+為了實現之前無法完成的夢想，因而自己創造出這個網站，也就是[MyMyShop](https://jim55167.github.io/MyMyShop.com/#/home)
