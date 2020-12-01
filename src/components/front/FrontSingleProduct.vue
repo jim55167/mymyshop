@@ -159,7 +159,7 @@ export default {
         console.log(response);
         this.shoppingCart = response.data.data;
         this.isLoading = false;
-        // this.$emit('increment', this.shoppingCart);
+        this.$emit('increment', this.shoppingCart);
       });
     },
 
