@@ -97,8 +97,6 @@
                 top: 65px;
             }
 
-            
-
               li{
                 width: 108px;
                 height: 75px;
@@ -192,6 +190,7 @@
             margin-right: 165px;
             width: 65px;
             height: 75px;
+            position: relative;
 
             @media screen and (max-width: 1440px){
                 margin-right: initial;
@@ -199,6 +198,19 @@
 
             @media screen and (max-width: 992px){
                 display: none;
+            }
+
+            .badge{
+                width: 23px;
+                height: 23px;
+                font-size: 15px;
+                position: absolute;
+                top: 10px;
+                right: -5px;
+                padding: 5px 0;
+                border-radius: 50%;
+                background: red;
+                color: white;
             }
           }
 

@@ -75,7 +75,7 @@ router.beforeEach((to, from, next) => {
         next(); //成功登入的話則直接放行
     }else{
      next({
-       path: '/', //要前往的路徑
+       path: '/login', //要前往的路徑
      }) //如果不是登入的狀態時，則必須回到登入頁面
     }
   });

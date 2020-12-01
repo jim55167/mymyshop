@@ -73,9 +73,10 @@
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-          <div class="modal-body">
-            <h4 >AWESOME</h4>
-            <p >YOUR PAYMENT COMPLETED</p>
+          <div class="modal-body" style="padding:0">
+            <img src="~@/assets/calendar/ok.png">
+            <h4>AWESOME</h4>
+            <p>YOUR PAYMENT COMPLETED</p>
             <button class="btn btn-primary" @click="goToProducts">
               COUNTINUE SHOPPING!
             </button>

@@ -1,0 +1,124 @@
+.design-box{
+    width: 100%;
+
+    .design-item{
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: rgba(143, 160, 168, 0.1);
+
+        .design{
+            display: grid;
+            width: 1024px;
+            margin: 0 auto;
+            padding: 50px 0;
+
+            p{
+                width: 180px;
+                font-size: 24px;
+                background-color: #8ea0a8;
+                margin-bottom: 20px;
+                letter-spacing: 6px;
+            }
+
+            a{
+                margin: 20px 0;
+                line-height: 2;
+                letter-spacing: 3px;
+            }
+
+            img{
+                width: 500px;
+            }
+        }
+
+        .design2{
+            display: grid;
+            width: 1024px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+
+            p{
+                width: 290px;
+                font-size: 24px;
+                background-color: #8ea0a8;
+                margin-bottom: 20px;
+                letter-spacing: 6px;
+            }
+
+            a{
+                margin: 20px 0;
+                line-height: 2;
+                letter-spacing: 3px;
+            }
+
+            .design-img{
+                display: flex;
+
+                img{
+                    width: 500px;
+                    padding-right: 10px;
+                }
+            } 
+        }
+
+        .design3{
+            display: grid;
+            width: 1024px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+
+            p{
+                width: 210px;
+                font-size: 24px;
+                background-color: #8ea0a8;
+                margin-bottom: 20px;
+                letter-spacing: 6px;
+            }
+
+            a{
+                margin: 20px 0;
+                line-height: 2;
+                letter-spacing: 3px;
+            }
+
+            .design-img{
+                display: flex;
+
+                img{
+                    width: 500px;
+                    padding-right: 10px;
+                }
+            } 
+        }
+
+        .design4{
+            display: grid;
+            width: 1024px;
+            margin: 0 auto;
+            padding-bottom: 50px;
+
+            p{
+                width: 220px;
+                font-size: 24px;
+                background-color: #8ea0a8;
+                margin-bottom: 20px;
+                letter-spacing: 6px;
+            }
+
+            a{
+                margin: 20px 0;
+                line-height: 2;
+                letter-spacing: 3px;
+            }
+
+            .design-img{
+                display: flex;
+
+                img{
+                    width: 500px;
+                    padding-right: 10px;
+                }
+            } 
+        }
+    }
+}

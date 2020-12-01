@@ -13,7 +13,7 @@
     @media screen and (max-width: 517px){
         width: 55px;
     }
-  };
+  }
   .banner_open_shoppingcart{
     padding: 3px;
     width: 50px;
@@ -29,6 +29,19 @@
     };
     @media screen and (max-width: 517px){
         width: 55px;
+    }
+
+    .badge{
+        width: 23px;
+        height: 23px;
+        font-size: 15px;
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        padding: 5px 0px;
+        border-radius: 50%;
+        background: red;
+        color: white;
     }
   }
 

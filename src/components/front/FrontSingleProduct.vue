@@ -3,6 +3,7 @@
     <loading :active.sync="isLoading"></loading>
     <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
+            <span class="badge" @click="getCart">{{shoppingCart.carts.length}}</span>
             <img src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div>
@@ -154,10 +155,11 @@ export default {
     getCart() {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
       this.isLoading = true;
-
       this.$http.get(url).then(response => {
+        console.log(response);
         this.shoppingCart = response.data.data;
         this.isLoading = false;
+        // this.$emit('increment', this.shoppingCart);
       });
     },
 
@@ -173,7 +175,8 @@ export default {
         this.loadingItem = 'non-direct';
       }
 
-      this.$http.post(url, { data: cart }).then(response => {       
+      this.$http.post(url, { data: cart }).then(response => { 
+        console.log(response);      
         if (response.data.success) {
           this.getCart();
           this.loadingItem = '';

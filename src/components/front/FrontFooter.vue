@@ -4,8 +4,8 @@
           <hr style="margin:20px auto;">
           <p class="top">
             <span>
-                <a href="#" target="_blank">
-                    <img src="~@/assets/calendar/facebook.png">
+                <a href="https://github.com/jim55167/mymyshop" target="_blank">
+                    <img src="~@/assets/calendar/github.png">
                 </a>
             </span>
             <span>
@@ -14,36 +14,26 @@
                 </a>
             </span>
             <span>
-                <a href="#" target="_blank">
+                <a href="https://line.me/ti/p/dKAzJfqWhb" target="_blank">
                     <img src="~@/assets/calendar/line.png">
                 </a>
             </span>
           </p>
           <div class="footer_btn">
               <span>
-                <a href="#">
+                <router-link href="#" to="/aboutme">
                     <span class="chn">關於我們</span>
-                </a>
+                </router-link>
               </span>
               <span>
-                <a href="#">
+                <router-link href="#" to="/design">
                     <span class="chn">良品製作</span>
-                </a>
+                </router-link>
               </span>
               <span>
-                <a href="#">
-                    <span class="chn">客戶服務</span>
-                </a>
-              </span>
-              <span>
-                <a href="#">
-                    <span class="chn">跟隨我們</span>
-                </a>
-              </span>
-              <span>
-                <a href="#">
-                    <span class="chn">合作提案</span>
-                </a>
+                <router-link href="#" to="/service">
+                    <span class="chn">會員服務</span>
+                </router-link>
               </span>
           </div>
           <p class="footer_copyright">

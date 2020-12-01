@@ -67,6 +67,7 @@
 import $ from "jquery";
 
 export default {
+  name:'cartqty',
   data() {
     return {
       cart: [],
@@ -113,6 +114,7 @@ export default {
       };
       this.$http.post(url, { data: cart }).then(response => {
         this.getCart();
+        this.$emit('cartQty',qty);
       });
     },
     getCart() {
@@ -136,14 +138,12 @@ export default {
       if (item.qty > 1) {
         this.updateCart(item.id, item.product_id, item.qty - 1);
       }
-      console.log(item.id, item.product_id);
     },
 
     quantityPlus(item) {
       if (item.qty < 10) {
         this.updateCart(item.id, item.product_id, item.qty + 1);
       }
-      console.log(item.id, item.product_id);
     },
     addCouponCode() {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;

@@ -31,6 +31,10 @@
       background-color: rgba(0, 0, 0, 0.8);
       border: $secondary 1.5px solid;
 
+      img{
+        width: 80px;
+      }
+
       h4 {
         color: #fff;
         font-size: 1.5rem;
@@ -38,7 +42,7 @@
       }
 
       p{
-        color:rgba(245, 6, 6, 0.883); 
+        color:rgba(11, 194, 56, 0.883); 
         font-size:1rem;
         padding-bottom: 10px;
       }

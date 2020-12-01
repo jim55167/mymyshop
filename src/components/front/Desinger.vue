@@ -6,6 +6,7 @@
         </div>
         <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
+            <span class="badge">3</span>
             <img src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div> 

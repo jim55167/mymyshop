@@ -17,6 +17,7 @@
 
         <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
+            <span class="badge" @increment="cartqty">0</span>
             <img src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div>
@@ -122,6 +123,8 @@ export default {
   data() {
     return {
       products: [],
+      shoppingCart:[],
+      cart: [],
       isLoading: false,
       current_page: 1,
       countPage: 18, 
@@ -180,6 +183,10 @@ export default {
         }
       });
     },
+    cartqty(num){
+      this.shoppingCart = num;
+      console.log(this.shoppingCart);
+    },
     getPage(page) {
       if (page <= 0 || page > this.totalPage) {
         return;
@@ -195,14 +202,14 @@ export default {
       return Math.ceil( this.categoryData.length / this.countPage);
     },
     categoryData() {     
-      if (this.visibility == '全部商品') {                     
+      if (this.visibility == '全部商品') {                    
         return this.BT21;      
-      } else if (this.visibility == '上衣'){            
+      } else if (this.visibility == '上衣'){               
         let categoryList = [];                          
-        this.BT21.forEach(function(item) {           
-          if(item.category =='BT21/上衣'){                                           
+        this.BT21.forEach(function(item) {          
+          if(item.category =='BT21/上衣'){                                            
             categoryList.push(item);                        
-          }                            
+          }                           
         })
         return categoryList;        
       } else if (this.visibility == '長褲'){        

@@ -21,6 +21,9 @@ import FrontOrder from '@/components/front/FrontOrder';
 import GirlsUnique from '@/components/front/GirlsUnique';
 import Desinger from '@/components/front/Desinger';
 import Daze from '@/components/front/Daze';
+import Design from '@/components/front/Design';
+import Aboutme from '@/components/front/Aboutme';
+import Service from '@/components/front/Service';
 
 
 //自訂的分頁元件
@@ -92,6 +95,21 @@ export default new VueRouter({
                     path: 'daze',
                     name: 'Daze',
                     component: Daze,
+                },
+                {
+                    path: 'design',
+                    name: 'Design',
+                    component: Design,
+                },
+                {
+                    path: 'aboutme',
+                    name: 'Aboutme',
+                    component: Aboutme,
+                },
+                {
+                    path: 'service',
+                    name: 'Service',
+                    component: Service,
                 },
                 {
                     path: 'front_single_product/:productID',

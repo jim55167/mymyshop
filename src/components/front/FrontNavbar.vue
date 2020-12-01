@@ -38,6 +38,7 @@
             </ul>
           <div class="shoppingCart">
             <router-link class="nav-link" href="#" to="/shopping_cart/front_cart_items">
+              <span class="badge">3</span>
               <i class="fas fa-cart-arrow-down" style="font-size: 35px; color:white; line-height:1.8;"></i>
             </router-link>
           </div>
