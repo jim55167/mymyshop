@@ -1,6 +1,6 @@
 <template>
   <div class="checkout-wrap">
-    <loading :active.sync="isLoading"></loading>
+    <Loading :active.sync="isLoading"></Loading>
     <form @submit.prevent="payOrder">
       <table class="table">
         <thead>

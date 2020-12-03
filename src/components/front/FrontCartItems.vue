@@ -84,36 +84,11 @@ export default {
   },
   methods: {
     updateCart(cartItem_id, product_id, qty) {
-      const delete_api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${cartItem_id}`;
-      const add_api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-      const cart = {
-        product_id: product_id,
-        qty
-      };
-      this.$store.dispatch('updateLoading',true);
-
-      this.$http.delete(delete_api).then(response => {
-        if (response.data.success) {
-          this.$http.post(add_api, {data: cart}).then(response => {
-            if (response.data.success) {
-              this.getCart();
-            }
-          });        
-        } 
-      });
-      console.log(cartItem_id, product_id);
+      this.$store.dispatch('updateCart', {cartItem_id, product_id, qty})
     },
 
-    addtoCart(id, qty) {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-      const cart = {
-        product_id: id,
-        qty
-      };
-      this.$http.post(url, { data: cart }).then(response => {
-        this.getCart();
-        this.$emit('cartQty',qty);
-      });
+    addtoCart(id, qty = 1) {
+      this.$store.dispatch('addtoCart', {id, qty});
     },
     getCart() {
       this.$store.dispatch('getCart');

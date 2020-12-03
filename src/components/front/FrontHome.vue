@@ -1,6 +1,6 @@
 <template>
     <div>
-        <loading :active.sync="isLoading"></loading>  
+        <Loading :active.sync="isLoading"></Loading>  
         <swiper></swiper>
         <div class="home">
             <div class="home-gif">

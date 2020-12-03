@@ -1,6 +1,6 @@
 <template>
   <div class="orderList-wrap">
-    <loading :active.sync="isLoading"></loading>
+    <Loading :active.sync="isLoading"></Loading>
 
       <validation-observer class="col-md-6" v-slot="{ invalid }">
         <form @submit.prevent="createOrder">
@@ -101,7 +101,6 @@
 export default {
   data() {
     return {
-      isLoading: false,
       form: {
         user: {
           name: "",
@@ -117,15 +116,20 @@ export default {
       createOrder() {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order`;
       const order = this.form;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       this.$http.post(url, { data: order }).then(response => {
         console.log("訂單已建立", response);
         if (response.data.success) {
           this.$router.push(`../shopping_cart/front_checkout/${response.data.orderId}`);
         }
-        this.isLoading = false;
+        this.$store.dispatch('updateLoading',false);
       });
     }
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
   },
 };
 </script>

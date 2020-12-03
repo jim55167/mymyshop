@@ -1,6 +1,6 @@
 <template>
   <div class="row justify-content-center">
-    <loading :active.sync="isLoading"></loading>
+    <Loading :active.sync="isLoading"></Loading>
 
     <div class="container mt-4" v-if="cartHasItem">
       <div class="cart-wrap">
@@ -32,8 +32,6 @@
 export default {
   data() {
     return {
-      isLoading: false,
-      cart: [],
       couponCode: "",
       form: {
         user: {
@@ -50,17 +48,17 @@ export default {
 
   methods: {
     getCart() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-      this.isloading = true;
-      this.$http.get(url).then((response) => {
-        this.cart = response.data.data;
-        console.log(response);  
-         this.isloading = false;
-      });
+      this.$store.dispatch('getCart');
     },
   },
 
   computed: {
+    cart(){
+      return this.$store.state.cart;
+    },
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
     activedPage() {
       return this.$route.name;
     },

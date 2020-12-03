@@ -136,7 +136,6 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
-      products: [],
       current_page: 1,
       countPage: 18,
       girls: [],
@@ -147,18 +146,12 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('updateLoading',true);
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products;
-        console.log(response);
-        this.$store.dispatch('updateLoading', false);
+    getAllProducts() {      
         let GirlsUnique = this.products.filter(function(item) {
             return item.category.indexOf('私服衣櫃') !== -1;
           });
-         this.girls = GirlsUnique;
-      });
+        this.girls = GirlsUnique;
+        this.$store.dispatch('getAllProducts');
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -182,6 +175,9 @@ export default {
     },
   },  
   computed: {
+    products(){
+      return this.$store.state.products;
+    },
     isLoading(){
       return this.$store.state.isLoading;
     },

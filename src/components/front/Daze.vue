@@ -106,7 +106,6 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
-      products: [],
       current_page: 1,
       countPage: 18,
       daze: [],
@@ -117,18 +116,12 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('updateLoading',true);
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products;
-        console.log(response);
-        this.$store.dispatch('updateLoading',false);
+    getAllProducts() {      
         let dazeStyle = this.products.filter(function(item) {
             return item.category.indexOf('Daze') !== -1;
           });
-         this.daze = dazeStyle;
-      });
+        this.daze = dazeStyle;
+        this.$store.dispatch('getAllProducts');
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -160,6 +153,9 @@ export default {
     },
   },  
   computed: {
+    products(){
+      return this.$store.state.products;
+    },
     cart(){
       return this.$store.state.cart;
     },

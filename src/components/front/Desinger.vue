@@ -1,6 +1,6 @@
 <template>
     <div>      
-        <loading :active.sync="isLoading"></loading>
+        <Loading :active.sync="isLoading"></Loading>
          <div class="banner_open_line">
           <a href="https://line.me/ti/p/dKAzJfqWhb"><img src="~@/assets/calendar/LINEAPP.png"/></a>
         </div>
@@ -116,7 +116,6 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
-      products: [],
       current_page: 1,
       countPage: 18,
       desinger: [],
@@ -127,18 +126,12 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('updateLoading',true);
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products;
-        console.log(response);
-        this.$store.dispatch('updateLoading',false);
+    getAllProducts() {      
         let desingerStyle = this.products.filter(function(item) {
             return item.category.indexOf('DESIGNER') !== -1;
           });
-         this.desinger = desingerStyle;
-      });
+        this.desinger = desingerStyle;
+        this.$store.dispatch('getAllProducts');
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -162,6 +155,9 @@ export default {
     },
   },  
   computed: {
+    products(){
+      return this.$store.state.products;
+    },
     isLoading(){
       return this.$store.state.isLoading;
     },

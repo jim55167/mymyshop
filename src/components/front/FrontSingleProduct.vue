@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div class="recommand-products">
+        <div class="recommand-products">
           <div class="row mb-3">
             <div class="recommand-title mt-1 mb-3 col-12">
               <h5 style="font-size:1.25rem; margin-bottom:.5rem;">MAYBE YOU WILL LIKE...</h5>
@@ -126,11 +126,11 @@ export default {
 
   methods: {
     getSingleProduct() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
       this.$store.dispatch('updateLoading',true);
       this.randomProduct(this.localCateProducts, 4);
 
-      this.$http.get(url).then(response => {
+      this.$http.get(api).then(response => {
         if (response.data.success) {
           this.product = response.data.product;
           this.$set(this.product, "num", 1);
@@ -140,9 +140,9 @@ export default {
     },
 
     getRecommandProduct(id) {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
       this.$store.dispatch('updateLoading',true);
-      this.$http.get(url).then(response => {
+      this.$http.get(api).then(response => {
         if (response.data.success) {
           this.$store.dispatch('updateLoading',false);
           this.$router.push( `../front_single_product/${response.data.product.id}`).catch(err => {err});  

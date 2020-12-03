@@ -126,7 +126,6 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
-      products: [],
       current_page: 1,
       countPage: 18,
       byleway: [],
@@ -137,18 +136,12 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('updateLoading',true);
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products;
-        console.log(response);
-        this.$store.dispatch('updateLoading',false);
+    getAllProducts() {      
         let BylewayProducts = this.products.filter(function(item) {
             return item.category.indexOf('byleway') !== -1;
           });
-         this.byleway = BylewayProducts;
-      });
+        this.byleway = BylewayProducts;
+        this.$store.dispatch('getAllProducts');
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -172,6 +165,9 @@ export default {
     },
   },
   computed: {
+    products(){
+      return this.$store.state.products;
+    },
     isLoading() {
       return this.$store.state.isLoading;
     },

@@ -70,7 +70,6 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
-      products: [],
       current_page: 1,
       countPage: 27, 
     };
@@ -80,13 +79,7 @@ export default {
   },
   methods: {
     getAllProducts() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('updateLoading',true);
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products;
-        console.log(this.products);
-        this.$store.dispatch('updateLoading',false);
-      });
+      this.$store.dispatch('getAllProducts');
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -110,6 +103,9 @@ export default {
     },
   },
   computed: {
+    products(){
+      return this.$store.state.products;
+    },
     isLoading() {
       return this.$store.state.isLoading;
     },

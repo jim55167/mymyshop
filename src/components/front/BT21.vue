@@ -1,6 +1,6 @@
 <template>
     <div>
-        <loading :active.sync="isLoading"></loading>
+        <Loading :active.sync="isLoading"></Loading>
         <div class="banner_open_line">
           <a href="https://line.me/ti/p/dKAzJfqWhb"><img src="~@/assets/calendar/LINEAPP.png"/></a>
         </div>
@@ -122,7 +122,6 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
-      products: [],
       current_page: 1,
       countPage: 18, 
       BT21: [],
@@ -156,17 +155,11 @@ export default {
   },
   methods: {
     getAllProducts() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.$store.dispatch('updateLoading',true);
-      this.$http.get(url).then((response) => {
-        this.products = response.data.products;
-        console.log(this.products);
-        this.$store.dispatch('updateLoading',false);
         let BT21Products = this.products.filter(function(item) {
             return item.category.indexOf('BT21') !== -1;
           });
-         this.BT21 = BT21Products;
-      });
+        this.BT21 = BT21Products;
+        this.$store.dispatch('getAllProducts');
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -195,6 +188,9 @@ export default {
     },
   },
   computed: {
+    products(){
+      return this.$store.state.products;
+    },
     cart(){
       return this.$store.state.cart;
     },
