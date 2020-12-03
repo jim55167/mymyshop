@@ -1,6 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue';
+import Vuex from 'vuex';
 import axios from 'axios'; //主要AJAX套件
 import VueAxios from 'vue-axios'; //將它轉為Vue的套件
 import Loading from 'vue-loading-overlay';
@@ -36,6 +37,7 @@ Vue.use(VueAwesomeSwiper);
 // 上面為載入的套件內容，下面是自定義的內容
 import App from './App';
 import router from './router';
+import store from './store';
 import './bus';
 import currencyFilter from './filters/currency'; //千分號
 import dateFilter from './filters/date';
@@ -52,6 +54,7 @@ Vue.filter('currency',  currencyFilter);
 Vue.filter('date', dateFilter);
 
 Vue.use(VueAxios, axios);
+Vue.use(Vuex);
 Vue.config.productionTip = false;
 axios.defaults.withCredentials = true;
 
@@ -61,6 +64,7 @@ axios.defaults.withCredentials = true;
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });

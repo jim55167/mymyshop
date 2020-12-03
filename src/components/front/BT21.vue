@@ -17,7 +17,7 @@
 
         <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
-            <span class="badge" @increment="cartqty">0</span>
+            <span class="badge">{{cart.carts.length}}</span>
             <img src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div>
@@ -123,9 +123,6 @@ export default {
   data() {
     return {
       products: [],
-      shoppingCart:[],
-      cart: [],
-      isLoading: false,
       current_page: 1,
       countPage: 18, 
       BT21: [],
@@ -160,11 +157,11 @@ export default {
   methods: {
     getAllProducts() {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       this.$http.get(url).then((response) => {
         this.products = response.data.products;
         console.log(this.products);
-        this.isLoading = false;
+        this.$store.dispatch('updateLoading',false);
         let BT21Products = this.products.filter(function(item) {
             return item.category.indexOf('BT21') !== -1;
           });
@@ -173,12 +170,12 @@ export default {
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       localStorage.setItem('cateFilteredList', JSON.stringify(this.products))
       this.$http.get(url).then((response) => {
         console.log(this.response);
         if(response.data.success) {
-          this.isLoading = false;
+          this.$store.dispatch('updateLoading',false);
           this.$router.push(`../front_single_product/${response.data.product.id}`)
         }
       });
@@ -193,8 +190,17 @@ export default {
       }
       this.current_page = page;
     },
+    getCart() {
+      this.$store.dispatch('getCart');
+    },
   },
   computed: {
+    cart(){
+      return this.$store.state.cart;
+    },
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
     pageStart() {
       return (this.current_page - 1) * this.countPage;
     },

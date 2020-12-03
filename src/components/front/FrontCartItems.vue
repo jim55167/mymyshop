@@ -1,6 +1,6 @@
 <template>
   <div class="item-wrap">
-    <loading :active.sync="isLoading"></loading>
+    <Loading :active.sync="isLoading"></Loading>
     <table class="table">
       <thead>
         <tr>
@@ -70,8 +70,6 @@ export default {
   name:'cartqty',
   data() {
     return {
-      cart: [],
-      isLoading: false,
       coupon_code: "",
       form: {
         user: {
@@ -92,7 +90,7 @@ export default {
         product_id: product_id,
         qty
       };
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
 
       this.$http.delete(delete_api).then(response => {
         if (response.data.success) {
@@ -118,21 +116,10 @@ export default {
       });
     },
     getCart() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-      this.isLoading = true;
-      this.$http.get(url).then(response => {
-        this.cart = response.data.data;
-        console.log(response);
-        this.isLoading = false;
-      });
+      this.$store.dispatch('getCart');
     },
     removeCartItem(id) {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${id}`;
-      this.isLoading = true;
-      this.$http.delete(url).then(response => {
-        this.isLoading = false;
-        this.getCart();       
-      });
+      this.$store.dispatch('removeCartItem', id);
     },
     quantitySub(item) {
       if (item.qty > 1) {
@@ -150,16 +137,22 @@ export default {
       const coupon = {
         code: this.coupon_code
       };
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       this.$http.post(url, { data: coupon }).then(response => {
         console.log(response);
         this.getCart();
-        this.isLoading = false;
+        this.$store.dispatch('updateLoading',false);
       });
     },
     
   },
   computed: {
+    cart(){
+      return this.$store.state.cart;
+    },
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
     nextPage() {
       if(this.cart.carts == 0) {
         return false;

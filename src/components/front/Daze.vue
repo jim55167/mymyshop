@@ -1,12 +1,12 @@
 <template>
     <div>      
-        <loading :active.sync="isLoading"></loading>
+        <Loading :active.sync="isLoading"></Loading>
          <div class="banner_open_line">
           <a href="https://line.me/ti/p/dKAzJfqWhb"><img src="~@/assets/calendar/LINEAPP.png"/></a>
         </div>
         <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
-            <span class="badge">3</span>
+            <span class="badge">{{cart.carts.length}}</span>
             <img src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div> 
@@ -107,7 +107,6 @@ export default {
   data() {
     return {
       products: [],
-      isLoading: false,
       current_page: 1,
       countPage: 18,
       daze: [],
@@ -120,11 +119,11 @@ export default {
   methods: {
     getAllProducts() {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       this.$http.get(url).then((response) => {
         this.products = response.data.products;
         console.log(response);
-        this.isLoading = false;
+        this.$store.dispatch('updateLoading',false);
         let dazeStyle = this.products.filter(function(item) {
             return item.category.indexOf('Daze') !== -1;
           });
@@ -133,24 +132,40 @@ export default {
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       localStorage.setItem('cateFilteredList', JSON.stringify(this.products));
       this.$http.get(url).then((response) => {
         if(response.data.success) {
-          this.isLoading = false;
+          this.$store.dispatch('updateLoading',false);
           this.$router.push(`../front_single_product/${response.data.product.id}`)
         }
       });
-    },
-    
+    },    
     getPage(page) {
       if (page <= 0 || page > this.totalPage) {
         return;
       }
       this.current_page = page;
     },
+    getCategory(){
+      const categories = new Set();
+      this.products.forEach((item) => {
+        categories.add(item.category);
+      });
+      this.categories = Array.from(categories);
+      
+    },
+    getCart() {
+      this.$store.dispatch('getCart');
+    },
   },  
   computed: {
+    cart(){
+      return this.$store.state.cart;
+    },
+     isLoading() {
+      return this.$store.state.isLoading;
+    },
     pageStart() {
       return (this.current_page - 1) * this.countPage;
     },

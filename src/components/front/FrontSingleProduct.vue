@@ -1,9 +1,9 @@
 <template>
   <div class="fsp-container-fluid">
-    <loading :active.sync="isLoading"></loading>
+    <Loading :active.sync="isLoading"></Loading>
     <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
-            <span class="badge" @click="getCart">{{shoppingCart.carts.length}}</span>
+            <span class="badge">{{cart.carts.length}}</span>
             <img src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div>
@@ -105,14 +105,12 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
-      isLoading: false,
       productId: "",
       recommandProducts: [],
       localCateProducts: [],
       product: {
         num: 1
       },
-      shoppingCart: [],
       loadingItem: '',
     };
   },
@@ -129,38 +127,31 @@ export default {
   methods: {
     getSingleProduct() {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       this.randomProduct(this.localCateProducts, 4);
 
       this.$http.get(url).then(response => {
         if (response.data.success) {
           this.product = response.data.product;
           this.$set(this.product, "num", 1);
-          this.isLoading = false;
+          this.$store.dispatch('updateLoading',false);
         }
       });
     },
 
     getRecommandProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       this.$http.get(url).then(response => {
         if (response.data.success) {
-          this.isLoading = false;
+          this.$store.dispatch('updateLoading',false);
           this.$router.push( `../front_single_product/${response.data.product.id}`).catch(err => {err});  
         }
       });
     },
 
     getCart() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-      this.isLoading = true;
-      this.$http.get(url).then(response => {
-        console.log(response);
-        this.shoppingCart = response.data.data;
-        this.isLoading = false;
-        this.$emit('increment', this.shoppingCart);
-      });
+      this.$store.dispatch('getCart');
     },
 
     addToCart(id, direct, qty = 1) {
@@ -175,8 +166,7 @@ export default {
         this.loadingItem = 'non-direct';
       }
 
-      this.$http.post(url, { data: cart }).then(response => { 
-        console.log(response);      
+      this.$http.post(url, { data: cart }).then(response => {      
         if (response.data.success) {
           this.getCart();
           this.loadingItem = '';
@@ -189,16 +179,7 @@ export default {
     },
 
     removeCartItem(id) {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${id}`;
-      this.isLoading = true;
-
-      this.$http.delete(api).then(response => {
-        if (response.data.success) {
-          this.isLoading = false;
-        } else {
-          this.isLoading = false;
-        }
-      });
+      this.$store.dispatch('removeCartItem', id);
     },
 
     quantitySub(product) {
@@ -240,6 +221,15 @@ export default {
       }
       this.recommandProducts = newArr;
     }
+  },
+
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
+    cart(){
+      return this.$store.state.cart;
+    },
   },
 
   created() {
