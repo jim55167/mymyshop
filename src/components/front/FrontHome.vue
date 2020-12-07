@@ -25,6 +25,9 @@
             </div>
         </div>
         <div class="home-banner1">
+          <img src="~@/assets/calendar/Coupon.jpg">
+        </div>
+        <div class="home-banner1">
             <router-link href="#" to="/girls_unique">
                 <img src="~@/assets/calendar/B1.jpg">
             </router-link>
