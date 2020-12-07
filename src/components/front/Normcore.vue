@@ -127,7 +127,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 18,
+      countPage: 6,
       normcore: [],
       visibility: '全部商品',
     };
@@ -136,12 +136,13 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {       
-        let NormcoreProducts = this.products.filter(function(item) {
+    getAllProducts() {  
+        const vm = this; 
+        vm.$store.dispatch('getAllProducts');    
+        let NormcoreProducts = vm.products.filter(function(item) {
             return item.category.indexOf('normcore') !== -1;
           });
-         this.normcore = NormcoreProducts;
-        this.$store.dispatch('getAllProducts');
+         vm.normcore = NormcoreProducts;        
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;

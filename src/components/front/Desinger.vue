@@ -43,12 +43,7 @@
                             <a href="#" class="nav-linl"
                             :class="{'active': visibility == '外套'}"
                             @click.prevent="visibility = '外套'">外套</a>
-                          </td> 
-                          <td>
-                            <a href="#" class="nav-linl"
-                            :class="{'active': visibility == '裙子'}"
-                            @click.prevent="visibility = '裙子'">裙子</a>
-                          </td>                           
+                          </td>                          
                           <td>
                             <a href="#" class="nav-linl"
                             :class="{'active': visibility == '背心'}"
@@ -117,7 +112,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 18,
+      countPage: 6,
       desinger: [],
       visibility: '全部商品',
     };
@@ -126,12 +121,13 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {      
-        let desingerStyle = this.products.filter(function(item) {
+    getAllProducts() {  
+        const vm = this; 
+        vm.$store.dispatch('getAllProducts');   
+        let desingerStyle = vm.products.filter(function(item) {
             return item.category.indexOf('DESIGNER') !== -1;
           });
-        this.desinger = desingerStyle;
-        this.$store.dispatch('getAllProducts');
+        vm.desinger = desingerStyle;
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -193,14 +189,6 @@ export default {
         let categoryList = [];
         this.desinger.forEach(function(item) {
           if(item.category =='DESIGNER/外套'){
-            categoryList.push(item);
-          }          
-        });
-        return categoryList;
-      } else if (this.visibility == '裙子'){
-        let categoryList = [];
-        this.desinger.forEach(function(item) {
-          if(item.category =='DESIGNER/裙子'){
             categoryList.push(item);
           }          
         });

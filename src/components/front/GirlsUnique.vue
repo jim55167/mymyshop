@@ -61,11 +61,6 @@
                           </td>                          
                           <td>
                             <a href="#" class="nav-linl"
-                            :class="{'active': visibility == '背心'}"
-                            @click.prevent="visibility = '背心'">背心</a>
-                          </td> 
-                          <td>
-                            <a href="#" class="nav-linl"
                             :class="{'active': visibility == '裙子'}"
                             @click.prevent="visibility = '裙子'">裙子</a>
                           </td>       
@@ -137,7 +132,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 18,
+      countPage: 6,
       girls: [],
       visibility: '全部商品',
     };
@@ -146,12 +141,13 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {      
-        let GirlsUnique = this.products.filter(function(item) {
+    getAllProducts() { 
+        const vm = this;  
+        vm.$store.dispatch('getAllProducts');   
+        let GirlsUnique = vm.products.filter(function(item) {
             return item.category.indexOf('私服衣櫃') !== -1;
           });
-        this.girls = GirlsUnique;
-        this.$store.dispatch('getAllProducts');
+        vm.girls = GirlsUnique;        
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -213,14 +209,6 @@ export default {
         let categoryList = [];
         this.girls.forEach(function(item) {
           if(item.category =='私服衣櫃/外套'){
-            categoryList.push(item);
-          }          
-        });
-        return categoryList;
-      } else if (this.visibility == '背心'){
-        let categoryList = [];
-        this.girls.forEach(function(item) {
-          if(item.category =='私服衣櫃/背心'){
             categoryList.push(item);
           }          
         });

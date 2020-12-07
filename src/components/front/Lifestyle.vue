@@ -106,7 +106,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 18,
+      countPage: 6,
       lifestyle: [],
       visibility: '全部商品',      
     };
@@ -115,12 +115,13 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {     
-        let LifestyleProducts = this.products.filter(function(item) {
+    getAllProducts() {  
+        const vm = this;
+        vm.$store.dispatch('getAllProducts');
+        let LifestyleProducts = vm.products.filter(function(item) {
             return item.category.indexOf('lifestyle') !== -1;
           });
-        this.lifestyle = LifestyleProducts;
-        this.$store.dispatch('getAllProducts');
+        vm.lifestyle = LifestyleProducts;        
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;

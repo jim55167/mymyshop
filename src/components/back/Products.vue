@@ -92,7 +92,44 @@
                   <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
                   class="img-fluid" alt="" v-lazy="tempProduct.imageUrl">
               </div>
-              <div class="col-sm-8">
+
+              <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="image">輸入圖片網址</label>
+                    <input type="text" class="form-control" id="image"
+                        v-model="tempProduct.imageUrl2"
+                        placeholder="請輸入圖片連結">
+                  </div>
+                  <div class="form-group">
+                    <label for="customFile">或 上傳圖片
+                        <i class="fas fa-spinner fa-spin" v-if="fileUploading"></i>
+                    </label>
+                    <input type="file" id="customFile" class="form-control"
+                        ref="files2" @change="infoImg">
+                  </div>
+                  <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
+                  class="img-fluid" alt="" v-lazy="tempProduct.imageUrl2">
+              </div>
+
+              <div class="col-sm-4">
+                  <div class="form-group">
+                    <label for="image">輸入圖片網址</label>
+                    <input type="text" class="form-control" id="image"
+                        v-model="tempProduct.imageUrl3"
+                        placeholder="請輸入圖片連結">
+                  </div>
+                  <div class="form-group">
+                    <label for="customFile">或 上傳圖片
+                        <i class="fas fa-spinner fa-spin" v-if="fileUploading"></i>
+                    </label>
+                    <input type="file" id="customFile" class="form-control"
+                        ref="files3" @change="infoSizeImg">
+                  </div>
+                  <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
+                  class="img-fluid" alt="" v-lazy="tempProduct.imageUrl3">
+              </div>
+
+              <div class="col-sm-8" style="margin:0 auto;">
                   <div class="form-group">
                   <label for="title">標題</label>
                   <input type="text" class="form-control" id="title"
@@ -139,11 +176,12 @@
                       style="height:12rem"></textarea>
                   </div>
                   <div class="form-group">
-                  <label for="description">產品描述</label>
-                  <textarea type="text" class="form-control" id="description"
-                      v-model="tempProduct.description"
-                      placeholder="請輸入產品描述"
-                      style="height:12rem"></textarea>
+                    <label for="description">產品描述</label>
+                    <textarea type="text" class="form-control" id="description"
+                        v-model="tempProduct.description"
+                        placeholder="請輸入產品描述"
+                        style="height:12rem">
+                    </textarea>
                   </div>
                   
                   <div class="form-group">
@@ -282,6 +320,51 @@ export default {
         this.fileUploading = false;
         if(response.data.success) {
           this.$set(this.tempProduct, 'imageUrl', response.data.imageUrl);
+          console.log(this.tempProduct);
+        } else {
+          this.$bus.$emit('message:push', response.data.message, 'danger');       
+        }
+      })
+    },
+    infoImg() {
+      console.log(this);
+      const uploadeImg = this.$refs.files2.files[0];
+      const formData = new FormData();
+      formData.append('file-to-upload', uploadeImg);
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+      this.fileUploading = true;
+      this.$http.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        console.log(response.data);
+        this.fileUploading = false;
+        if(response.data.success) {
+          this.$set(this.tempProduct, 'imageUrl2', response.data.imageUrl);
+          console.log(this.tempProduct);
+        } else {
+          this.$bus.$emit('message:push', response.data.message, 'danger');       
+        }
+      })
+    },
+    infoSizeImg() {
+      console.log(this);
+      const infoSizeImgs = this.$refs.files3.files[0];
+      const formData = new FormData();
+      formData.append('file-to-upload', infoSizeImgs);
+      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+      this.fileUploading = true;
+      this.$http.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((response) => {
+        console.log(response.data);
+        this.fileUploading = false;
+        if(response.data.success) {
+          this.$set(this.tempProduct, 'imageUrl3', response.data.imageUrl);
+          console.log(this.tempProduct);
         } else {
           this.$bus.$emit('message:push', response.data.message, 'danger');       
         }

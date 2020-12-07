@@ -107,7 +107,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 18,
+      countPage: 6,
       daze: [],
       visibility: '全部商品',
     };
@@ -116,12 +116,13 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {      
-        let dazeStyle = this.products.filter(function(item) {
+    getAllProducts() {    
+        const vm = this; 
+        vm.$store.dispatch('getAllProducts'); 
+        let dazeStyle = vm.products.filter(function(item) {
             return item.category.indexOf('Daze') !== -1;
           });
-        this.daze = dazeStyle;
-        this.$store.dispatch('getAllProducts');
+        vm.daze = dazeStyle;       
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;

@@ -61,8 +61,11 @@
         <div class="description-title col-12">
           <h3 style="font-size:1.75rem;">PRODUCT INFO</h3>
         </div>
-
-        <div class="col-12">
+        <div style="width:90vw;margin:0 auto;">
+          <img style="padding-bottom:20px;" v-lazy="product.imageUrl3" alt />
+          <img v-lazy="product.imageUrl2" alt />         
+        </div>
+        <div class="col-12" style="padding-top:20px;">
           <pre>{{product.description}}</pre>
         </div>
       </div>

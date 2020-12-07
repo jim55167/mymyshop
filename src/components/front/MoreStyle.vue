@@ -34,7 +34,7 @@
               </div>
             </div>           
           </div>
-<!-- "{backgroundImage: `url(${item.imageUrl})`}" -->
+
         <!-- bootstrap pagination -->
         <table style="display: flex;"> 
           <nav aria-label="Page navigation example" style="margin:0 auto 15px">
@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 27, 
+      countPage: 12, 
     };
   },
   components: {

@@ -123,7 +123,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 18, 
+      countPage: 6, 
       BT21: [],
       visibility: '全部商品',
       imgs: [
@@ -154,12 +154,15 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {
-        let BT21Products = this.products.filter(function(item) {
+    getAllProducts() { 
+        const vm = this;
+        vm.$store.dispatch('getAllProducts');
+        let BT21Products = vm.products.filter(function(item) {
+          console.log(vm.products);
             return item.category.indexOf('BT21') !== -1;
           });
-        this.BT21 = BT21Products;
-        this.$store.dispatch('getAllProducts');
+        vm.BT21 = BT21Products;
+        console.log(vm.BT21);      
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;

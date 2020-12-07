@@ -127,7 +127,7 @@ export default {
   data() {
     return {
       current_page: 1,
-      countPage: 18,
+      countPage: 6,
       byleway: [],
       visibility: '全部商品',      
     };
@@ -136,12 +136,13 @@ export default {
     GoTop,
   },
   methods: {
-    getAllProducts() {      
-        let BylewayProducts = this.products.filter(function(item) {
+    getAllProducts() {  
+        const vm = this; 
+        vm.$store.dispatch('getAllProducts');   
+        let BylewayProducts = vm.products.filter(function(item) {
             return item.category.indexOf('byleway') !== -1;
           });
-        this.byleway = BylewayProducts;
-        this.$store.dispatch('getAllProducts');
+        vm.byleway = BylewayProducts;       
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
