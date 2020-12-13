@@ -1,7 +1,7 @@
 <template>
   <div>
     <FrontNavbar></FrontNavbar>
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0" style="overflow:hidden">
       <main>
         <router-view></router-view>
       </main>
