@@ -87,7 +87,7 @@ export default {
       this.$store.dispatch('updateCart', {cartItem_id, product_id, qty})
     },
 
-    addtoCart(id, qty = 1) {
+    addToCart(id, qty = 1) {
       this.$store.dispatch('addtoCart', {id, qty});
     },
     getCart() {

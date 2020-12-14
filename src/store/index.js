@@ -63,7 +63,7 @@ export default new Vuex.Store({
                 console.log('刪除購物車項目', response);
             });
           },
-          addtoCart(context, {id, qty}) {
+          addToCart(context, {id, qty}) {
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
             context.commit('LOADING', true);
             const cart = {

@@ -58,7 +58,6 @@ export default {
     return {
         showMenu: false, 
         is_login: false,
-        currentFilter: 'ALL'
     }
   },
   methods: {
@@ -81,21 +80,18 @@ export default {
     toggleClass() {
       this.showMenu = !this.showMenu;
     },
-    setFilter: function(filter) {
-			this.currentFilter = filter;
-    },
     getCart() {
       this.$store.dispatch('getCart');
     },
   },
   computed: {
-    cart(){
-      return this.$store.state.cart;
-    },
+  cart(){
+    return this.$store.state.cart;
   },
+},
   created() {
     this.checkLoginStatus();
     this.getCart();
-  }
+}
 }
 </script>

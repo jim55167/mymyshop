@@ -82,12 +82,10 @@
             margin: 55px 10px 0;
         }
         @media screen and (max-width: 992px){
-            width: calc((100% - 50px) / 2);
+            width: calc((100% - 40px) / 2);
             margin: 40px 10px 0;
         }
-        @media screen and (max-width: 576px){
-            width: calc((100% - 30px));
-        }
+
 
         .bodycard{
             transform:scale(1,1);
@@ -104,13 +102,6 @@
 
             @media screen and (max-width: 992px){
                 height: 60vw;
-            }
-            @media screen and (max-width: 576px){
-                width: 100vw;
-                height: 70vh;
-            }
-            @media screen and (max-width: 375px){
-                height: 85vh;
             }
         }
 
@@ -133,12 +124,35 @@
                 margin: 12px auto 0;
 
                 @media screen and (max-width: 768px){
-                    margin: 6px auto;
+                    margin: 5px auto;
                 }
                 @media screen and (max-width: 576px){
-                    margin: 12px auto 12px;
-                    font-size: 25px;
-                    height: 25px;
+                    font-size: 20px;
+                    height: 24px;
+                }
+                @media screen and (max-width: 414px){
+                    font-size: 18px;
+                }
+                @media screen and (max-width: 375px){
+                    margin: 4px auto;
+                    font-size: 16px;
+                }
+            }
+
+            .h5{
+                @media screen and (max-width: 515px){
+                    font-size: 18px;
+                }
+                @media screen and (max-width: 414px){
+                    font-size: 16px;
+                }
+                @media screen and (max-width: 375px){
+                    font-size: 15px;
+                }
+            } 
+            .h6{
+                @media screen and (max-width: 414px){
+                    font-size: 12px;
                 }
             }
         }
