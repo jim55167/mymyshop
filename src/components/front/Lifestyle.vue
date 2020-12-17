@@ -11,7 +11,7 @@
           </router-link>
         </div>
         <div class="swiper-slide games">
-            <img src="~@/assets/calendar/LIFESTYLE.jpg" alt="Banner">
+            <img src="~@/assets/calendar/LIFESTYLE.jpg" alt="Banner" style="object-fit:cover;">
         </div>
           <div class="row mt-4" style="margin-top: initial !important;">
             <div class="bg">
