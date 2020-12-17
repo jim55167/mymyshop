@@ -20,6 +20,15 @@
             </div>
           </router-link>
         </div>
+        <div class="home-winter-box">
+          <div class="home-winter">
+            <div class="home-winter-nav">
+              <a class="home-winter-text">當冬日路過這個城市</a>
+              <a class="home-winter-text text-nav">到處充滿著歡聚的氣息</a>
+              <a class="home-winter-text text-nav2">此刻的喧鬧屬於我們</a>
+            </div>
+          </div>
+        </div>
         <div class="home-banner-b">
           <router-link href="#" to="/girls_unique">
             <div class="home-box">
@@ -59,26 +68,24 @@
           </router-link>
         </div>
         <div class="home-footer">
-            <div class="footer-img">
+          <div class="footer-box">
+            <div class="footer-nav">
               <router-link href="#" to="/daze">
-                  <img src="~@/assets/calendar/F1.jpg">
+                <div class="footer-img1"></div>
               </router-link>
-            </div>
-            <div class="footer-img">
               <router-link href="#" to="/desinger">
-                  <img src="~@/assets/calendar/F2.jpg">
+                <div class="footer-img2"></div>
               </router-link>
             </div>
-            <div class="footer-img">
+            <div class="footer-nav">
               <router-link href="#" to="/normcore">
-                  <img src="~@/assets/calendar/F3.jpg">
+                <div class="footer-img3"></div>
               </router-link>
-            </div>
-            <div class="footer-img">
               <router-link href="#" to="/bt21">
-                  <img src="~@/assets/calendar/F4.jpg">
+                <div class="footer-img4"></div>
               </router-link>
             </div>
+          </div>
         </div>
         <div class="app">
             <div class="home-store">

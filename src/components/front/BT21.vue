@@ -8,7 +8,7 @@
         <swiper class="swiper" :options="swiperOption">
           <swiper-slide class="swiper-slide games"
             v-for="item in imgs" :key="item">
-            <img :src="item" alt="">
+            <img :src="item" alt="" style="object-fit:cover;">
           </swiper-slide>
           <div class="swiper-pagination" slot="pagination"></div>
           <div class="swiper-button-prev" slot="button-prev"></div>
