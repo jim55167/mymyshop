@@ -17,6 +17,13 @@
         -ms-flex-align: center;
         -webkit-align-items: center;
         align-items: center;
+
+        img{
+            @media screen and (max-width: 768px){
+                max-width:100%;
+                height:350px;
+            }
+        }
     }
 
     .swiper-button-prev{

@@ -110,7 +110,7 @@ export default {
     return {
       productId: "",
       recommandProducts: [],
-      localCateProducts: [],
+      localProducts: [],
       product: {
         num: 1
       },
@@ -131,7 +131,7 @@ export default {
     getSingleProduct() {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
       this.$store.dispatch('updateLoading',true);
-      this.randomProduct(this.localCateProducts, 4);
+      this.randomProduct(this.localProducts, 4);
 
       this.$http.get(api).then(response => {
         if (response.data.success) {
@@ -237,8 +237,8 @@ export default {
 
   created() {
     this.productId = this.$route.params.productID;
-    this.localCateProducts = JSON.parse(
-      localStorage.getItem("cateFilteredList")
+    this.localProducts = JSON.parse(
+      localStorage.getItem("filteredList")
     );
     this.getSingleProduct();
     this.getCart();

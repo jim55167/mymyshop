@@ -2,56 +2,61 @@
     <div>
         <Loading :active.sync="isLoading"></Loading>  
         <swiper></swiper>
-        <div class="home">
-            <div class="home-gif">
-              <router-link href="#" to="/girls_unique">
-                <img src="~@/assets/calendar/g1.jpg">
-              </router-link>
+        
+        <div class="home-banner-a">
+          <router-link href="#" to="/girls_unique">
+            <div class="home-box">
+              <div class="home-box-flex">
+                <div class="home-box-img1"></div>
+                <div class="home-box-img2"></div>
+              </div>
+              <div class="home-box-center">
+                <div class="home-box-img3"></div>
+                <a>-<br/>
+                RECOMMEND ITEM<br/>
+                SPECIAL AND ENTIRELY WORTH IT
+                </a>
+              </div>
             </div>
-            <div class="home-gif">
-              <router-link href="#" to="/girls_unique">
-                <img src="~@/assets/calendar/g2.jpg">
-              </router-link>
+          </router-link>
+        </div>
+        <div class="home-banner-b">
+          <router-link href="#" to="/girls_unique">
+            <div class="home-box">
+              <div class="home-box-nav">
+                <div class="home-box-left">
+                  <div class="home-box-img1"></div>
+                </div>
+                <div class="home-box-right">
+                  <div class="home-box-img2"></div>
+                </div>
+              </div>
+              <div class="home-box-bottom">
+                <div class="home-box-img3"></div>
+              </div>
             </div>
-            <div class="home-gif">
-              <router-link href="#" to="/girls_unique">
-                <img src="~@/assets/calendar/g3.jpg">
-              </router-link>
+          </router-link>
+        </div>
+        <div class="home-banner-c">
+          <router-link href="#" to="/girls_unique">
+            <div class="home-box">
+              <div class="home-box-top">
+                <div class="home-box-img1"></div>
+              </div>
+              <div class="home-box-flex">
+                <div class="home-box-left-nav">
+                  <div class="home-box-img2"></div>
+                  <i>Wake me up when my breakfast is done.
+                    I want a glass of honey milk,
+                    three piece of butter jam toast
+                    and milk
+                    table under sunlight.
+                  </i>
+                </div>
+                <div class="home-box-img3"></div>
+              </div>
             </div>
-            <div class="home-gif">
-              <router-link href="#" to="/girls_unique">
-                <img src="~@/assets/calendar/g4.jpg">
-              </router-link>
-            </div>
-        </div>
-        <div class="home-banner1">
-          <img src="~@/assets/calendar/Coupon.jpg">
-        </div>
-        <div class="home-banner1">
-            <router-link href="#" to="/girls_unique">
-                <img src="~@/assets/calendar/B1.jpg">
-            </router-link>
-        </div>
-        <div class="home-banner2">
-            <router-link href="#" to="/daze">
-                <img src="~@/assets/calendar/B2.jpg">
-                <img src="~@/assets/calendar/B3.jpg">
-            </router-link>
-        </div>
-        <div class="home-banner3">
-            <router-link href="#" to="/desinger">
-                <img src="~@/assets/calendar/B4.jpg">
-            </router-link>
-        </div>
-        <div class="home-banner4">
-            <router-link href="#" to="/girls_unique">
-                <img src="~@/assets/calendar/B5.jpg">
-            </router-link>
-        </div>
-        <div class="home-banner5">
-            <router-link href="#" to="/girls_unique">
-                <img src="~@/assets/calendar/B6.jpg">
-            </router-link>
+          </router-link>
         </div>
         <div class="home-footer">
             <div class="footer-img">
@@ -78,17 +83,17 @@
         <div class="app">
             <div class="home-store">
               <router-link href="#" to="/home">
-                <img src="~@/assets/calendar/Store.jpg">
+                <img src="~@/assets/calendar/Store1.jpg">
               </router-link>
             </div>
             <div class="home-app">
               <router-link href="#" to="/home">
-                <img src="~@/assets/calendar/APP.jpg">
+                <img src="~@/assets/calendar/APP1.jpg">
               </router-link>
             </div>
             <div class="home-ig">
               <router-link href="#" to="/home">
-                <img src="~@/assets/calendar/IG.jpg">
+                <img src="~@/assets/calendar/IG1.jpg">
               </router-link>
             </div>
         </div>

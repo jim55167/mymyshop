@@ -147,7 +147,7 @@ export default {
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
       this.$store.dispatch('updateLoading',true);
-      localStorage.setItem('cateFilteredList', JSON.stringify(this.products));
+      localStorage.setItem('filteredList', JSON.stringify(this.products));
       this.$http.get(url).then((response) => {
         if(response.data.success) {
           this.$store.dispatch('updateLoading',false);
