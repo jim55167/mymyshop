@@ -130,6 +130,7 @@ export default {
       countPage: 6,
       normcore: [],
       visibility: '全部商品',
+      products: [],
     };
   },
   components: {
@@ -137,12 +138,16 @@ export default {
   },
   methods: {
     getAllProducts() {  
-        const vm = this; 
-        vm.$store.dispatch('getAllProducts');    
-        let NormcoreProducts = vm.products.filter(function(item) {
+       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+        this.$store.dispatch('updateLoading',true);
+        this.$http.get(api).then((response) => {          
+            this.products = response.data.products;
+            this.$store.dispatch('updateLoading',false);
+            let NormcoreProducts = this.products.filter(function(item) {
             return item.category.indexOf('normcore') !== -1;
           });
-         vm.normcore = NormcoreProducts;        
+          this.normcore = NormcoreProducts;   
+        })                  
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -166,9 +171,6 @@ export default {
     },
   },  
   computed: {
-    products(){
-      return this.$store.state.products;
-    },
     isLoading() {
       return this.$store.state.isLoading;
     },

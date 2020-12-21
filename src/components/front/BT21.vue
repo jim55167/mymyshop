@@ -126,6 +126,7 @@ export default {
       countPage: 6, 
       BT21: [],
       visibility: '全部商品',
+      products: [],
       imgs: [
         require('../../assets/BT21/banner01.jpg'),
         require('../../assets/BT21/banner02.jpg'),
@@ -155,14 +156,16 @@ export default {
   },
   methods: {
     getAllProducts() { 
-        const vm = this;
-        vm.$store.dispatch('getAllProducts');
-        let BT21Products = vm.products.filter(function(item) {
-          console.log(vm.products);
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+        this.$store.dispatch('updateLoading',true);
+        this.$http.get(api).then((response) => {          
+            this.products = response.data.products;
+            this.$store.dispatch('updateLoading',false);
+            let BT21Products = this.products.filter(function(item) {
             return item.category.indexOf('BT21') !== -1;
           });
-        vm.BT21 = BT21Products;
-        console.log(vm.BT21);      
+          this.BT21 = BT21Products;   
+        })         
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -191,9 +194,6 @@ export default {
     },
   },
   computed: {
-    products(){
-      return this.$store.state.products;
-    },
     cart(){
       return this.$store.state.cart;
     },

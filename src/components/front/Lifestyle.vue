@@ -105,6 +105,7 @@ import GoTop from '../GoTop';
 export default {
   data() {
     return {
+      products: [],
       current_page: 1,
       countPage: 6,
       lifestyle: [],
@@ -116,18 +117,22 @@ export default {
   },
   methods: {
     getAllProducts() {  
-        const vm = this;
-        vm.$store.dispatch('getAllProducts');
-        let LifestyleProducts = vm.products.filter(function(item) {
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+        this.$store.dispatch('updateLoading',true);
+        this.$http.get(api).then((response) => {          
+            this.products = response.data.products;
+            this.$store.dispatch('updateLoading',false);
+            let LifestyleProducts = this.products.filter(function(item) {
             return item.category.indexOf('lifestyle') !== -1;
           });
-        vm.lifestyle = LifestyleProducts;        
+          this.lifestyle = LifestyleProducts;  
+        })       
     },
     getProduct(id) {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
       this.$store.dispatch('updateLoading',true);
       localStorage.setItem('filteredList', JSON.stringify(this.products))
-      this.$http.get(url).then((response) => {
+      this.$http.get(api).then((response) => {
         if(response.data.success) {
           this.$store.dispatch('updateLoading',false);
           this.$router.push(`../front_single_product/${response.data.product.id}`);
@@ -145,9 +150,6 @@ export default {
     },
   },
   computed: {
-    products(){
-      return this.$store.state.products;
-    },
     isLoading() {
       return this.$store.state.isLoading;
     },

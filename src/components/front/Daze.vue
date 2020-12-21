@@ -110,19 +110,24 @@ export default {
       countPage: 6,
       daze: [],
       visibility: '全部商品',
+      products: [],
     };
   },
   components: {
     GoTop,
   },
   methods: {
-    getAllProducts() {    
-        const vm = this; 
-        vm.$store.dispatch('getAllProducts'); 
-        let dazeStyle = vm.products.filter(function(item) {
+    getAllProducts() {  
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+        this.$store.dispatch('updateLoading',true);
+        this.$http.get(api).then((response) => {          
+            this.products = response.data.products;
+            this.$store.dispatch('updateLoading',false);
+            let dazeStyle = this.products.filter(function(item) {
             return item.category.indexOf('Daze') !== -1;
           });
-        vm.daze = dazeStyle;       
+          this.daze = dazeStyle;   
+        })                 
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -154,9 +159,6 @@ export default {
     },
   },  
   computed: {
-    products(){
-      return this.$store.state.products;
-    },
     cart(){
       return this.$store.state.cart;
     },

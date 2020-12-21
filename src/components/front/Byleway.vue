@@ -129,7 +129,8 @@ export default {
       current_page: 1,
       countPage: 6,
       byleway: [],
-      visibility: '全部商品',      
+      visibility: '全部商品',
+      products: [],      
     };
   },
   components: {
@@ -137,12 +138,16 @@ export default {
   },
   methods: {
     getAllProducts() {  
-        const vm = this; 
-        vm.$store.dispatch('getAllProducts');   
-        let BylewayProducts = vm.products.filter(function(item) {
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+        this.$store.dispatch('updateLoading',true);
+        this.$http.get(api).then((response) => {          
+            this.products = response.data.products;
+            this.$store.dispatch('updateLoading',false);
+            let BylewayProducts = this.products.filter(function(item) {
             return item.category.indexOf('byleway') !== -1;
           });
-        vm.byleway = BylewayProducts;       
+          this.byleway = BylewayProducts;   
+        })              
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -166,9 +171,6 @@ export default {
     },
   },
   computed: {
-    products(){
-      return this.$store.state.products;
-    },
     isLoading() {
       return this.$store.state.isLoading;
     },

@@ -135,6 +135,7 @@ export default {
       countPage: 6,
       girls: [],
       visibility: '全部商品',
+      products: [],
     };
   },
   components: {
@@ -142,12 +143,16 @@ export default {
   },
   methods: {
     getAllProducts() { 
-        const vm = this;  
-        vm.$store.dispatch('getAllProducts');   
-        let GirlsUnique = vm.products.filter(function(item) {
+        const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
+        this.$store.dispatch('updateLoading',true);
+        this.$http.get(api).then((response) => {          
+            this.products = response.data.products;
+            this.$store.dispatch('updateLoading',false);
+            let GirlsUnique = this.products.filter(function(item) {
             return item.category.indexOf('私服衣櫃') !== -1;
           });
-        vm.girls = GirlsUnique;        
+          this.girls = GirlsUnique;    
+        })                  
     },
     getProduct(id) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
@@ -171,9 +176,6 @@ export default {
     },
   },  
   computed: {
-    products(){
-      return this.$store.state.products;
-    },
     isLoading(){
       return this.$store.state.isLoading;
     },
