@@ -70,11 +70,9 @@ new Vue({
 });
 
 router.beforeEach((to, from, next) => {
-  // console.log('to', to, 'from', from, 'next', next);
   if (to.meta.requiresAuth) { //假如meta具有requiresAuth的話則不會直接放行
     const api = `${process.env.APIPATH}/api/user/check`;
     axios.post(api).then((response) => { //因目前執行環境是在router下，並不是在vue的元件內，所以他無法直接呼叫this.$http，因此直接替換成axios
-    console.log(response.data);
     if(response.data.success){
         next(); //成功登入的話則直接放行
     }else{

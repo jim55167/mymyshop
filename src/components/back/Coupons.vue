@@ -2,7 +2,7 @@
   <div>
     <Loading :active.sync="isLoading"></Loading>
     <div class="text-right mt-4">
-      <button class="btn btn-primary" @click="openCouponModal(true)">
+      <button type="button" class="btn btn-primary" @click="openCouponModal(true)">
         建立新的優惠券
       </button>
     </div>
@@ -26,9 +26,9 @@
             <span v-else class="text-muted">未起用</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
+            <button type="button" class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
               @click="openCouponModal(false, item)">編輯</button>
-            <button class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
+            <button type="button" class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
               @click="deleteCouponModal(item)">刪除</button>
           </td>
         </tr>
@@ -123,6 +123,7 @@
 
 import $ from 'jquery';
 import Pagination from '../back/Pagination';
+
 export default {
   props: {
     config: Object,
@@ -143,9 +144,7 @@ export default {
       pagination: {},
     };
   },
-  components: {
-    Pagination,
-  },
+  
   watch: {
     due_date() {
       const timestamp = Math.floor(new Date(this.due_date) / 1000);
@@ -160,7 +159,7 @@ export default {
         this.tempCoupon = {};
         this.isLoading = false;
       } else {
-        this.tempCoupon = Object.assign({}, item);
+        this.tempCoupon = {...item};
         const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T');
         this.due_date = dateAndTime[0];
       }
@@ -171,7 +170,6 @@ export default {
       this.$http.get(url).then((response) => {
         this.coupons = response.data.coupons;
         this.pagination = response.data.pagination;
-        console.log(response);
         this.isLoading = false;
       });
     },
@@ -179,7 +177,6 @@ export default {
       if (this.isNew) {
         const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
         this.$http.post(url, { data: this.tempCoupon }).then((response) => {
-          console.log(response, this.tempCoupon);
           $('#couponModal').modal('hide');
           this.getCoupons();
           this.isLoading = false;
@@ -188,7 +185,6 @@ export default {
         const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${this.tempCoupon.id}`;
         this.due_date = new Date(this.tempCoupon.due_date * 1000);
         this.$http.put(url, { data: this.tempCoupon }).then((response) => {
-          console.log(response);
           $('#couponModal').modal('hide');
           this.getCoupons();
           this.isLoading = false;
@@ -211,6 +207,9 @@ export default {
   },
   created() {
     this.getCoupons();
+  },
+  components: {
+    Pagination,
   },
 };
 </script>

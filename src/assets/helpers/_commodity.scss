@@ -1,33 +1,37 @@
-.bt21{
-    margin-top: 2rem;
-    margin-left: 1rem;
-    font-size: 1rem;
-    font-weight: 500;
-    line-height: 1.2;
+.bt21 {
+  margin-top: 2rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.2;
 
-    .btlist{
-        padding-top: 1.5rem;
-        display: flex;;
+  >a{
+    font-size: 20px;
+    font-family: "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif,
+      "PMingLiU", sans-serif;
+  }
+
+  .btlist {
+    padding-top: 1.5rem;
+    display: flex;
+  }
+
+  tr {
+    @media screen and (max-width: 767px) {
+      flex-wrap: wrap;
     }
 
-    tr{
+    td {
+      padding: 0 10px;
 
-        @media screen and (max-width: 767px){
-           flex-wrap: wrap; 
-        }
+      a:hover {
+        color: red;
+      }
 
-        td{
-            padding: 0 10px;
-            
-
-            a:hover{
-                color:red;
-            }
-
-            @media screen and (max-width: 767px){
-                margin-bottom: 10px;
-                float: left;
-            }
-        }
+      @media screen and (max-width: 767px) {
+        margin-bottom: 10px;
+        float: left;
+      }
     }
+  }
 }

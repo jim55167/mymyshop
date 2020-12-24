@@ -1,233 +1,223 @@
 .fsp-container-fluid {
-    width: 100%;
+  width: 100%;
+  margin: 0 auto;
+  padding-right: 15px;
+  padding-left: 15px;
+
+  .row {
     margin: 0 auto;
-    padding-right: 15px;
-    padding-left: 15px;
-  
-    .row {
-      background-color: #f6b7ae61;
-      margin: 0 auto;
-      padding: 1.5rem;
-  
-      @media screen and (max-width: 767px) {
-        padding: 0.8rem 0.4rem 1.5rem 0.4rem;
-      }
+    padding: 1.5rem;
+
+    @media screen and (max-width: 767px) {
+      padding: 0.8rem 0.4rem 1.5rem 0.4rem;
     }
-  
   }
-  
-  .product-header {
-  
-    .product-wrap {
-      display: flex;
-      align-items: center;
-  
-      @media screen and (max-width: 767px) {
-        margin-bottom: .8rem;
-      }
-  
-      .product-img {
-        padding-bottom: 100%;
-        height: 0;
+}
+
+.product-header {
+  .product-wrap {
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: 767px) {
+      margin-bottom: 0.8rem;
+    }
+
+    .product-img {
+      padding-bottom: 100%;
+      height: 0;
+      width: 100%;
+      position: relative;
+
+      .abs-wrap {
+        position: absolute;
         width: 100%;
-        position: relative;
-  
-        .abs-wrap {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          top: 0;
-          left: 0;
-        }
-  
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          border: none;
-        }
-      }
-    }
-  
-    .product-info {
-      padding-right: 2rem;
-      display: flex;
-      flex-direction: column;
-  
-      @media screen and (max-width: 767px) {
-        padding: 0 1rem;
-      }
-  
-      .product-content {
-        flex-grow: 1;
-        line-height: 1.5;
-      }
-  
-      .product-price {
-        background-color:#d1f1fc;
-        padding: 1rem;
-        margin-bottom: 0.75rem;
-      }
-  
-      .h4 {
-        @media screen and (max-width: 575px) {
-          font-size: $font-size-lg;
-        }
-  
-      }
-  
-      .h5 {
-        @media screen and (max-width: 575px) {
-          font-size: $font-size-base;
-  
-        }
-      }
-  
-      .product-title {
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        margin-bottom: 0.5rem;
-      }
-  
-    }
-  
-  
-    .product-input {
-      .buy-option {
-        @media screen and (max-width: 767px) {
-          text-align: center;
-        }
-  
-        .btn {
-          border-radius: 0rem;
-          width: 47%;
-          height: 44px;
-          padding-left: 0.2rem;
-          padding-right: 0.2rem;
-        }
-  
-        .mr-1percent {
-          margin-right: 1%;
-        }
-      }
-  
-      .quantity {
-        margin-bottom: 0.75rem;
-  
-        .quantity-title {
-          display: inline-block;
-          vertical-align: middle;
-          text-align: center;
-          width: 80px;
-          height: 38px;
-          color: #6c757d;
-          line-height: 38px;
-  
-        }
-  
-        .btn {
-          border: 1px solid black;
-          background-color: #fff;
-          border-radius: 0rem;
-          width: 45px;
-          height: 38px;
-        }
-  
-        input {
-          width: 55px;
-          height: 38px;
-          vertical-align: middle;
-          text-align: center;
-          outline: none;
-        }
-      }
-    }
-  
-  }
-  
-  .product-description {
-    .description-title {
-      margin-bottom: 0.5rem;
-  
-      @media screen and (max-width: 767px) {
-        margin-top: 0.8rem;
-      }
-    }
-  }
-  
-  .recommand-products {
-    .row {
-      background-color: #ffa50063;
-    }
-  
-    .recommand-title {
-      @media screen and (max-width: 767px) {
-        margin-top: 0.8rem;
-      }
-    }
-  
-    .recommand-hover {
-      transform: scale(1.00);
-      transition: ease-out;
-      transition-duration: 0.2s;
-  
-      &:hover {
-        transform: scale(1.01);
-        transition: ease-out;
-        transition-duration: 0.2s;
+        height: 100%;
+        top: 0;
+        left: 0;
       }
 
-      .card-shadow-vw{
-        height: 25vw;
-        @media screen and (max-width: 1440px) {
-          height: 22vw;
-        };
-        @media screen and (max-width: 768px) {
-          height: 50vw;
-        };
-        @media screen and (max-width: 575px) {
-          height: 90vw;
-        }
-      }
-    }
-  
-    .card-title {
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      white-space: normal;
-    }
-  
-    .card-body {
-      padding: 0.75rem;
-      height: 70px;
-    }
-  
-    .card-footer {
-      background-color: #fcebd1;
-      border-top: none;
-  
-      .h6 {
-        margin-bottom: 0;
-        color: $primary;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border: none;
       }
     }
   }
-  
-  .text-danger {
-    color: $red;
+
+  .product-info {
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+
+    @media screen and (max-width: 767px) {
+      padding: 0 1rem;
+    }
+
+    .product-content {
+      flex-grow: 1;
+      line-height: 1.5;
+    }
+
+    .product-price {
+      background-color: #d1f1fc;
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .h4 {
+      @media screen and (max-width: 575px) {
+        font-size: $font-size-lg;
+      }
+    }
+
+    .h5 {
+      @media screen and (max-width: 575px) {
+        font-size: $font-size-base;
+      }
+    }
+
+    .product-title {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
   }
-  
-  pre {
-    overflow-y: hidden;
-    line-height: 1.5;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-    font-family: 'Dosis', 'Noto Sans TC', sans-serif;
-    font-size: $font-size-base;
+
+  .product-input {
+    .buy-option {
+      @media screen and (max-width: 767px) {
+        text-align: center;
+      }
+
+      .btn {
+        border-radius: 0rem;
+        width: 47%;
+        height: 44px;
+        padding-left: 0.2rem;
+        padding-right: 0.2rem;
+      }
+
+      .mr-1percent {
+        margin-right: 1%;
+      }
+    }
+
+    .quantity {
+      margin-bottom: 0.75rem;
+
+      .quantity-title {
+        display: inline-block;
+        vertical-align: middle;
+        text-align: center;
+        width: 80px;
+        height: 38px;
+        color: #6c757d;
+        line-height: 38px;
+      }
+
+      .btn {
+        border: 1px solid black;
+        background-color: #fff;
+        border-radius: 0rem;
+        width: 45px;
+        height: 38px;
+      }
+
+      input {
+        width: 55px;
+        height: 38px;
+        vertical-align: middle;
+        text-align: center;
+        outline: none;
+      }
+    }
   }
-  
+}
+
+.product-description {
+  .description-title {
+    margin-bottom: 0.5rem;
+
+    @media screen and (max-width: 767px) {
+      margin-top: 0.8rem;
+    }
+  }
+}
+
+.recommand-products {
+  .row {
+    background-color: #ffa50063;
+  }
+
+  .recommand-title {
+    @media screen and (max-width: 767px) {
+      margin-top: 0.8rem;
+    }
+  }
+
+  .recommand-hover {
+    transform: scale(1);
+    transition: ease-out;
+    transition-duration: 0.2s;
+
+    &:hover {
+      transform: scale(1.01);
+      transition: ease-out;
+      transition-duration: 0.2s;
+    }
+
+    .card-shadow-vw {
+      height: 25vw;
+      @media screen and (max-width: 1440px) {
+        height: 22vw;
+      }
+      @media screen and (max-width: 768px) {
+        height: 50vw;
+      }
+      @media screen and (max-width: 575px) {
+        height: 90vw;
+      }
+    }
+  }
+
+  .card-title {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+    height: 70px;
+  }
+
+  .card-footer {
+    background-color: #fcebd1;
+    border-top: none;
+
+    .h6 {
+      margin-bottom: 0;
+      color: $primary;
+    }
+  }
+}
+
+.text-danger {
+  color: $red;
+}
+
+pre {
+  overflow-y: hidden;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: "Dosis", "Noto Sans TC", sans-serif;
+  font-size: $font-size-base;
+}

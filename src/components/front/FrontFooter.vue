@@ -5,17 +5,17 @@
           <p class="top">
             <span>
                 <a href="https://github.com/jim55167/mymyshop" target="_blank">
-                    <img src="~@/assets/calendar/github.png">
+                    <img alt="GitHub" src="~@/assets/calendar/github.png">
                 </a>
             </span>
             <span>
                 <a href="#" target="_blank">
-                    <img src="~@/assets/calendar/instagram.png">
+                    <img alt="instagram" src="~@/assets/calendar/instagram.png">
                 </a>
             </span>
             <span>
                 <a href="https://line.me/ti/p/dKAzJfqWhb" target="_blank">
-                    <img src="~@/assets/calendar/line.png">
+                    <img alt="line" src="~@/assets/calendar/line.png">
                 </a>
             </span>
           </p>

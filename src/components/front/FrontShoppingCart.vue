@@ -5,13 +5,13 @@
     <div class="container mt-4" v-if="cartHasItem">
       <div class="cart-wrap">
         <div class="shopping-step mb-4">
-          <div class="step" :class="{'active-step' : activedPage == 'FrontCartItems'}">
+          <div class="step" :class="{ 'active-step' : activedPage == 'FrontCartItems' }">
             <h5>CHECK CART</h5>
           </div>
-          <div class="step" :class="{'active-step' : activedPage == 'FrontOrder'}">
+          <div class="step" :class="{ 'active-step' : activedPage == 'FrontOrder' }">
             <h5>FILL INFO</h5>
           </div>
-          <div class="step" :class="{'active-step' : activedPage == 'FrontCheckout'}">
+          <div class="step" :class="{ 'active-step' : activedPage == 'FrontCheckout' }">
             <h5>PAYMENT LIST</h5>
           </div>
         </div>
@@ -22,11 +22,10 @@
 
     <div class="emptyCart-wrap" v-if="!cartHasItem">
       <h4>SHOPPING CART IS EMPTY</h4>
-      <router-link class="btn btn-primary shopping-link" to="/home">SHOPPING NOW!</router-link>
+      <router-link href="#" class="btn btn-primary shopping-link" to="/home">SHOPPING NOW!</router-link>
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -75,7 +74,6 @@ export default {
       }
     }
   },
-
   created() {
     this.getCart();
   }

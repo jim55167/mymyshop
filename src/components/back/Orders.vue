@@ -14,7 +14,7 @@
       </thead>
       <tbody>
         <tr v-for="(item, key) in sortOrder" :key="key"
-          :class="{'text-secondary': !item.is_paid}">
+          :class="{ 'text-secondary': !item.is_paid }">
           <td>{{ item.create_at | date }}</td>
           <td><span v-text="item.user.email" v-if="item.user"></span></td>
           <td>
@@ -52,9 +52,6 @@ export default {
       isLoading: false,
     };
   },
-  components: {
-    Pagination,
-  },
   methods: {
     getOrders(page = 1) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/orders?page=${page}`;
@@ -63,7 +60,6 @@ export default {
         this.orders = response.data.orders;
         this.pagination = response.data.pagination;
         this.isLoading = false;
-        console.log(response);
       });
     },
   },
@@ -82,7 +78,9 @@ export default {
   },
   created() {
     this.getOrders();
-    console.log(process.env.APIPATH);
+  },
+  components: {
+    Pagination,
   },
 };
 </script>

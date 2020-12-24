@@ -115,10 +115,10 @@ main{
   border-radius: 0;
 }
 
-// .form-control {
-//   border: none;
-//   border-radius: 0;
-// }
+.form-control {
+  border: 1px solid gray;
+  border-radius: 0;
+}
 
 input {
   border:1px solid;
@@ -132,6 +132,7 @@ ul {
 
 .navbar {
   background-color: #914a55;
+  padding: inherit;
 
   .navbar-logo {
     padding: 0.4rem 0;
@@ -140,6 +141,15 @@ ul {
 
     @media screen and (max-width: 767px) {
       padding: 0.3rem 0;
+    }
+
+    .navbar-pic{
+      background-image: url("~@/assets/calendar/logo.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      width: 200px;
+      height: 60px;
     }
   }
 
@@ -219,7 +229,7 @@ ul {
   img{
     @media screen and (max-width: 768px){
       max-width:100%;
-      height:350px;
+      height:250px;
   }
   }
 }

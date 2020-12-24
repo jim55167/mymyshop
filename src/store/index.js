@@ -41,7 +41,6 @@ export default new Vuex.Store({
               });        
             }           
           });
-          console.log(cartItem_id, product_id);
         },
         getCart(context) {
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
@@ -49,9 +48,9 @@ export default new Vuex.Store({
             axios.get(url).then(response => {
               if (response.data.data.carts){
                 context.commit('CART', response.data.data);
+                // console.log(response.data.data.carts)
               }
               context.commit('LOADING', false);
-              console.log('取得購物車', response.data.data);
             });
           },
           removeCartItem(context, id) {
@@ -60,7 +59,6 @@ export default new Vuex.Store({
             axios.delete(api).then(response => {  
                 context.commit('LOADING', false);
                 context.dispatch('getCart');
-                console.log('刪除購物車項目', response);
             });
           },
           addToCart(context, {id, qty}) {
@@ -74,7 +72,6 @@ export default new Vuex.Store({
               context.commit('LOADING', false);
               context.dispatch('getCart');
               context.$emit('cartQty',qty);
-              console.log('加入購物車:', response);
             });
           },
     },

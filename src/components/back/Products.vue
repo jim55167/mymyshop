@@ -2,7 +2,7 @@
   <div>
     <loading :active.sync="isLoading"></loading>    
     <div class="text-right mt-4">
-      <button class="btn btn-primary" @click="openModal(true)"> 建立新產品 </button>
+      <button type="button" class="btn btn-primary" @click="openModal(true)"> 建立新產品 </button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -28,9 +28,9 @@
             <span v-else class="text-danger">未啟用</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
+            <button type="button" class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
               @click="openModal(false, item)">編輯</button>
-             <button class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
+             <button type="button" class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
               @click="deleteModal(item)">刪除</button>
           </td>
         </tr>
@@ -47,10 +47,10 @@
             </a>
           </li>
           <li class="page-item" v-for="page in totalPage" :key="page"
-            :class="{'active': current_page === page}"> 
+            :class="{ 'active': current_page === page }"> 
             <a class="page-link" href="#" @click.prevent="getPage(page)">{{ page }}</a>
           </li>
-          <li class="page-item" :class="{'disabled': current_page === totalPage}">
+          <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
             <a class="page-link" href="#" aria-label="Next"
               @click.prevent="getPage(current_page + 1)">
               <span aria-hidden="true">&raquo;</span>
@@ -233,6 +233,7 @@
 </template>
 
 <script>
+
 import $ from 'jquery';
 
 export default {
@@ -253,12 +254,10 @@ export default {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products/all`; //'https://vue-course-api.hexschool.io/api/jim55167/products'
       this.isLoading = true;
       this.$http.get(api).then((response) => {
-        console.log(response.data);
         this.isLoading = false;
         let obj = response.data.products;
-        let arr = Object.keys(obj).map(function(k) { return obj[k] });
+        let arr = Object.keys(obj).map((k) => obj[k] );
         this.products = arr;
-        console.log(arr);
       });
     },
     openModal(isNew, item) {   //新增、編輯視窗
@@ -266,10 +265,9 @@ export default {
           this.tempProduct = {};
           this.isNew = true;
         } else {
-          this.tempProduct = Object.assign({}, item); //Object.assign會將值寫到新的物件
+          this.tempProduct = {...item}; //Object.assign會將值寫到新的物件
           this.isNew = false;          
         }
-        console.log(item);
         $('#productModal').modal('show');
     },
     deleteModal(item) {
@@ -284,14 +282,12 @@ export default {
         httpMethod = 'put';
       }      
       this.$http[ httpMethod ](api, { data: this.tempProduct }).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           $('#productModal').modal('hide'); //新增成功的話則關閉modal
           this.getProducts(); //並且重新取得遠端內容
         } else {
           $('#productModal').modal('hide'); //若新增失敗會跳出錯誤訊息
           this.getProducts();
-          console.log('新增失敗');
         }
       });
     },
@@ -305,7 +301,6 @@ export default {
       });
     },
     uploadFile() { //上傳圖片
-      console.log(this);
       const uploadedFile = this.$refs.files.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', uploadedFile);
@@ -316,18 +311,15 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response.data);
         this.fileUploading = false;
         if(response.data.success) {
           this.$set(this.tempProduct, 'imageUrl', response.data.imageUrl);
-          console.log(this.tempProduct);
         } else {
           this.$bus.$emit('message:push', response.data.message, 'danger');       
         }
       })
     },
     infoImg() {
-      console.log(this);
       const uploadeImg = this.$refs.files2.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', uploadeImg);
@@ -338,18 +330,15 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response.data);
         this.fileUploading = false;
         if(response.data.success) {
           this.$set(this.tempProduct, 'imageUrl2', response.data.imageUrl);
-          console.log(this.tempProduct);
         } else {
           this.$bus.$emit('message:push', response.data.message, 'danger');       
         }
       })
     },
     infoSizeImg() {
-      console.log(this);
       const infoSizeImgs = this.$refs.files3.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', infoSizeImgs);
@@ -360,11 +349,9 @@ export default {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response.data);
         this.fileUploading = false;
         if(response.data.success) {
           this.$set(this.tempProduct, 'imageUrl3', response.data.imageUrl);
-          console.log(this.tempProduct);
         } else {
           this.$bus.$emit('message:push', response.data.message, 'danger');       
         }

@@ -2,12 +2,12 @@
     <div>      
         <Loading :active.sync="isLoading"></Loading>
          <div class="banner_open_line">
-          <a href="https://line.me/ti/p/dKAzJfqWhb"><img src="~@/assets/calendar/LINEAPP.png"/></a>
+          <a href="https://line.me/ti/p/dKAzJfqWhb"><img alt="line" src="~@/assets/calendar/LINEAPP.png"/></a>
         </div>
         <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
-            <span class="badge">{{cart.carts.length}}</span>
-            <img src="~@/assets/calendar/shoppingCart.jpg"/>
+            <span class="badge">{{ cart.carts.length }}</span>
+            <img alt="購物車" src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div> 
         <div class="swiper-slide games">
@@ -107,10 +107,10 @@
                 </a>
               </li>
               <li class="page-item" v-for="page in totalPage" :key="page"
-                :class="{'active': current_page === page}"> 
+                :class="{ 'active': current_page === page }"> 
                 <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
               </li>
-              <li class="page-item" :class="{'disabled': current_page === totalPage}">
+              <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
                 <a class="page-link" href="#" aria-label="Next"
                   @click="getPage(current_page + 1)">
                   <span aria-hidden="true">&raquo;</span>
@@ -125,7 +125,6 @@
 
 <script>
 
-import $ from 'jquery';
 import GoTop from '../GoTop';
 
 export default {
@@ -137,9 +136,6 @@ export default {
       visibility: '全部商品',
       products: [],
     };
-  },
-  components: {
-    GoTop,
   },
   methods: {
     getAllProducts() { 
@@ -268,6 +264,9 @@ export default {
   },
   created() {
     this.getAllProducts();
+  },
+  components: {
+    GoTop,
   },
 };
 </script>

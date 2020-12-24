@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-index">
     <FrontNavbar></FrontNavbar>
     <div class="container-fluid px-0" style="overflow:hidden">
       <main>
@@ -15,13 +15,12 @@ import FrontNavbar from "./FrontNavbar";
 import FrontFooter from "./FrontFooter";
 
 export default {
+  data() {
+    return {};
+  },
   components: {
     FrontNavbar,
     FrontFooter
   },
-
-  data() {
-    return {};
-  }
 };
 </script>

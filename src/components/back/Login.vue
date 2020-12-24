@@ -3,9 +3,7 @@
     <div class="login">
       <form class="form-wrap" @submit.prevent="signin">
         <div class="login-img">
-          <h1>
-            <i class="fab fa-asymmetrik"></i>MyMyShop.com
-          </h1>
+          <div class="login-logo"></div>
         </div>
 
         <div class="login-content">
@@ -45,34 +43,32 @@
 
 <script>
 export default {
-  name: 'Login',
-  data () {
+  name: "Login",
+  data() {
     return {
       user: {
-          username: '',
-          password: '',
+        username: "",
+        password: "",
       },
-      isLoading: false
+      isLoading: false,
     };
   },
   methods: {
-      signin() {
-        const api = `${process.env.APIPATH}/admin/signin`;
-        this.isLoading = true;
-        // API 伺服器路徑
-        //所申請的 APIPath
-        this.$http.post(api, this.user).then((response) => {
+    signin() {
+      const api = `${process.env.APIPATH}/admin/signin`;
+      this.isLoading = true;
+      // API 伺服器路徑
+      //所申請的 APIPath
+      this.$http.post(api, this.user).then((response) => {
         this.isLoading = false;
-        console.log(response.data);
-        if(response.data.success){
+        if (response.data.success) {
           const token = response.data.token;
           const expired = response.data.expired;
-          console.log(token, expired);
           document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
-            this.$router.push('/home');
+          this.$router.push("/home");
         }
       });
-    }
+    },
   },
-}
+};
 </script>

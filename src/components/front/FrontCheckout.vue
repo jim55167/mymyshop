@@ -77,7 +77,7 @@
             <img src="~@/assets/calendar/ok.png">
             <h4>AWESOME</h4>
             <p>YOUR PAYMENT COMPLETED</p>
-            <button class="btn btn-primary" @click="goToProducts">
+            <button type="button" class="btn btn-primary" @click="goToProducts">
               COUNTINUE SHOPPING!
             </button>
           </div>
@@ -102,18 +102,18 @@ export default {
   },
   methods: {
     getOrder() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order/${this.orderId}`;
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order/${this.orderId}`;
       this.isLoading = true;
-      this.$http.get(url).then((response) => {
+      this.$http.get(api).then((response) => {
         this.order = response.data.order;
         console.log(response);
         this.isLoading = false;
       });
     },
     payOrder() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/pay/${this.orderId}`;
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/pay/${this.orderId}`;
       this.isLoading = true;
-      this.$http.post(url).then((response) => {
+      this.$http.post(api).then((response) => {
         if (response.data.success) {
         this.isLoading = false;
           this.getOrder();

@@ -3,8 +3,8 @@
     <Loading :active.sync="isLoading"></Loading>
     <div class="banner_open_shoppingcart">
           <router-link  href="#" to="/shopping_cart/front_cart_items">
-            <span class="badge">{{cart.carts.length}}</span>
-            <img src="~@/assets/calendar/shoppingCart.jpg"/>
+            <span class="badge">{{ cart.carts.length }}</span>
+            <img alt="購物車" src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
         </div>
     <div class="product-header">
@@ -12,7 +12,7 @@
         <div class="product-wrap col-12 col-md-6">
           <div class="product-img">
             <div class="abs-wrap">
-              <img v-lazy="product.imageUrl" alt />
+              <img v-lazy="product.imageUrl" alt="圖一" />
             </div>
           </div>
         </div>
@@ -21,24 +21,24 @@
           <div class="product-title">
             <h2 style="font-size:2rem; margin-bottom: .5rem;
               font-weight: 500; line-height: 1.2;">
-              {{product.title}}
+              {{ product.title }}
             </h2>
           </div>
 
           <div class="product-price d-flex justify-content-between align-items-baseline">
-            <div class="h4 text-danger mb-0" v-if="!product.price">{{product.origin_price | currency}}</div>
-            <del class="h5 mb-0" v-if="product.price">{{product.origin_price | currency}}</del>
-            <div class="h4 text-danger mr-2 mb-0" v-if="product.price">{{product.price | currency}}</div>
+            <div class="h4 text-danger mb-0" v-if="!product.price">{{ product.origin_price | currency }}</div>
+            <del class="h5 mb-0" v-if="product.price">{{ product.origin_price | currency }}</del>
+            <div class="h4 text-danger mr-2 mb-0" v-if="product.price">{{ product.price | currency }}</div>
           </div>
 
-          <pre class="product-content">{{product.content}}</pre>
+          <pre class="product-content">{{ product.content }}</pre>
 
           <div class="product-input">
             <div class="quantity">
               <span class="quantity-title">QUANTITY</span>
-              <button class="btn btn-outline-third" @click="quantitySub(product)">-</button>
+              <button type="button" class="btn btn-outline-third" @click="quantitySub(product)">-</button>
               <input type="text" :value="product.num" readonly="readonly" />
-              <button class="btn btn-outline-third" @click="quantityPlus(product)">+</button>
+              <button type="button" class="btn btn-outline-third" @click="quantityPlus(product)">+</button>
             </div>
 
             <div class="buy-option">
@@ -46,7 +46,7 @@
                 @click="addToCart(product.id, true, product.num)" >
                 <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'direct'"></i> BUY NOW
               </button>
-              <button type="button" class="btn btn-danger"
+              <button type="button" class="btn btn-danger" 
                 @click="addToCart(product.id, false, product.num)">
                 <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'non-direct'"></i> ADD TO CART
               </button>
@@ -66,7 +66,7 @@
           <img v-lazy="product.imageUrl2" alt />         
         </div>
         <div class="col-12" style="padding-top:20px;">
-          <pre>{{product.description}}</pre>
+          <pre>{{ product.description }}</pre>
         </div>
       </div>
     </div>
@@ -83,14 +83,14 @@
                 <div class="card shadow-sm">
                   <div class="card-shadow-vw"
                     style="background-size: contain; background-repeat: no-repeat; background-position: center;"
-                    :style="{backgroundImage: `url(${item.imageUrl})`}"></div>
+                    :style="{ backgroundImage: `url(${item.imageUrl})` }"></div>
                   <div class="card-body">
-                    <h6 style="font-size:1rem" class="card-title">{{item.title}}</h6>
+                    <h6 style="font-size:1rem" class="card-title">{{ item.title }}</h6>
                   </div>
 
                   <div class="card-footer d-flex justify-content-end">
-                    <div class="h6" style="font-size:1rem" v-if="!item.price">{{item.origin_price | currency}}</div>
-                    <div class="h6" v-if="item.price">{{item.price | currency}}</div>
+                    <div class="h6" style="font-size:1rem" v-if="!item.price">{{ item.origin_price | currency }}</div>
+                    <div class="h6" v-if="item.price">{{ item.price | currency }}</div>
                   </div>
                 </div>
               </a>
@@ -115,11 +115,10 @@ export default {
         num: 1
       },
       loadingItem: '',
+      isDisable: false,
     };
   },
-  components: {
-    GoTop,
-  },
+  
   watch: {
     $route(to, from) {
       this.productId = this.$route.params.productID;
@@ -156,9 +155,10 @@ export default {
     getCart() {
       this.$store.dispatch('getCart');
     },
-
+    
     addToCart(id, direct, qty = 1) {
       const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+      this.$store.dispatch('updateLoading',true);
       const cart = {
         product_id: id,
         qty
@@ -173,7 +173,7 @@ export default {
         if (response.data.success) {
           this.getCart();
           this.loadingItem = '';
-
+          this.$store.dispatch('updateLoading',false);
           if (direct) {
             this.$router.push(`../shopping_cart/front_cart_items`);
           }
@@ -225,7 +225,6 @@ export default {
       this.recommandProducts = newArr;
     }
   },
-
   computed: {
     isLoading() {
       return this.$store.state.isLoading;
@@ -242,6 +241,9 @@ export default {
     );
     this.getSingleProduct();
     this.getCart();
-  }
+  },
+  components: {
+    GoTop,
+  },
 };
 </script>

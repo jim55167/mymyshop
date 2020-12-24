@@ -2,7 +2,7 @@
   <div>
     <nav aria-label="Page navigation example" style="display: flex;">
       <ul class="pagination" style="margin:0 auto;">
-        <li class="page-item" :class="{'disabled' : !pagination.has_pre}">
+        <li class="page-item" :class="{ 'disabled' : !pagination.has_pre }">
           <a
             class="page-link"
             href="#"
@@ -16,11 +16,11 @@
           class="page-item"
           v-for="page in pagination.total_pages"
           :key="page"
-          :class="{'active' : pagination.current_page == page}"
+          :class="{ 'active' : pagination.current_page == page }"
         >
-          <a class="page-link" href="#" @click="changePage(page)">{{page}}</a>
+          <a class="page-link" href="#" @click="changePage(page)">{{ page }}</a>
         </li>
-        <li class="page-item" :class="{'disabled' : !pagination.has_next}">
+        <li class="page-item" :class="{ 'disabled' : !pagination.has_next }">
           <a
             class="page-link"
             href="#"
@@ -41,7 +41,6 @@ export default {
   data() {
     return {};
   },
-
   methods: {
     changePage(targetPage) {
       this.$emit("changePage", targetPage);
