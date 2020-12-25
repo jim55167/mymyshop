@@ -53,7 +53,7 @@
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼"/>
       <div class="input-group-append">
         <button class="btn btn-primary" type="button" @click="addCouponCode">套用優惠碼</button>
-        <div class="coupon-message" v-if="!success">{{ this.active }}</div>
+        <div class="coupon-message">{{ this.active }}</div>
       </div>
     </div>
 
@@ -71,7 +71,6 @@ export default {
   data() {
     return {
       active: "",
-      success: false,
       coupon_code: "",
       form: {
         user: {

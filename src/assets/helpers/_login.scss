@@ -60,5 +60,21 @@
     button {
       border-radius: 0;
     }
+    
+    .password-wrap{
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+
+      img{
+          position: absolute;
+          width: 20px;
+          right: 7px;
+          top: 8px;
+          display: block;
+          cursor: pointer;
+      }
+  }
   }
 }

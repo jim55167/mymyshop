@@ -13,19 +13,23 @@
             id="inputEmail"
             class="form-control mb-3"
             v-model="user.username"
-            placeholder="Email address"
+            placeholder="email@example.com"
             required
             autofocus
           />
           <label for="inputPassword" class="sr-only">Password</label>
-          <input
-            type="password"
-            id="inputPassword "
-            class="form-control mb-3"
-            v-model="user.password"
-            placeholder="Password"
-            required
-          />
+          <div class="password-wrap">
+            <input
+              :type="pwdType"
+              id="inputPassword "
+              class="form-control mb-3"
+              v-model="user.password"
+              placeholder="Password"
+              @on-change="userPassword"
+              required
+            />
+            <img :src= 'seen ? openEyes : closeEyes' @click="changeType">
+          </div>
           <div class="checkbox mb-3">
             <label class="remember-text">
               <input type="checkbox" value="remember-me" /> Remember me
@@ -47,20 +51,24 @@ export default {
   data() {
     return {
       user: {
-        username: "",
-        password: "",
+        username: '',
+        password: '',
       },
-      isLoading: false,
+      seen: '',
+      pwdType: 'password',
+      userPassword: '',
+      openEyes: require('@/assets/calendar/open.png'),
+      closeEyes: require('@/assets/calendar/close.png'),
     };
   },
   methods: {
     signin() {
       const api = `${process.env.APIPATH}/admin/signin`;
-      this.isLoading = true;
+      this.$store.dispatch('updateLoading',true);
       // API 伺服器路徑
       //所申請的 APIPath
       this.$http.post(api, this.user).then((response) => {
-        this.isLoading = false;
+        this.$store.dispatch('updateLoading',false);
         if (response.data.success) {
           const token = response.data.token;
           const expired = response.data.expired;
@@ -69,6 +77,15 @@ export default {
         }
       });
     },
+    changeType() {
+      this.pwdType = this.pwdType === 'password' ? 'text' : 'password';
+      this.seen = !this.seen;
+    }
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    }
   },
 };
 </script>
