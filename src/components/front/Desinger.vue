@@ -14,7 +14,7 @@
     </div>
     <div class="swiper-slide games">
       <img
-        src="~@/assets/GirlsUnique/Banner01.jpg"
+        src="~@/assets/Designer/Banner01.jpg"
         alt="Banner"
         style="object-fit:cover;"
       />
