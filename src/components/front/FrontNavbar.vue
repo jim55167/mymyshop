@@ -3,35 +3,23 @@
     <nav class="nav_bar">
       <div class="containers">
         <div class="nav_bar_box">
-          <router-link
-            class="nav-link logo"
-            href="#"
-            to="/admin/home"
-          ></router-link>
+          <router-link class="nav-link logo" href="#" to="/admin/home"></router-link>
         </div>
         <ul class="menu-box" :class="{ 'menu-show': showMenu }">
           <li>
-            <router-link class="nav-link" href="#" to="/morestyle"
-              >MORE STYLE</router-link
-            >
+            <router-link class="nav-link" href="#" to="/morestyle">MORE STYLE</router-link>
           </li>
           <li>
-            <router-link class="nav-link" href="#" to="/byleway"
-              >BYLEWAY</router-link
-            >
+            <router-link class="nav-link" href="#" to="/byleway">BYLEWAY</router-link>
           </li>
           <li>
-            <router-link class="nav-link" href="#" to="/lifestyle"
-              >LIFESTYLE</router-link
-            >
+            <router-link class="nav-link" href="#" to="/lifestyle">LIFESTYLE</router-link>
           </li>
           <li>
             <router-link class="nav-link" href="#" to="/bt21">BT21</router-link>
           </li>
           <li>
-            <router-link class="nav-link" href="#" to="/normcore"
-              >NORMCORE</router-link
-            >
+            <router-link class="nav-link" href="#" to="/normcore">NORMCORE</router-link>
           </li>
           <li>
             <a
@@ -50,21 +38,14 @@
             </router-link>
           </li>
           <li class="menu-back" v-if="is_login">
-            <router-link class="nav-link" href="#" to="/admin/products"
-              >BACK END</router-link
-            >
+            <router-link class="nav-link" href="#" to="/admin/products">BACK END</router-link>
           </li>
         </ul>
         <div class="shoppingCart">
-          <router-link
-            class="nav-link"
-            href="#"
-            to="/shopping_cart/front_cart_items"
-          >
+          <router-link class="nav-link" href="#" to="/shopping_cart/front_cart_items">
             <span class="badge">{{ cart.carts.length }}</span>
             <i
               class="fas fa-cart-arrow-down"
-              style="font-size: 35px; color:white; line-height:1.8;"
             ></i>
           </router-link>
         </div>
@@ -77,46 +58,45 @@
 </template>
 
 <script>
-
 export default {
-  name: "FrontNavbar",
-  data() {
+  name: 'FrontNavbar',
+  data () {
     return {
       showMenu: false,
       is_login: false
-    };
+    }
   },
   methods: {
-    checkLoginStatus() {
-      const api = `${process.env.APIPATH}/api/user/check`;
-      this.$http.post(api).then(response => {
-        this.is_login = response.data.success;
-      });
+    checkLoginStatus () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/user/check`
+      this.$http.post(api).then((response) => {
+        this.is_login = response.data.success
+      })
     },
-    signOut() {
-      const url = `${process.env.APIPATH}/logout`; //登出的API路徑
-      this.$http.post(url).then(response => {
+    signOut () {
+      const url = `${process.env.VUE_APP_APIPATH}/logout`
+      this.$http.post(url).then((response) => {
         if (response.data.success) {
-          this.is_login = false;
-          this.$router.push("/home");
+          this.is_login = false
+          this.$router.push('/home')
         }
-      });
+      })
     },
-    toggleClass() {
-      this.showMenu = !this.showMenu;
+    toggleClass () {
+      this.showMenu = !this.showMenu
     },
-    getCart() {
-      this.$store.dispatch("getCart");
+    getCart () {
+      this.$store.dispatch('getCart')
     }
   },
   computed: {
-    cart() {
-      return this.$store.state.cart;
+    cart () {
+      return this.$store.state.cart
     }
   },
-  created() {
-    this.checkLoginStatus();
-    this.getCart();
+  created () {
+    this.checkLoginStatus()
+    this.getCart()
   }
-};
+}
 </script>

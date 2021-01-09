@@ -1,169 +1,145 @@
-//官方的元件
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Dashboard from '@/components/back/Dashboard';
-import Login from '@/components/back/Login';
-import Products from '@/components/back/Products';
-import Coupons from '@/components/back/Coupons';
-import Orders from '@/components/back/Orders';
-import Normcore from '@/components/front/Normcore';
-import Lifestyle from '@/components/front/Lifestyle';
-import Byleway from '@/components/front/Byleway';
-import BT21 from '@/components/front/BT21';
-import MoreStyle from '@/components/front/MoreStyle';
-import FrontHome from '@/components/front/FrontHome';
-import FrontCheckout from '@/components/front/FrontCheckout';
-import FrontCartItems from '@/components/front/FrontCartItems';
-import FrontShoppingCart from '@/components/front/FrontShoppingCart';
-import FrontEnd from '@/components/front/FrontEnd';
-import FrontSingleProduct from '@/components/front/FrontSingleProduct';
-import FrontOrder from '@/components/front/FrontOrder';
-import GirlsUnique from '@/components/front/GirlsUnique';
-import Desinger from '@/components/front/Desinger';
-import Daze from '@/components/front/Daze';
-import Design from '@/components/front/Design';
-import Aboutme from '@/components/front/Aboutme';
-import Service from '@/components/front/Service';
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
+Vue.use(VueRouter)
 
-//自訂的分頁元件
-
-Vue.use(VueRouter);
-
-export default new VueRouter({
-    // linkActiveClass : 'active',
-    routes:[
-        { //再路由下隨意輸入網址會跳到空白頁，因此需要此段程式碼
-            path: '*',
-            redirect: '/home',
-        },
-        {
-            path: '/',
-            redirect: '/home',
-        },
-        {
-            name: 'Login',//對應的虛擬路徑
-            path: '/login',//元件呈現的名稱
-            component: Login,//對應的元件
-        },
-        {
-            path: '/',
-            name: 'FrontEnd',
-            component: FrontEnd,
-            children:[
-                {
-                    path: 'home',
-                    name: 'Home',
-                    component: FrontHome,
-                },
-                {
-                    path: 'normcore',
-                    name: 'Normcore',
-                    component: Normcore,
-                },
-                {
-                    path: 'lifestyle',
-                    name: 'Lifestyle',
-                    component: Lifestyle,
-                },
-                {
-                    path: 'byleway',
-                    name: 'Byleway',
-                    component: Byleway,
-                },
-                {
-                    path: 'bt21',
-                    name: 'BT21',
-                    component: BT21,
-                },
-                {
-                    path: 'morestyle',
-                    name: 'MoreStyle',
-                    component: MoreStyle,
-                },
-                {
-                    path: 'girls_unique',
-                    name: 'GirlsUnique',
-                    component: GirlsUnique,
-                },
-                {
-                    path: 'desinger',
-                    name: 'Desinger',
-                    component: Desinger,
-                },
-                {
-                    path: 'daze',
-                    name: 'Daze',
-                    component: Daze,
-                },
-                {
-                    path: 'design',
-                    name: 'Design',
-                    component: Design,
-                },
-                {
-                    path: 'aboutme',
-                    name: 'Aboutme',
-                    component: Aboutme,
-                },
-                {
-                    path: 'service',
-                    name: 'Service',
-                    component: Service,
-                },
-                {
-                    path: 'front_single_product/:productID',
-                    name: 'FrontSingleProduct',
-                    component: FrontSingleProduct,
-                },
-                {
-                    path: 'shopping_cart',
-                    name: 'shoppingCart',
-                    component: FrontShoppingCart,
-                    children: [
-                        {
-                            path: 'front_cart_items',
-                            name: 'FrontCartItems',
-                            component: FrontCartItems,
-                        }, 
-                        {
-                            path: 'front_order',
-                            name: 'FrontOrder',
-                            component: FrontOrder,
-                        }, 
-                        {
-                            path: 'front_checkout/:orderId',
-                            name: 'FrontCheckout',
-                            component: FrontCheckout,
-                        },
-                    ]
-                },
-            ]
-        },
-        {
-            path: '/admin',
-            name: 'Dashboard',
-            component: Dashboard,
-            children: [
-                {
-                    path: 'products',
-                    name: 'Products',
-                    component: Products,
-                    meta: { requiresAuth: true }, //路由訊息
-                },
-                {
-                    path: 'coupons',
-                    name: 'Coupons',
-                    component: Coupons,
-                    meta: { requiresAuth: true },
-                },
-                {
-                    path: 'orders',
-                    name: 'Orders',
-                    component: Orders,
-                    meta: { requiresAuth: true },
-                }
-            ]
-        },
+const routes = [
+  {
+    path: '*',
+    redirect: '/home'
+  },
+  {
+    path: '/',
+    redirect: '/home'
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/views/back/Login')
+  },
+  {
+    path: '/',
+    name: 'FrondEnd',
+    component: () => import('@/views/front/FrondEnd'),
+    children: [
+      {
+        path: 'home',
+        name: 'Home',
+        component: () => import('@/views/front/FrontHome')
+      },
+      {
+        path: 'normcore',
+        name: 'Normcore',
+        component: () => import('@/views/front/Normcore')
+      },
+      {
+        path: 'lifestyle',
+        name: 'Lifestyle',
+        component: () => import('@/views/front/Lifestyle')
+      },
+      {
+        path: 'byleway',
+        name: 'Byleway',
+        component: () => import('@/views/front/Byleway')
+      },
+      {
+        path: 'bt21',
+        name: 'BT21',
+        component: () => import('@/views/front/BT21')
+      },
+      {
+        path: 'morestyle',
+        name: 'MoreStyle',
+        component: () => import('@/views/front/MoreStyle')
+      },
+      {
+        path: 'girls_unique',
+        name: 'GirlsUnique',
+        component: () => import('@/views/front/GirlsUnique')
+      },
+      {
+        path: 'desinger',
+        name: 'Desinger',
+        component: () => import('@/views/front/Desinger')
+      },
+      {
+        path: 'daze',
+        name: 'Daze',
+        component: () => import('@/views/front/Daze')
+      },
+      {
+        path: 'design',
+        name: 'Design',
+        component: () => import('@/views/front/Design')
+      },
+      {
+        path: 'aboutme',
+        name: 'Aboutme',
+        component: () => import('@/views/front/Aboutme')
+      },
+      {
+        path: 'service',
+        name: 'Service',
+        component: () => import('@/views/front/Service')
+      },
+      {
+        path: 'front_single_product/:productID',
+        name: 'FrontSingleProduct',
+        component: () => import('@/views/front/FrontSingleProduct')
+      },
+      {
+        path: 'shopping_cart',
+        name: 'FrontShoppingCart',
+        component: () => import('@/views/front/FrontShoppingCart'),
+        children: [
+          {
+            path: 'front_cart_items',
+            name: 'FrontCartItems',
+            component: () => import('@/views/front/FrontCartItems')
+          },
+          {
+            path: 'front_order',
+            name: 'FrontOrder',
+            component: () => import('@/views/front/FrontOrder')
+          },
+          {
+            path: 'front_checkout/:orderId',
+            name: 'FrontCheckout',
+            component: () => import('@/views/front/FrontCheckout')
+          }
+        ]
+      },
+      {
+        path: '/admin',
+        name: 'Dashboard',
+        component: () => import('@/views/back/Dashboard'),
+        children: [
+          {
+            path: 'products',
+            name: 'Products',
+            component: () => import('@/views/back/Products'),
+            meta: { requiresAuth: true }
+          },
+          {
+            path: 'coupons',
+            name: 'Coupons',
+            component: () => import('@/views/back/Coupons'),
+            meta: { requiresAuth: true }
+          },
+          {
+            path: 'orders',
+            name: 'Orders',
+            component: () => import('@/views/back/Orders'),
+            meta: { requiresAuth: true }
+          }
+        ]
+      }
     ]
-});
+  }
+]
+
+const router = new VueRouter({
+  routes
+})
+
+export default router

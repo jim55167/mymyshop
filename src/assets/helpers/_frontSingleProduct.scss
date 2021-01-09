@@ -83,6 +83,13 @@
       flex-wrap: nowrap;
       align-items: center;
       margin-bottom: 0.5rem;
+
+      h2{
+        font-size:2rem;
+        margin-bottom:.5rem;
+        font-weight: 500;
+        line-height: 1.2;
+      }
     }
   }
 
@@ -144,6 +151,20 @@
     @media screen and (max-width: 767px) {
       margin-top: 0.8rem;
     }
+    h3{
+      font-size:1.75rem;
+    }
+  }
+  .description-nav{
+    width:90vw;
+    margin:0 auto;
+
+    img{
+      padding: 10px;
+    }
+  }
+  .col-12{
+    padding-top:20px;
   }
 }
 
@@ -155,6 +176,11 @@
   .recommand-title {
     @media screen and (max-width: 767px) {
       margin-top: 0.8rem;
+    }
+
+    h5{
+      font-size:1.25rem;
+      margin-bottom:.5rem;
     }
   }
 
@@ -184,6 +210,7 @@
   }
 
   .card-title {
+    font-size: 1rem;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;

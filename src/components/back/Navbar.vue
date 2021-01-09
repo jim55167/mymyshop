@@ -90,33 +90,30 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
-      is_login: false,
-    };
+      is_login: false
+    }
   },
-
   methods: {
-    checkLoginStatus() {
-      const api = `${process.env.APIPATH}/api/user/check`;
+    checkLoginStatus () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/user/check`
       this.$http.post(api).then((response) => {
-        this.is_login = response.data.success;
-      });
+        this.is_login = response.data.success
+      })
     },
-
-    signOut() {
-      const api = `${process.env.APIPATH}/logout`;
+    signOut () {
+      const api = `${process.env.VUE_APP_APIPATH}/logout`
       this.$http.post(api).then((response) => {
         if (response.data.success) {
-          this.is_login = false;
-          this.$router.push("/home");
+          this.is_login = false
+          this.$router.push('/home')
         }
-      });
-    },
+      })
+    }
   },
-
-  created() {
-    this.checkLoginStatus();
-  },
-};
+  created () {
+    this.checkLoginStatus()
+  }
+}
 </script>

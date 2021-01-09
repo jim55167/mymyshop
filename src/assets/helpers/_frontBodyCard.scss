@@ -62,6 +62,14 @@
     padding: 0 10px;
   }
 
+  .content{
+    .content-nav{
+      margin-top:2rem; 
+      margin-left:1rem;
+      margin-bottom:initial;
+    }
+  }
+
   .girl {
     text-align: center;
     margin: 0 auto 70px;
@@ -140,6 +148,7 @@
       }
 
       .h5 {
+        color:#DC201F;
         @media screen and (max-width: 515px) {
           font-size: 18px;
         }
@@ -151,6 +160,7 @@
         }
       }
       .h6 {
+        color:#CCC;
         @media screen and (max-width: 414px) {
           font-size: 12px;
         }
