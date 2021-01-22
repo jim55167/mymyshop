@@ -35,9 +35,7 @@
               <input type="checkbox" value="remember-me" /> Remember me
             </label>
           </div>
-          <button class="btn btn-lg btn-primary btn-block" type="submit">
-            <i class="fas fa-circle-notch fa-spin" v-if="isLoading"></i> Sign in
-          </button>
+          <input class="btn btn-lg btn-primary btn-block" type="submit" value="登入">
           <p class="mt-5 mb-3 text-muted">&copy; 2019-2021</p>
         </div>
       </form>

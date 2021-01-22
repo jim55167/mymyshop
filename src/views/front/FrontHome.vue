@@ -11,11 +11,11 @@
           </div>
           <div class="home-box-center">
             <div class="home-box-img3"></div>
-            <a
+            <p
               >-<br />
               RECOMMEND ITEM<br />
               SPECIAL AND ENTIRELY WORTH IT
-            </a>
+            </p>
           </div>
         </div>
       </router-link>
@@ -23,9 +23,9 @@
     <div class="home-winter-box">
       <div class="home-winter">
         <div class="home-winter-nav">
-          <a class="home-winter-text">當冬日路過這個城市</a>
-          <a class="home-winter-text text-nav">到處充滿著歡聚的氣息</a>
-          <a class="home-winter-text text-nav2">此刻的喧鬧屬於我們</a>
+          <p class="home-winter-text">當冬日路過這個城市</p>
+          <p class="home-winter-text text-nav">到處充滿著歡聚的氣息</p>
+          <p class="home-winter-text text-nav2">此刻的喧鬧屬於我們</p>
         </div>
       </div>
     </div>

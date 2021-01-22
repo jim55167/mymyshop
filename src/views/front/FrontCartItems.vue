@@ -114,7 +114,6 @@ export default {
       this.$http.post(api, { data: coupon }).then(response => {
         const alert = response.data.message
         this.active = alert
-        console.log(this.active)
         this.getCart()
         this.$store.dispatch('updateLoading', false)
       })

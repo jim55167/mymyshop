@@ -59,7 +59,7 @@
         </tbody>
       </table>
       <div class="text-right" v-if="order.is_paid === false">
-        <button class="btn btn-danger">確認付款去</button>
+        <button type="button" class="btn btn-danger">確認付款去</button>
       </div>
     </form>
     <!-- Modal -->
@@ -105,7 +105,6 @@ export default {
       this.isLoading = true
       this.$http.get(api).then((response) => {
         this.order = response.data.order
-        console.log(response)
         this.isLoading = false
       })
     },
@@ -129,7 +128,6 @@ export default {
   created () {
     this.orderId = this.$route.params.orderId
     this.getOrder()
-    console.log(this.orderId)
   }
 }
 </script>

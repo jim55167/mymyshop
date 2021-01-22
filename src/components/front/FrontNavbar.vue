@@ -22,13 +22,7 @@
             <router-link class="nav-link" href="#" to="/normcore">NORMCORE</router-link>
           </li>
           <li>
-            <a
-              class="text-light-danger nav-link mr-1"
-              href="#"
-              v-if="is_login"
-              @click.prevent="signOut"
-              to="/home"
-            >
+            <a class="text-light-danger nav-link mr-1" href="#" v-if="is_login" @click.prevent="signOut" to="/home">
               SIGN OUT
               <i class="fas fa-sign-out-alt ml-1"></i>
             </a>
@@ -78,7 +72,7 @@ export default {
       this.$http.post(url).then((response) => {
         if (response.data.success) {
           this.is_login = false
-          this.$router.push('/home')
+          this.$router.push('/home').catch(err => err)
         }
       })
     },
