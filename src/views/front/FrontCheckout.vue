@@ -74,7 +74,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body">
-            <img src="~@/assets/calendar/ok.png">
+            <img src="~@/assets/calendar/ok.png" alt="完成">
             <h4>AWESOME</h4>
             <p>YOUR PAYMENT COMPLETED</p>
             <button type="button" class="btn btn-primary" @click="goToProducts">

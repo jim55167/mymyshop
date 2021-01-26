@@ -257,7 +257,7 @@ export default {
         data = this.normcore
       } else if (this.visibility === '上衣') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/上衣') {
             categoryList.push(item)
           }
@@ -265,7 +265,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '長褲') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/長褲') {
             categoryList.push(item)
           }
@@ -273,7 +273,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '外套') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/外套') {
             categoryList.push(item)
           }
@@ -281,7 +281,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '背心') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/背心') {
             categoryList.push(item)
           }
@@ -289,7 +289,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '吊帶褲') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/吊帶褲') {
             categoryList.push(item)
           }
@@ -297,7 +297,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '穿搭配件') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/穿搭配件') {
             categoryList.push(item)
           }
@@ -305,7 +305,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '襯衫') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/襯衫') {
             categoryList.push(item)
           }
@@ -313,7 +313,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '洋裝') {
         const categoryList = []
-        this.normcore.forEach(function (item) {
+        this.normcore.forEach((item) => {
           if (item.category === 'normcore/洋裝') {
             categoryList.push(item)
           }

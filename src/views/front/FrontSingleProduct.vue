@@ -61,8 +61,8 @@
           <h3>PRODUCT INFO</h3>
         </div>
         <div class="description-nav">
-          <img :src="product.imageUrl3" alt />
-          <img :src="product.imageUrl2" alt />
+          <img :src="product.imageUrl3" alt="圖三" />
+          <img :src="product.imageUrl2" alt="圖二" />
         </div>
         <div class="col-12">
           <pre>{{ product.description }}</pre>

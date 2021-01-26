@@ -171,7 +171,7 @@ export default {
         data = this.daze
       } else if (this.visibility === '上衣') {
         const categoryList = []
-        this.daze.forEach(function (item) {
+        this.daze.forEach((item) => {
           if (item.category === 'Daze/上衣') {
             categoryList.push(item)
           }
@@ -179,7 +179,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '洋裝') {
         const categoryList = []
-        this.daze.forEach(function (item) {
+        this.daze.forEach((item) => {
           if (item.category === 'Daze/洋裝') {
             categoryList.push(item)
           }
@@ -187,7 +187,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '外套') {
         const categoryList = []
-        this.daze.forEach(function (item) {
+        this.daze.forEach((item) => {
           if (item.category === 'Daze/外套') {
             categoryList.push(item)
           }
@@ -195,7 +195,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '襯衫') {
         const categoryList = []
-        this.daze.forEach(function (item) {
+        this.daze.forEach((item) => {
           if (item.category === 'Daze/襯衫') {
             categoryList.push(item)
           }

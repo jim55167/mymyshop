@@ -220,7 +220,7 @@ export default {
         data = this.lifestyle
       } else if (this.visibility === '上衣') {
         const categoryList = []
-        this.lifestyle.forEach(function (item) {
+        this.lifestyle.forEach((item) => {
           if (item.category === 'lifestyle/上衣') {
             categoryList.push(item)
           }
@@ -228,7 +228,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '長褲') {
         const categoryList = []
-        this.lifestyle.forEach(function (item) {
+        this.lifestyle.forEach((item) => {
           if (item.category === 'lifestyle/長褲') {
             categoryList.push(item)
           }
@@ -236,7 +236,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '外套') {
         const categoryList = []
-        this.lifestyle.forEach(function (item) {
+        this.lifestyle.forEach((item) => {
           if (item.category === 'lifestyle/外套') {
             categoryList.push(item)
           }
@@ -244,7 +244,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '洋裝') {
         const categoryList = []
-        this.lifestyle.forEach(function (item) {
+        this.lifestyle.forEach((item) => {
           if (item.category === 'lifestyle/洋裝') {
             categoryList.push(item)
           }

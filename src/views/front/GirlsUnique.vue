@@ -189,7 +189,7 @@ export default {
         data = this.girls
       } else if (this.visibility === '上衣') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/上衣') {
             categoryList.push(item)
           }
@@ -197,7 +197,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '長褲') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/長褲') {
             categoryList.push(item)
           }
@@ -205,7 +205,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '外套') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/外套') {
             categoryList.push(item)
           }
@@ -213,7 +213,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '吊帶褲') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/吊帶褲') {
             categoryList.push(item)
           }
@@ -221,7 +221,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '穿搭配件') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/穿搭配件') {
             categoryList.push(item)
           }
@@ -229,7 +229,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '襯衫') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/襯衫') {
             categoryList.push(item)
           }
@@ -237,7 +237,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '洋裝') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/洋裝') {
             categoryList.push(item)
           }
@@ -245,7 +245,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '鞋') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/鞋') {
             categoryList.push(item)
           }
@@ -253,7 +253,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '裙子') {
         const categoryList = []
-        this.girls.forEach(function (item) {
+        this.girls.forEach((item) => {
           if (item.category === '私服衣櫃/裙子') {
             categoryList.push(item)
           }

@@ -28,7 +28,7 @@
               @on-change="userPassword"
               required
             />
-            <img :src= 'seen ? openEyes : closeEyes' @click="changeType">
+            <img :src= 'seen ? openEyes : closeEyes' @click="changeType" alt="顯示/隱藏">
           </div>
           <div class="checkbox mb-3">
             <label class="remember-text">

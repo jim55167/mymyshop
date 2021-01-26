@@ -228,7 +228,7 @@ export default {
         data = this.desinger
       } else if (this.visibility === '上衣') {
         const categoryList = []
-        this.desinger.forEach(function (item) {
+        this.desinger.forEach((item) => {
           if (item.category === 'DESIGNER/上衣') {
             categoryList.push(item)
           }
@@ -236,7 +236,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '長褲') {
         const categoryList = []
-        this.desinger.forEach(function (item) {
+        this.desinger.forEach((item) => {
           if (item.category === 'DESIGNER/長褲') {
             categoryList.push(item)
           }
@@ -244,7 +244,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '外套') {
         const categoryList = []
-        this.desinger.forEach(function (item) {
+        this.desinger.forEach((item) => {
           if (item.category === 'DESIGNER/外套') {
             categoryList.push(item)
           }
@@ -252,7 +252,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '穿搭配件') {
         const categoryList = []
-        this.desinger.forEach(function (item) {
+        this.desinger.forEach((item) => {
           if (item.category === 'DESIGNER/穿搭配件') {
             categoryList.push(item)
           }
@@ -260,7 +260,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '背心') {
         const categoryList = []
-        this.desinger.forEach(function (item) {
+        this.desinger.forEach((item) => {
           if (item.category === 'DESIGNER/背心') {
             categoryList.push(item)
           }

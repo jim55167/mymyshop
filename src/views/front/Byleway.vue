@@ -256,7 +256,7 @@ export default {
         data = this.byleway
       } else if (this.visibility === '上衣') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/上衣') {
             categoryList.push(item)
           }
@@ -264,7 +264,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '長褲') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/長褲') {
             categoryList.push(item)
           }
@@ -272,7 +272,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '外套') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/外套') {
             categoryList.push(item)
           }
@@ -280,7 +280,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '裙子') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/裙子') {
             categoryList.push(item)
           }
@@ -288,7 +288,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '套裝') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/套裝') {
             categoryList.push(item)
           }
@@ -296,7 +296,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '穿搭配件') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/穿搭配件') {
             categoryList.push(item)
           }
@@ -304,7 +304,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '襯衫') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/襯衫') {
             categoryList.push(item)
           }
@@ -312,7 +312,7 @@ export default {
         data = categoryList
       } else if (this.visibility === '洋裝') {
         const categoryList = []
-        this.byleway.forEach(function (item) {
+        this.byleway.forEach((item) => {
           if (item.category === 'byleway/洋裝') {
             categoryList.push(item)
           }
