@@ -1,0 +1,65 @@
+.swiper {
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+
+  .swiper-button-prev {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif,
+      "PMingLiU", sans-serif;
+    margin-left: 20px;
+    width: 40px;
+    height: 40px;
+    background-image: url("~@/assets/calendar/prev.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media screen and (max-width: 992px) {
+      left: 0;
+    }
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
+
+    &:after {
+      content: none;
+    }
+  }
+
+  .swiper-button-next {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    background-image: url("~@/assets/calendar/next.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    @media screen and (max-width: 992px) {
+      position: absolute;
+      right: 0;
+    }
+    @media screen and (max-width: 576px) {
+      display: none;
+    }
+
+    &:after {
+      content: none;
+    }
+  }
+}

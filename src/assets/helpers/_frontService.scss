@@ -1,0 +1,161 @@
+.service-box {
+  width: 100%;
+
+  .service-item {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(143, 160, 168, 0.1);
+
+    .service {
+      display: grid;
+      width: 1024px;
+      margin: 0 auto;
+      padding: 50px 0;
+
+      .question1 {
+        padding-bottom: 20px;
+
+        p {
+          color: #966e23;
+          cursor: pointer;
+          font-size: 13px;
+        }
+
+        .mtree {
+          display: none;
+          overflow: hidden;
+          z-index: 1;
+          background-color: #f6f6f6;
+
+          &.mtree-show {
+            display: block;
+          }
+
+          .tree-node {
+            padding: 15px 0;
+
+            span {
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+
+      .question2 {
+        padding-bottom: 20px;
+
+        p {
+          color: #966e23;
+          cursor: pointer;
+          font-size: 13px;
+        }
+
+        .mtree {
+          display: none;
+          overflow: hidden;
+          z-index: 1;
+          background-color: #f6f6f6;
+
+          &.mtree-show {
+            display: block;
+          }
+
+          .tree-node {
+            padding: 15px 0;
+
+            span {
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+
+      .question3 {
+        padding-bottom: 20px;
+
+        p {
+          color: #966e23;
+          cursor: pointer;
+          font-size: 13px;
+        }
+
+        .mtree {
+          display: none;
+          overflow: hidden;
+          z-index: 1;
+          background-color: #f6f6f6;
+
+          &.mtree-show {
+            display: block;
+          }
+
+          .tree-node {
+            padding: 15px 0;
+
+            span {
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+
+      .question4 {
+        padding-bottom: 20px;
+
+        p {
+          color: #966e23;
+          cursor: pointer;
+          font-size: 13px;
+        }
+
+        .mtree {
+          display: none;
+          overflow: hidden;
+          z-index: 1;
+          background-color: #f6f6f6;
+
+          &.mtree-show {
+            display: block;
+          }
+
+          .tree-node {
+            padding: 15px 0;
+
+            span {
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+
+      .question5 {
+        padding-bottom: 20px;
+
+        p {
+          color: #966e23;
+          cursor: pointer;
+          font-size: 13px;
+        }
+
+        .mtree {
+          display: none;
+          overflow: hidden;
+          z-index: 1;
+          background-color: #f6f6f6;
+
+          &.mtree-show {
+            display: block;
+          }
+
+          .tree-node {
+            padding: 15px 0;
+
+            span {
+              line-height: 1.5;
+            }
+          }
+        }
+      }
+    }
+  }
+}

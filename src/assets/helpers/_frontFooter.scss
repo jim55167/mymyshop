@@ -1,0 +1,80 @@
+.home-index{
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 200px;
+}
+
+.footer_center {
+  width: 100%;
+  height: 220px;
+  clear: both;
+  position: absolute;
+  bottom: 0;
+
+  > {
+    p {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      text-align: center;
+
+      &:first-child {
+        padding-top: 15px;
+      }
+    }
+
+    span {
+      margin: 0 10px;
+
+      > a {
+        font-size: 13px;
+        line-height: 16px;
+        color: #272822;
+        text-decoration: none;
+        font-family: "Noto Sans TC", "Microsoft JhengHei", "Heiti TC",
+          sans-serif, "PMingLiU", sans-serif;
+      }
+    }
+  }
+
+  span img {
+    width: inherit;
+  }
+}
+
+.footer_btn {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 16px;
+  color: #272822;
+  text-decoration: none;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif,
+    "PMingLiU", sans-serif;
+  @media screen and (max-width: 575px) {
+    display: grid;
+  }
+  .chn {
+    display: inline-block;
+    width: 95px;
+    @media screen and (max-width: 575px) {
+      padding: 5px;
+      font-size: 1rem;
+    }
+  }
+}
+.footer_copyright {
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  margin-top: 10px;
+  line-height: 16px;
+  color: #272822;
+  text-decoration: none;
+  font-family: "Noto Sans TC", "Microsoft JhengHei", "Heiti TC", sans-serif,
+    "PMingLiU", sans-serif;
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+}
