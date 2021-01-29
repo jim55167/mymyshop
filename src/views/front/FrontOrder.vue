@@ -10,7 +10,7 @@
         >
           <div class="form-group">
             <!-- 輸入框 -->
-            <label for="email">信箱</label>
+            <label for="email">EMAIL</label>
             <input
               id="email"
               type="email"
@@ -89,7 +89,7 @@
         </div>
         <div class="d-flex justify-content-between mt-4 step-control">
           <router-link href="#" class="btn btn-primary" to="front_cart_items"
-            >BACK TO CART</router-link
+            >返回購物車</router-link
           >
           <button
             type="button"
@@ -97,7 +97,7 @@
             :disabled="invalid"
             @click.prevent="createOrder"
           >
-            SEND ORDER
+            送出訂單
           </button>
         </div>
       </form>

@@ -21,8 +21,8 @@
     </div>
 
     <div class="emptyCart-wrap" v-if="!cartHasItem">
-      <h4>SHOPPING CART IS EMPTY</h4>
-      <router-link href="#" class="btn btn-primary shopping-link" to="/home">SHOPPING NOW!</router-link>
+      <h4>購物車是空的</h4>
+      <router-link href="#" class="btn btn-primary shopping-link" to="/home">返回購物!</router-link>
     </div>
   </div>
 </template>

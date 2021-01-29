@@ -30,7 +30,7 @@
             <td>{{ order.id }}</td>
           </tr>
           <tr>
-            <th>信箱</th>
+            <th>EMAIL</th>
             <td>{{ order.user.email }}</td>
           </tr>
           <tr>
