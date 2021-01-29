@@ -75,11 +75,8 @@
         <div class="modal-content">
           <div class="modal-body">
             <img src="~@/assets/calendar/ok.png" alt="完成">
-            <h4>訂購成功</h4>
             <p>您已完成付款</p>
-            <button type="button" class="btn btn-primary" @click="goToProducts">
-              返回購物!
-            </button>
+            <input type="submit" class="btn btn-primary" @click="goToProducts" value="返回首頁">
           </div>
         </div>
       </div>
