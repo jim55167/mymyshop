@@ -527,13 +527,6 @@ export default {
       return Math.ceil(this.products.length / this.countPage)
     }
   },
-  mounted () {
-    $('.page-link').click(function (item) {
-      console.log(this, item)
-      $('html, body').animate({ scrollTop: 0 }, 400)
-      return false
-    })
-  },
   created () {
     this.getProducts()
   }
