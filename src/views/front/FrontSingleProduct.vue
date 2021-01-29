@@ -35,18 +35,18 @@
           <div class="product-input">
             <div class="quantity row">
               <span class="quantity-title">QUANTITY</span>
-              <button type="button" class="btn btn-outline-third" @click="quantitySub(product)">-</button>
+              <button type="button" class="btn btn-outline-third" @click.prevent="quantitySub(product)">-</button>
               <input type="text" :value="product.num" readonly="readonly" />
-              <button type="button" class="btn btn-outline-third" @click="quantityPlus(product)">+</button>
+              <button type="button" class="btn btn-outline-third" @click.prevent="quantityPlus(product)">+</button>
             </div>
 
             <div class="buy-option">
               <button type="button" class="btn btn-primary mr-1percent"
-                @click="addToCart(product.id, true, product.num)" >
+                @click.prevent="addToCart(product.id, true, product.num)" >
                 <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'direct'"></i> BUY NOW
               </button>
               <button type="button" class="btn btn-danger"
-                @click="addToCart(product.id, false, product.num)">
+                @click.prevent="addToCart(product.id, false, product.num)">
                 <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'non-direct'"></i> ADD TO CART
               </button>
             </div>
@@ -78,7 +78,7 @@
             <div class="col-md-3 col-sm-6 col-12 mb-4 recommand-hover"
               v-for="(item, index) in recommandProducts" :key="index">
               <a class="link-block" href="#"
-                @click="getRecommandProduct(item.id)">
+                @click.prevent="getRecommandProduct(item.id)">
                 <div class="card shadow-sm">
                   <div class="card-shadow-vw"
                     style="background-size: contain; background-repeat: no-repeat; background-position: center;"

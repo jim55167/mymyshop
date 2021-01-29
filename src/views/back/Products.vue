@@ -2,7 +2,7 @@
   <div>
     <loading :active.sync="isLoading"></loading>
     <div class="text-right mt-4">
-      <button type="button" class="btn btn-primary" @click="openModal(true)">
+      <button type="button" class="btn btn-primary" @click.prevent="openModal(true)">
         建立新產品
       </button>
     </div>
@@ -40,7 +40,7 @@
               type="button"
               class="btn btn-outline-primary btn-sm"
               style="border-radius:0.2rem;"
-              @click="openModal(false, item)"
+              @click.prevent="openModal(false, item)"
             >
               編輯
             </button>
@@ -48,7 +48,7 @@
               type="button"
               class="btn btn-outline-danger btn-sm"
               style="border-radius:0.2rem;"
-              @click="deleteModal(item)"
+              @click.prevent="deleteModal(item)"
             >
               刪除
             </button>
@@ -328,7 +328,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              @click="updateProduct"
+              @click.prevent="updateProduct"
             >
               確認
             </button>
@@ -372,7 +372,7 @@
             >
               取消
             </button>
-            <button type="button" class="btn btn-danger" @click="deleteProduct">
+            <button type="button" class="btn btn-danger" @click.prevent="deleteProduct">
               確認刪除
             </button>
           </div>

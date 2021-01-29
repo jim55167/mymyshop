@@ -76,7 +76,7 @@
           <div class="modal-body">
             <img src="~@/assets/calendar/ok.png" alt="完成">
             <p>您已完成付款</p>
-            <input type="submit" class="btn btn-primary" @click="goToProducts" value="返回首頁">
+            <input type="submit" class="btn btn-primary" @click.prevent="goToProducts" value="返回首頁">
           </div>
         </div>
       </div>

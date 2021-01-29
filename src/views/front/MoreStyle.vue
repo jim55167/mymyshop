@@ -64,7 +64,7 @@
               class="page-link"
               href="#"
               aria-label="Previous"
-              @click="getPage(current_page - 1)"
+              @click.prevent="getPage(current_page - 1)"
             >
               <span aria-hidden="true">&laquo;</span>
             </a>
@@ -75,7 +75,7 @@
             :key="page"
             :class="{ active: current_page === page }"
           >
-            <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
+            <a class="page-link" href="#" @click.prevent="getPage(page)">{{ page }}</a>
           </li>
           <li
             class="page-item"
@@ -85,7 +85,7 @@
               class="page-link"
               href="#"
               aria-label="Next"
-              @click="getPage(current_page + 1)"
+              @click.prevent="getPage(current_page + 1)"
             >
               <span aria-hidden="true">&raquo;</span>
             </a>

@@ -22,9 +22,9 @@
             <div class="text-primary" v-if="item.coupon">已套用優惠券</div>
           </td>
           <td class="align-middle d-sm-table-cell d-none qty-adjust">
-            <button type="button" class="btn" @click="quantitySub(item)">-</button>
+            <button type="button" class="btn" @click.prevent="quantitySub(item)">-</button>
             <input type="text" :value="item.qty" readonly="readonly"/>
-            <button type="button" class="btn" @click="quantityPlus(item)">+</button>
+            <button type="button" class="btn" @click.prevent="quantityPlus(item)">+</button>
           </td>
            <td class="align-middle">
             {{ item.product.price | currency }} / {{ item.total | currency }}
@@ -32,7 +32,7 @@
           </td>
           <td class="align-middle">
             <button type="button" class="btn btn-outline-danger btn-sm"
-              @click="removeCartItem(item.id)">
+              @click.prevent="removeCartItem(item.id)">
               <i class="far fa-trash-alt"></i>
             </button>
           </td>
@@ -52,7 +52,7 @@
     <div class="input-group mb-3 input-group-sm">
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼"/>
       <div class="input-group-append">
-        <button class="btn btn-primary" type="button" @click="addCouponCode">套用優惠碼</button>
+        <button class="btn btn-primary" type="button" @click.prevent="addCouponCode">套用優惠碼</button>
         <div class="coupon-message">{{ this.active }}</div>
       </div>
     </div>
