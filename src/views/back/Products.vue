@@ -512,6 +512,7 @@ export default {
         })
     },
     getPage (page) {
+      $('html, body').animate({ scrollTop: 0 }, 600)
       if (page <= 0 || page > this.totalPage) {
         return
       }

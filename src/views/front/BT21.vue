@@ -174,6 +174,7 @@
 <script>
 
 import GoTop from '@/components/GoTop'
+import $ from 'jquery'
 
 export default {
   data () {
@@ -237,6 +238,7 @@ export default {
       this.shoppingCart = num
     },
     getPage (page) {
+      $('html, body').animate({ scrollTop: 0 }, 600)
       if (page <= 0 || page > this.totalPage) {
         return
       }

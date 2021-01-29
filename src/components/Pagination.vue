@@ -45,15 +45,9 @@ export default {
   },
   methods: {
     changePage (targetPage) {
+      $('html, body').animate({ scrollTop: 0 }, 600)
       this.$emit('changePage', targetPage)
     }
-  },
-  mounted () {
-    $('.page-link').click(function (item) {
-      console.log(this, item)
-      $('html, body').animate({ scrollTop: 0 }, 400)
-      return false
-    })
   }
 }
 </script>

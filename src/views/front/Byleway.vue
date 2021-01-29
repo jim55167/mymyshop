@@ -229,6 +229,7 @@ export default {
       })
     },
     getPage (page) {
+      $('html, body').animate({ scrollTop: 0 }, 600)
       if (page <= 0 || page > this.totalPage) {
         return
       }
@@ -325,13 +326,6 @@ export default {
   },
   created () {
     this.getAllProducts()
-  },
-  mounted () {
-    $('.page-link').click(function (item) {
-      console.log(this, item)
-      $('html, body').animate({ scrollTop: 0 }, 400)
-      return false
-    })
   },
   components: {
     GoTop
