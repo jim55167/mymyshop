@@ -4,11 +4,11 @@
     <table class="table">
       <thead>
         <tr>
-          <th class="d-md-table-cell">PIC</th>
-          <th>NAME</th>
-          <th class="d-sm-table-cell d-none" width="120px">QUANTITY</th>
-          <th width="25%">PRICE</th>
-          <th width="60px">REMOVE</th>
+          <th class="d-md-table-cell">產品圖</th>
+          <th>產品名稱</th>
+          <th class="d-sm-table-cell d-none" width="120px">數量</th>
+          <th width="25%">價格</th>
+          <th width="60px">刪除</th>
         </tr>
       </thead>
       <tbody class="cart-items">
@@ -26,7 +26,7 @@
             <input type="text" :value="item.qty" readonly="readonly"/>
             <button type="button" class="btn" @click.prevent="quantityPlus(item)">+</button>
           </td>
-           <td class="align-middle">
+          <td class="align-middle">
             {{ item.product.price | currency }} / {{ item.total | currency }}
             <div class="text-primary" v-if="item.coupon">{{ item.final_total | currency }}</div>
           </td>
@@ -58,8 +58,8 @@
     </div>
 
     <div class="d-flex justify-content-between mt-4 step-control">
-      <router-link href="#" class="btn btn-primary" to="/home">返回賣場</router-link>
-      <router-link href="#" class="btn btn-danger" to="front_order" v-if="nextPage">下一步</router-link>
+      <router-link class="btn btn-primary" to="/home">返回賣場</router-link>
+      <router-link class="btn btn-danger" to="front_order" v-if="nextPage">下一步</router-link>
     </div>
   </div>
 </template>

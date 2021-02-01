@@ -3,7 +3,7 @@
     <Loading :active.sync="isLoading"></Loading>
     <Swiper></Swiper>
     <div class="home-banner-a">
-      <router-link href="#" to="/girls_unique">
+      <router-link to="/girls_unique">
         <div class="home-box">
           <div class="home-box-flex">
             <div class="home-box-img1"></div>
@@ -30,7 +30,7 @@
       </div>
     </div>
     <div class="home-banner-b">
-      <router-link href="#" to="/girls_unique">
+      <router-link to="/girls_unique">
         <div class="home-box">
           <div class="home-box-nav">
             <div class="home-box-left">
@@ -47,7 +47,7 @@
       </router-link>
     </div>
     <div class="home-banner-c">
-      <router-link href="#" to="/girls_unique">
+      <router-link to="/girls_unique">
         <div class="home-box">
           <div class="home-box-top">
             <div class="home-box-img1"></div>
@@ -69,18 +69,18 @@
     <div class="home-footer">
       <div class="footer-box">
         <div class="footer-nav">
-          <router-link href="#" to="/daze">
+          <router-link to="/daze">
             <div class="footer-img1"></div>
           </router-link>
-          <router-link href="#" to="/desinger">
+          <router-link to="/desinger">
             <div class="footer-img2"></div>
           </router-link>
         </div>
         <div class="footer-nav">
-          <router-link href="#" to="/normcore">
+          <router-link to="/normcore">
             <div class="footer-img3"></div>
           </router-link>
-          <router-link href="#" to="/bt21">
+          <router-link to="/bt21">
             <div class="footer-img4"></div>
           </router-link>
         </div>
@@ -88,17 +88,17 @@
     </div>
     <div class="app">
       <div class="home-store">
-        <router-link href="#" to="/home">
+        <router-link to="/home">
           <img alt="商店" src="~@/assets/calendar/Store1.jpg" />
         </router-link>
       </div>
       <div class="home-app">
-        <router-link href="#" to="/home">
+        <router-link to="/home">
           <img alt="App" src="~@/assets/calendar/APP1.jpg" />
         </router-link>
       </div>
       <div class="home-ig">
-        <router-link href="#" to="/home">
+        <router-link to="/home">
           <img alt="IG" src="~@/assets/calendar/IG1.jpg" />
         </router-link>
       </div>

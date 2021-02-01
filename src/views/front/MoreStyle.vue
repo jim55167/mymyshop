@@ -7,7 +7,7 @@
       /></a>
     </div>
     <div class="banner_open_shoppingcart">
-      <router-link href="#" to="/shopping_cart/front_cart_items">
+      <router-link to="/shopping_cart/front_cart_items">
         <span class="badge">{{ cart.carts.length }}</span>
         <img alt="購物車" src="~@/assets/calendar/shoppingCart.jpg" />
       </router-link>

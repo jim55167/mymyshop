@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top">
-      <router-link href="#" class="navbar-logo" to="/home">
+      <router-link class="navbar-logo" to="/home">
         <div class="navbar-pic"></div>
       </router-link>
       <button
@@ -20,7 +20,6 @@
         <ul class="navbar-nav align-items-center mr-auto">
           <li class="nav-item">
             <router-link
-              href="#"
               class="nav-link"
               style="color: yellow"
               to="/admin/products"
@@ -29,7 +28,6 @@
           </li>
           <li class="nav-item">
             <router-link
-              href="#"
               class="nav-link"
               style="color: yellow"
               to="/admin/orders"
@@ -38,7 +36,6 @@
           </li>
           <li class="nav-item">
             <router-link
-              href="#"
               class="nav-link"
               style="color: yellow"
               to="/admin/coupons"
@@ -60,7 +57,6 @@
               <i class="fas fa-sign-out-alt ml-1"></i>
             </a>
             <router-link
-              href="#"
               class="nav-link mr-2"
               to="/login"
               v-else
@@ -72,7 +68,6 @@
           </li>
           <li>
             <router-link
-              href="#"
               class="nav-link mr-2"
               to="/home"
               v-if="is_login"

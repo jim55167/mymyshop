@@ -2,7 +2,7 @@
   <div class="fsp-container-fluid">
     <Loading :active.sync="isLoading"></Loading>
     <div class="banner_open_shoppingcart">
-          <router-link  href="#" to="/shopping_cart/front_cart_items">
+          <router-link to="/shopping_cart/front_cart_items">
             <span class="badge">{{ cart.carts.length }}</span>
             <img alt="購物車" src="~@/assets/calendar/shoppingCart.jpg"/>
           </router-link>
@@ -34,7 +34,7 @@
 
           <div class="product-input">
             <div class="quantity row">
-              <span class="quantity-title">QUANTITY</span>
+              <span class="quantity-title">數量</span>
               <button type="button" class="btn btn-outline-third" @click.prevent="quantitySub(product)">-</button>
               <input type="text" :value="product.num" readonly="readonly" />
               <button type="button" class="btn btn-outline-third" @click.prevent="quantityPlus(product)">+</button>
@@ -43,11 +43,11 @@
             <div class="buy-option">
               <button type="button" class="btn btn-primary mr-1percent"
                 @click.prevent="addToCart(product.id, true, product.num)" >
-                <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'direct'"></i> BUY NOW
+                <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'direct'"></i> 馬上購買
               </button>
               <button type="button" class="btn btn-danger"
                 @click.prevent="addToCart(product.id, false, product.num)">
-                <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'non-direct'"></i> ADD TO CART
+                <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'non-direct'"></i> 加入購物車
               </button>
             </div>
           </div>
@@ -200,7 +200,7 @@ export default {
         }
         const index = Math.floor(Math.random() * arr.length)
         let flag = true
-        newArr.forEach(function (item) {
+        newArr.forEach((item) => {
           if (item === arr[index]) {
             flag = false
           }

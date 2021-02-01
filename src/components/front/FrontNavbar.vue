@@ -3,30 +3,30 @@
     <nav class="nav_bar">
       <div class="containers">
         <div class="nav_bar_box">
-          <router-link class="nav-link logo" href="#" to="/admin/home"></router-link>
+          <router-link class="nav-link logo" to="/admin/home"></router-link>
         </div>
         <ul class="menu-box" :class="{ 'menu-show': showMenu }">
           <li>
-            <router-link class="nav-link" href="#" to="/morestyle">MORE STYLE</router-link>
+            <router-link class="nav-link" to="/morestyle">MORE STYLE</router-link>
           </li>
           <li>
-            <router-link class="nav-link" href="#" to="/byleway">BYLEWAY</router-link>
+            <router-link class="nav-link" to="/byleway">BYLEWAY</router-link>
           </li>
           <li>
-            <router-link class="nav-link" href="#" to="/lifestyle">LIFESTYLE</router-link>
+            <router-link class="nav-link" to="/lifestyle">LIFESTYLE</router-link>
           </li>
           <li>
-            <router-link class="nav-link" href="#" to="/bt21">BT21</router-link>
+            <router-link class="nav-link" to="/bt21">BT21</router-link>
           </li>
           <li>
-            <router-link class="nav-link" href="#" to="/normcore">NORMCORE</router-link>
+            <router-link class="nav-link" to="/normcore">NORMCORE</router-link>
           </li>
           <li>
             <a class="text-light-danger nav-link mr-1" href="#" v-if="is_login" @click.prevent="signOut" to="/home">
               SIGN OUT
               <i class="fas fa-sign-out-alt ml-1"></i>
             </a>
-            <router-link href="#" class="nav-link mr-2" to="/login" v-else>
+            <router-link class="nav-link mr-2" to="/login" v-else>
               SIGN IN
               <i class="fas fa-sign-in-alt ml-1"></i>
             </router-link>
@@ -36,7 +36,7 @@
           </li>
         </ul>
         <div class="shoppingCart">
-          <router-link class="nav-link" href="#" to="/shopping_cart/front_cart_items">
+          <router-link class="nav-link" to="/shopping_cart/front_cart_items">
             <span class="badge">{{ cart.carts.length }}</span>
             <i
               class="fas fa-cart-arrow-down"

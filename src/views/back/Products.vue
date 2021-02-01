@@ -57,7 +57,7 @@
       </tbody>
     </table>
     <!-- bootstrap pagination -->
-    <div style="display: flex;">
+    <div class="d-flex">
       <nav aria-label="Page navigation example" style="margin:0 auto">
         <ul class="pagination">
           <li class="page-item" :class="{ disabled: current_page === 1 }">

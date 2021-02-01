@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  name: 'Banner',
+  name: 'swiper',
   data () {
     return {
       imgs: [

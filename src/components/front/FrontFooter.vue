@@ -21,17 +21,17 @@
       </p>
       <div class="footer_btn">
         <span>
-          <router-link href="#" to="/aboutme">
+          <router-link to="/aboutme">
             <span class="chn">關於我們</span>
           </router-link>
         </span>
         <span>
-          <router-link href="#" to="/design">
+          <router-link to="/design">
             <span class="chn">良品製作</span>
           </router-link>
         </span>
         <span>
-          <router-link href="#" to="/service">
+          <router-link to="/service">
             <span class="chn">會員服務</span>
           </router-link>
         </span>

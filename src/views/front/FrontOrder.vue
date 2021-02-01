@@ -88,7 +88,7 @@
           ></textarea>
         </div>
         <div class="d-flex justify-content-between mt-4 step-control">
-          <router-link href="#" class="btn btn-primary" to="front_cart_items"
+          <router-link class="btn btn-primary" to="front_cart_items"
             >返回購物車</router-link
           >
           <button

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav aria-label="Page navigation example" style="display: flex;">
+    <nav aria-label="Page navigation example" class="d-flex">
       <ul class="pagination" style="margin:0 auto;">
         <li class="page-item" :class="{ 'disabled' : !pagination.has_pre }">
           <a

@@ -6,13 +6,13 @@
       <div class="cart-wrap">
         <div class="shopping-step mb-4">
           <div class="step" :class="{ 'active-step' : activedPage == 'FrontCartItems' }">
-            <h5>CHECK CART</h5>
+            <h5>確認商品</h5>
           </div>
           <div class="step" :class="{ 'active-step' : activedPage == 'FrontOrder' }">
-            <h5>FILL INFO</h5>
+            <h5>填寫訂單</h5>
           </div>
           <div class="step" :class="{ 'active-step' : activedPage == 'FrontCheckout' }">
-            <h5>PAYMENT LIST</h5>
+            <h5>確認付款</h5>
           </div>
         </div>
 
@@ -22,7 +22,7 @@
 
     <div class="emptyCart-wrap" v-if="!cartHasItem">
       <h4>購物車是空的</h4>
-      <router-link href="#" class="btn btn-primary shopping-link" to="/home">返回購物!</router-link>
+      <router-link class="btn btn-primary shopping-link" to="/home">返回購物!</router-link>
     </div>
   </div>
 </template>

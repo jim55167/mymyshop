@@ -7,7 +7,7 @@
       /></a>
     </div>
     <div class="banner_open_shoppingcart">
-      <router-link href="#" to="/shopping_cart/front_cart_items">
+      <router-link to="/shopping_cart/front_cart_items">
         <span class="badge">{{ cart.carts.length }}</span>
         <img alt="購物車" src="~@/assets/calendar/shoppingCart.jpg" />
       </router-link>
@@ -23,7 +23,7 @@
         <div class="content">
           <div class="h6 content-nav">
             <div class="bt21">
-              <router-link href="#" to="/morestyle">
+              <router-link to="/morestyle">
                 MyMyShop COMFY AND STYLISH
               </router-link>
               <div class="btlist">
@@ -173,7 +173,7 @@ export default {
       this.$http.get(api).then(response => {
         this.products = response.data.products
         this.$store.dispatch('updateLoading', false)
-        const LifestyleProducts = this.products.filter(function (item) {
+        const LifestyleProducts = this.products.filter((item) => {
           return item.category.indexOf('lifestyle') !== -1
         })
         this.lifestyle = LifestyleProducts
