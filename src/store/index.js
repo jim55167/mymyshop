@@ -60,13 +60,16 @@ export default new Vuex.Store({
       })
     },
     getCart (context) {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      context.commit('LOADING', true)
-      axios.get(url).then((response) => {
-        if (response.data.data.carts) {
-          context.commit('CART', response.data.data)
-        }
-        context.commit('LOADING', false)
+      return new Promise((resolve) => {
+        const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+        context.commit('LOADING', true)
+        axios.get(api).then((response) => {
+          if (response.data.data.carts) {
+            context.commit('CART', response.data.data)
+            resolve(response.data.data.carts)
+          }
+          context.commit('LOADING', false)
+        })
       })
     },
     removeCartItem (context, id) {
@@ -76,25 +79,25 @@ export default new Vuex.Store({
         context.commit('LOADING', false)
         context.dispatch('getCart')
       })
-    },
-    addToCart (context, {
-      id,
-      qty
-    }) {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      context.commit('LOADING', true)
-      const cart = {
-        product_id: id,
-        qty
-      }
-      axios.post(url, {
-        data: cart
-      }).then(() => {
-        context.commit('LOADING', false)
-        context.dispatch('getCart')
-        context.$emit('cartQty', qty)
-      })
     }
+    // addToCart (context, {
+    //   id,
+    //   qty
+    // }) {
+    //   const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+    //   context.commit('LOADING', true)
+    //   const cart = {
+    //     product_id: id,
+    //     qty
+    //   }
+    //   axios.post(api, {
+    //     data: cart
+    //   }).then(() => {
+    //     context.commit('LOADING', false)
+    //     context.dispatch('getCart')
+    //     context.$emit('cartQty', qty)
+    //   })
+    // }
   },
   modules: {}
 })

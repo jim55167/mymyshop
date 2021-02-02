@@ -35,20 +35,14 @@
           <div class="product-input">
             <div class="quantity row">
               <span class="quantity-title">數量</span>
-              <button type="button" class="btn btn-outline-third" @click.prevent="quantitySub(product)">-</button>
+              <input type="button" class="btn btn-outline-third" @click.prevent="quantitySub(product)" value="-">
               <input type="text" :value="product.num" readonly="readonly" />
-              <button type="button" class="btn btn-outline-third" @click.prevent="quantityPlus(product)">+</button>
+              <input type="button" class="btn btn-outline-third" @click.prevent="quantityPlus(product)" value="+">
             </div>
 
             <div class="buy-option">
-              <button type="button" class="btn btn-primary mr-1percent"
-                @click.prevent="addToCart(product.id, true, product.num)" >
-                <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'direct'"></i> 馬上購買
-              </button>
-              <button type="button" class="btn btn-danger"
-                @click.prevent="addToCart(product.id, false, product.num)">
-                <i class="fas fa-circle-notch fa-spin" v-if="loadingItem == 'non-direct'"></i> 加入購物車
-              </button>
+              <input type="button" class="btn btn-primary mr-1percent" @click.prevent="addToCart(product.id, true, product.num)" value="馬上購買">
+              <input type="button" class="btn btn-danger" @click.prevent="addToCart(product.id, false, product.num)" value="加入購物車">
             </div>
           </div>
         </div>
@@ -103,6 +97,7 @@
 <script>
 
 import GoTop from '@/components/GoTop'
+import axios from 'axios'
 
 export default {
   data () {
@@ -113,7 +108,6 @@ export default {
       product: {
         num: 1
       },
-      loadingItem: '',
       isDisable: false
     }
   },
@@ -150,27 +144,36 @@ export default {
     getCart () {
       this.$store.dispatch('getCart')
     },
-
     addToCart (id, direct, qty = 1) {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      const addApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       this.$store.dispatch('updateLoading', true)
-      const cart = {
-        product_id: id,
-        qty
-      }
-      if (direct) {
-        this.loadingItem = 'direct'
-      } else {
-        this.loadingItem = 'non-direct'
-      }
-      this.$http.post(url, { data: cart }).then(response => {
-        if (response.data.success) {
-          this.getCart()
-          this.loadingItem = ''
-          this.$store.dispatch('updateLoading', false)
-          if (direct) {
-            this.$router.push('../shopping_cart/front_cart_items')
+      this.$store.dispatch('getCart').then((cartItem) => {
+        const productId = cartItem
+        const cartProducts = productId.filter((item) => {
+          return item.product_id === id
+        })
+        let cart = {
+          product_id: id,
+          qty: qty
+        }
+        if (cartProducts.length > 0) {
+          const totalNum = cartProducts[0].qty
+          cart = {
+            product_id: id,
+            qty: qty + totalNum
           }
+          const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${cartProducts[0].id}`
+          Promise.all([axios.post(addApi, { data: cart }), axios.delete(deleteApi)])
+        } else if (cartProducts.length === 0) {
+          this.$http.post(addApi, { data: cart }).then(response => {
+            if (response.data.success) {
+              this.$store.dispatch('getCart')
+              this.$store.dispatch('updateLoading', false)
+            }
+          })
+        }
+        if (direct) {
+          this.$router.push('../shopping_cart/front_cart_items')
         }
       })
     },
