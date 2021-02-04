@@ -1,10 +1,10 @@
 # 電商網站 - 女孩的夢想衣櫃
 ![](https://img.onl/WinIuf)
 
-##DEMO
+## DEMO
 https://jim55167.github.io/mymyshop.com/#/home
 
-##簡介
+## 簡介
 此作品為 Vue.js 前端練習，功能包含：
   前台
     電商展示（商品分類、單一商品介紹）
