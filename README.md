@@ -1,6 +1,13 @@
-# [Portfolio Demo](https://jim55167.github.io/mymyshop.com/#/home)
+# 電商網站 - 女孩的夢想衣櫃
+![](https://img.onl/WinIuf)
 
-### 製作專案的契機
+##DEMO
+https://jim55167.github.io/mymyshop.com/#/home
+
+##簡介
+此作品為 Vue.js 前端練習，功能包含：
+  前台
+    電商展示（商品分類、單一商品介紹）
 
 前年和朋友一起合夥並創立了一家服飾電商，但各大電商平台的成交手續費日漸調漲，導致利潤逐漸下滑不敷成本！</br>
 後來與夥伴商討下，以採取薄利多銷的營運模式累積客源提升品牌知名度，想將客源導入自己的網站做消費，</br>
