@@ -83,11 +83,8 @@ export default {
     }
   },
   methods: {
-    updateCart (cartItemId, productId, qty) {
-      this.$store.dispatch('updateCart', { cartItemId, productId, qty })
-    },
-    addToCart (id, qty = 1) {
-      this.$store.dispatch('addtoCart', { id, qty })
+    addToCart (id, qty) {
+      this.$store.dispatch('addToCart', { id, qty })
     },
     getCart () {
       this.$store.dispatch('getCart')
@@ -97,12 +94,12 @@ export default {
     },
     quantitySub (item) {
       if (item.qty > 1) {
-        this.updateCart(item.id, item.product_id, item.qty - 1)
+        this.addToCart(item.product_id, item.qty - 1)
       }
     },
     quantityPlus (item) {
       if (item.qty < 10) {
-        this.updateCart(item.id, item.product_id, item.qty + 1)
+        this.addToCart(item.product_id, item.qty + 1)
       }
     },
     addCouponCode () {

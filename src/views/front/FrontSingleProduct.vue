@@ -97,7 +97,7 @@
 <script>
 
 import GoTop from '@/components/GoTop'
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   data () {
@@ -145,37 +145,10 @@ export default {
       this.$store.dispatch('getCart')
     },
     addToCart (id, direct, qty = 1) {
-      const addApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      this.$store.dispatch('updateLoading', true)
-      this.$store.dispatch('getCart').then((cartItem) => {
-        const productId = cartItem
-        const cartProducts = productId.filter((item) => {
-          return item.product_id === id
-        })
-        let cart = {
-          product_id: id,
-          qty: qty
-        }
-        if (cartProducts.length > 0) {
-          const totalNum = cartProducts[0].qty
-          cart = {
-            product_id: id,
-            qty: qty + totalNum
-          }
-          const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${cartProducts[0].id}`
-          Promise.all([axios.post(addApi, { data: cart }), axios.delete(deleteApi)])
-        } else if (cartProducts.length === 0) {
-          this.$http.post(addApi, { data: cart }).then(response => {
-            if (response.data.success) {
-              this.$store.dispatch('getCart')
-              this.$store.dispatch('updateLoading', false)
-            }
-          })
-        }
-        if (direct) {
-          this.$router.push('../shopping_cart/front_cart_items')
-        }
-      })
+      this.$store.dispatch('addToCart', { id, direct, qty })
+      if (direct) {
+        this.$router.push('../shopping_cart/front_cart_items')
+      }
     },
     removeCartItem (id) {
       this.$store.dispatch('removeCartItem', id)
