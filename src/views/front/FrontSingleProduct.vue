@@ -35,14 +35,14 @@
           <div class="product-input">
             <div class="quantity row">
               <span class="quantity-title">數量</span>
-              <input type="button" class="btn btn-outline-third" @click.prevent="quantitySub(product)" value="-">
+              <input type="button" class="btn btn-outline-third" @click="quantitySub(product)" value="-">
               <input type="text" :value="product.num" readonly="readonly" />
-              <input type="button" class="btn btn-outline-third" @click.prevent="quantityPlus(product)" value="+">
+              <input type="button" class="btn btn-outline-third" @click="quantityPlus(product)" value="+">
             </div>
 
             <div class="buy-option">
-              <input type="button" class="btn btn-primary mr-1percent" @click.prevent="addToCart(product.id, true, product.num)" value="馬上購買">
-              <input type="button" class="btn btn-danger" @click.prevent="addToCart(product.id, false, product.num)" value="加入購物車">
+              <input type="button" class="btn btn-primary mr-1percent" @click="addToCart(product)" value="馬上購買">
+              <input type="button" class="btn btn-danger" @click="addToCart(product)" value="加入購物車">
             </div>
           </div>
         </div>
@@ -97,7 +97,6 @@
 <script>
 
 import GoTop from '@/components/GoTop'
-// import axios from 'axios'
 
 export default {
   data () {
@@ -108,7 +107,8 @@ export default {
       product: {
         num: 1
       },
-      isDisable: false
+      isDisable: false,
+      myShoppingcart: JSON.parse(localStorage.getItem('myCart')) || []
     }
   },
 
@@ -141,27 +141,51 @@ export default {
         }
       })
     },
-    getCart () {
-      this.$store.dispatch('getCart')
-    },
-    addToCart (id, direct, qty = 1) {
-      this.$store.dispatch('addToCart', { id, direct, qty })
-      if (direct) {
-        this.$router.push('../shopping_cart/front_cart_items')
+    addToCart (data, direct) {
+      const cartId = []
+      this.myShoppingcart.forEach((params) => {
+        cartId.push(params.product_id)
+      })
+      if (cartId.indexOf(data.id) === -1) {
+        const cart = {
+          product_id: data.id,
+          qty: this.product.num,
+          title: data.title,
+          price: data.price,
+          imageUrl: data.imageUrl
+        }
+        this.myShoppingcart.push(cart)
+        localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
+      } else {
+        let price = {}
+        this.myShoppingcart.forEach((item, index) => {
+          if (item.product_id === data.id) {
+            price = {
+              product_id: data.id,
+              qty: (item.qty += this.product.num),
+              title: data.title,
+              price: data.price,
+              imageUrl: data.imageUrl
+            }
+            this.myShoppingcart.splice(index, 1)
+          }
+        })
+        this.myShoppingcart.push(price)
+        console.log(this.myShoppingcart)
+        localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
       }
     },
-    removeCartItem (id) {
-      this.$store.dispatch('removeCartItem', id)
-    },
-    quantitySub (product) {
+    quantitySub () {
       if (this.product.num > 1) {
         this.product.num--
       }
+      localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
     },
-    quantityPlus (product) {
+    quantityPlus () {
       if (this.product.num < 10) {
         this.product.num++
       }
+      localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
     },
     randomProduct (arr, num) {
       const newArr = []
@@ -204,7 +228,6 @@ export default {
       localStorage.getItem('filteredList')
     )
     this.getSingleProduct()
-    this.getCart()
   },
   components: {
     GoTop
