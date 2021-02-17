@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <Loading :active.sync="isLoading"></Loading>
 
-    <div class="container mt-4" v-if="cartHasItem">
+    <div class="container mt-4" v-if="myShoppingcart.length > 0">
       <div class="cart-wrap">
         <div class="shopping-step mb-4">
           <div class="step" :class="{ 'active-step' : activedPage == 'FrontCartItems' }">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <div class="emptyCart-wrap" v-if="!cartHasItem">
+    <div class="emptyCart-wrap" v-else>
       <h4>購物車是空的</h4>
       <router-link class="btn btn-primary shopping-link" to="/home">返回購物!</router-link>
     </div>
@@ -32,6 +32,7 @@ export default {
   data () {
     return {
       couponCode: '',
+      myShoppingcart: JSON.parse(localStorage.getItem('myCart')),
       form: {
         user: {
           name: '',
@@ -58,17 +59,6 @@ export default {
     },
     activedPage () {
       return this.$route.name
-    },
-    cartHasItem () {
-      if (this.cart.carts === undefined) {
-        return false
-      } else {
-        if (this.cart.carts.length === 0) {
-          return false
-        } else {
-          return true
-        }
-      }
     }
   },
   created () {

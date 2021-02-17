@@ -41,8 +41,8 @@
             </div>
 
             <div class="buy-option">
-              <input type="button" class="btn btn-primary mr-1percent" @click="addToCart(product)" value="馬上購買">
-              <input type="button" class="btn btn-danger" @click="addToCart(product)" value="加入購物車">
+              <input type="button" class="btn btn-primary mr-1percent" @click="addToCart(product, true)" value="馬上購買">
+              <input type="button" class="btn btn-danger" @click="addToCart(product, false)" value="加入購物車">
             </div>
           </div>
         </div>
@@ -171,8 +171,10 @@ export default {
           }
         })
         this.myShoppingcart.push(price)
-        console.log(this.myShoppingcart)
         localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
+      }
+      if (direct) {
+        this.$router.push('../shopping_cart/front_cart_items')
       }
     },
     quantitySub () {

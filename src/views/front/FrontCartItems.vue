@@ -19,7 +19,7 @@
           </td>
           <td class="align-middle text-center">
             {{ item.title }}
-            <div class="text-primary" v-if="item.coupon">已套用優惠券</div>
+            <!-- <div class="text-primary" v-if="item.coupon">已套用優惠券</div> -->
           </td>
           <td class="align-middle d-sm-table-cell d-none qty-adjust">
             <input type="button" class="btn" @click="quantitySub(item)" value="-">
@@ -27,7 +27,7 @@
             <input type="button" class="btn" @click="quantityPlus(item)" value="+">
           </td>
           <td class="align-middle">
-            {{ item.price | currency }} / {{ cart.total | currency }}
+            {{ item.price | currency }} / {{ item.price * item.qty | currency }}
             <div class="text-primary" v-if="item.coupon">{{ item.final_total | currency }}</div>
           </td>
           <td class="align-middle">
@@ -41,19 +41,19 @@
       <tfoot class="sales-price">
         <tr>
           <td colspan="3" class="text-right">總計</td>
-          <td class="text-right">{{ cart.total | currency }}</td>
+          <td class="text-right">{{ totalPrice | currency }}</td>
         </tr>
         <tr v-if="cart.final_total !== cart.total">
           <td colspan="3" class="text-right text-right-red">折扣價</td>
-          <td class="text-right text-right-red">{{ cart.final_total | currency }}</td>
+          <td class="text-right text-right-red">{{ Math.round(cart.final_total) | currency }}</td>
         </tr>
       </tfoot>
     </table>
     <div class="input-group mb-3 input-group-sm">
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼"/>
       <div class="input-group-append">
-        <input class="btn btn-primary" type="button" @click.prevent="addCouponCode" value="套用優惠碼">
-        <div class="coupon-message">{{ this.active }}</div>
+        <input class="btn btn-primary" type="button" @click.prevent="addCouponCode()" value="套用優惠碼">
+        <div class="coupon-message">{{ this.focus }}</div>
       </div>
     </div>
 
@@ -69,8 +69,8 @@ export default {
   name: 'FrontCartItems',
   data () {
     return {
-      active: '',
       coupon_code: '',
+      focus: '',
       myShoppingcart: JSON.parse(localStorage.getItem('myCart')) || [],
       totalPrice: 0
     }
@@ -84,10 +84,8 @@ export default {
       this.$http.delete(api).then((response) => {})
     },
     removeCartItem (id) {
-      // const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-      // this.$http.delete(api).then((response) => {
-      // if (response.data.success) {
       this.myShoppingcart.forEach((item, key) => {
+        console.log(item)
         if (id.product_id === item.product_id) {
           this.myShoppingcart.splice(key, 1)
         }
@@ -95,15 +93,15 @@ export default {
         this.getTotalPrice()
       })
       this.cart.carts.forEach((item) => {
+        console.log(this.cart.carts)
         if (id.product_id === item.product_id) {
           this.deleteCartData(item.id)
         }
       })
       this.$store.dispatch('getCart')
-      // }
-      // })
     },
     getTotalPrice () {
+      this.totalPrice = 0
       this.myShoppingcart.forEach((item) => {
         this.totalPrice += item.price * item.qty
       })
@@ -123,14 +121,14 @@ export default {
       this.getTotalPrice()
     },
     addCouponCode () {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
       const coupon = {
         code: this.coupon_code
       }
+      console.log(this.coupon_code)
       this.$store.dispatch('updateLoading', true)
-      this.$http.post(api, { data: coupon }).then(response => {
-        const alert = response.data.message
-        this.active = alert
+      this.$http.post(url, { data: coupon }).then(response => {
+        this.focus = response.data.message
         this.getCart()
         this.$store.dispatch('updateLoading', false)
       })
@@ -148,6 +146,14 @@ export default {
           this.$store.dispatch('updateLoading', false)
         })
       })
+      this.cart.carts.forEach((item) => {
+        this.myShoppingcart.forEach((item2) => {
+          if (item.product_id === item2.product_id) {
+            this.deleteCartData(item.id)
+          }
+        })
+      })
+      this.$router.push('/shopping_cart/front_order').catch(err => err)
     }
   },
   computed: {

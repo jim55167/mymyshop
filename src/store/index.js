@@ -36,25 +36,15 @@ export default new Vuex.Store({
       })
     },
     getCart (context) {
-      console.log(context)
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       context.dispatch('updateLoading', true)
       axios.get(api).then((response) => {
-        console.log(response)
         if (response.data.data.carts) {
           context.commit('CART', response.data.data)
+          console.log(response.data.data.carts)
         }
         context.dispatch('updateLoading', false)
       })
     }
-    // removeCartItem (context, id) {
-    //   const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-    //   context.dispatch('updateLoading', true)
-    //   axios.delete(api).then((res) => {
-    //     console.log(res)
-    //     context.dispatch('updateLoading', false)
-    //     context.dispatch('getCart')
-    //   })
-    // }
   }
 })
