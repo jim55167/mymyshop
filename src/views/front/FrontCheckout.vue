@@ -12,13 +12,13 @@
           <tr v-for="item in order.products" :key="item.id">
             <td class="align-middle">{{ item.product.title }}</td>
             <td class="align-middle">{{ item.qty }}/{{ item.product.unit }}</td>
-            <td class="align-middle">{{ item.final_total }}</td>
+            <td class="align-middle">{{ Math.round(item.final_total) | currency }}</td>
           </tr>
         </tbody>
         <tfoot>
           <tr>
             <td colspan="2" class="text-right">總計</td>
-            <td class="text-right">{{ order.total }}</td>
+            <td class="text-right">{{ Math.round(order.total) | currency }}</td>
           </tr>
         </tfoot>
       </table>
@@ -89,7 +89,6 @@ import $ from 'jquery'
 export default {
   data () {
     return {
-      isLoading: false,
       order: {
         user: {}
       },
@@ -99,22 +98,21 @@ export default {
   methods: {
     getOrder () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${this.orderId}`
-      this.isLoading = true
+      this.$store.dispatch('updateLoading', true)
       this.$http.get(api).then((response) => {
         this.order = response.data.order
-        this.isLoading = false
+        this.$store.dispatch('updateLoading', false)
       })
     },
     payOrder () {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${this.orderId}`
-      this.isLoading = true
+      this.$store.dispatch('updateLoading', true)
       this.$http.post(api).then((response) => {
         if (response.data.success) {
-          this.isLoading = false
           this.getOrder()
           $('#paymentCompeleted').modal('show')
         }
-        this.isLoading = false
+        this.$store.dispatch('updateLoading', false)
       })
     },
     goToProducts () {
@@ -125,6 +123,11 @@ export default {
   created () {
     this.orderId = this.$route.params.orderId
     this.getOrder()
+  },
+  computed: {
+    isLoading () {
+      return this.$store.state.isLoading
+    }
   }
 }
 </script>

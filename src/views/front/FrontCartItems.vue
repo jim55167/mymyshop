@@ -12,14 +12,14 @@
         </tr>
       </thead>
       <tbody class="cart-items">
-        <tr v-for="item in myShoppingcart" :key="item.id">
+        <tr v-for="item in cart.carts" :key="item.id">
           <td class="align-middle d-md-table-cell">
             <div class="product-preview d-md-block"
-              :style="{ backgroundImage: `url(${item.imageUrl})` }"></div>
+              :style="{ backgroundImage: `url(${item.product.imageUrl})` }"></div>
           </td>
           <td class="align-middle text-center">
-            {{ item.title }}
-            <!-- <div class="text-primary" v-if="item.coupon">已套用優惠券</div> -->
+            {{ item.product.title }}
+            <div class="text-danger" v-if="item.coupon">已套用優惠券</div>
           </td>
           <td class="align-middle d-sm-table-cell d-none qty-adjust">
             <input type="button" class="btn" @click="quantitySub(item)" value="-">
@@ -27,12 +27,12 @@
             <input type="button" class="btn" @click="quantityPlus(item)" value="+">
           </td>
           <td class="align-middle">
-            {{ item.price | currency }} / {{ item.price * item.qty | currency }}
-            <div class="text-primary" v-if="item.coupon">{{ item.final_total | currency }}</div>
+            {{ item.product.price | currency }} / {{ item.total | currency }}
+            <div class="text-danger" v-if="item.coupon">{{ item.final_total | currency }}</div>
           </td>
           <td class="align-middle">
             <button type="button" class="btn btn-outline-danger btn-sm"
-              @click.prevent="removeCartItem(item)">
+              @click="removeCart(item.id)">
               <i class="far fa-trash-alt"></i>
             </button>
           </td>
@@ -41,7 +41,7 @@
       <tfoot class="sales-price">
         <tr>
           <td colspan="3" class="text-right">總計</td>
-          <td class="text-right">{{ totalPrice | currency }}</td>
+          <td class="text-right">{{ cart.total | currency }}</td>
         </tr>
         <tr v-if="cart.final_total !== cart.total">
           <td colspan="3" class="text-right text-right-red">折扣價</td>
@@ -59,7 +59,7 @@
 
     <div class="d-flex justify-content-between mt-4 step-control">
       <router-link class="btn btn-primary" to="/home">返回賣場</router-link>
-      <a class="btn btn-danger" href="#" @click.prevent= "goCheckout" v-if="nextPage">下一步</a>
+      <router-link class="btn btn-danger"  to="front_order" v-if="nextPage">下一步</router-link>
     </div>
   </div>
 </template>
@@ -70,90 +70,40 @@ export default {
   data () {
     return {
       coupon_code: '',
-      focus: '',
-      myShoppingcart: JSON.parse(localStorage.getItem('myCart')) || [],
-      totalPrice: 0
+      focus: ''
     }
   },
   methods: {
+    updateCart (id, productId, qty) {
+      this.$store.dispatch('updateCart', { id, productId, qty })
+    },
     getCart () {
       this.$store.dispatch('getCart')
     },
-    deleteCartData (id) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-      this.$http.delete(api).then((response) => {})
-    },
-    removeCartItem (id) {
-      this.myShoppingcart.forEach((item, key) => {
-        console.log(item)
-        if (id.product_id === item.product_id) {
-          this.myShoppingcart.splice(key, 1)
-        }
-        localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
-        this.getTotalPrice()
-      })
-      this.cart.carts.forEach((item) => {
-        console.log(this.cart.carts)
-        if (id.product_id === item.product_id) {
-          this.deleteCartData(item.id)
-        }
-      })
-      this.$store.dispatch('getCart')
-    },
-    getTotalPrice () {
-      this.totalPrice = 0
-      this.myShoppingcart.forEach((item) => {
-        this.totalPrice += item.price * item.qty
-      })
+    removeCart (id) {
+      this.$store.dispatch('removeCart', id)
     },
     quantitySub (item) {
-      item.qty -= 1
-      localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
-      this.getTotalPrice()
-      if (item.qty === 0) {
-        this.removeCartItem(item)
-        localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
+      if (item.qty > 1) {
+        this.updateCart(item.id, item.product_id, item.qty - 1)
       }
     },
     quantityPlus (item) {
-      item.qty += 1
-      localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
-      this.getTotalPrice()
+      if (item.qty < 20) {
+        this.updateCart(item.id, item.product_id, item.qty + 1)
+      }
     },
     addCouponCode () {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
       const coupon = {
         code: this.coupon_code
       }
-      console.log(this.coupon_code)
       this.$store.dispatch('updateLoading', true)
       this.$http.post(url, { data: coupon }).then(response => {
         this.focus = response.data.message
         this.getCart()
         this.$store.dispatch('updateLoading', false)
       })
-    },
-    goCheckout () {
-      this.$store.dispatch('updateLoading', true)
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      this.myShoppingcart.forEach((item) => {
-        console.log(item)
-        const cartItem = {
-          product_id: item.product_id,
-          qty: item.qty
-        }
-        this.$http.post(api, { data: cartItem }).then(() => {
-          this.$store.dispatch('updateLoading', false)
-        })
-      })
-      this.cart.carts.forEach((item) => {
-        this.myShoppingcart.forEach((item2) => {
-          if (item.product_id === item2.product_id) {
-            this.deleteCartData(item.id)
-          }
-        })
-      })
-      this.$router.push('/shopping_cart/front_order').catch(err => err)
     }
   },
   computed: {
@@ -173,7 +123,6 @@ export default {
   },
   created () {
     this.getCart()
-    this.getTotalPrice()
   }
 }
 </script>

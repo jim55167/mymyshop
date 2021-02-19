@@ -41,8 +41,8 @@
             </div>
 
             <div class="buy-option">
-              <input type="button" class="btn btn-primary mr-1percent" @click="addToCart(product, true)" value="馬上購買">
-              <input type="button" class="btn btn-danger" @click="addToCart(product, false)" value="加入購物車">
+              <input type="button" class="btn btn-primary mr-1percent" @click="addToCart(product.id, true, product.num)" value="馬上購買">
+              <input type="button" class="btn btn-danger" @click="addToCart(product.id, false, product.num)" value="加入購物車">
             </div>
           </div>
         </div>
@@ -97,6 +97,7 @@
 <script>
 
 import GoTop from '@/components/GoTop'
+import axios from 'axios'
 
 export default {
   data () {
@@ -108,7 +109,7 @@ export default {
         num: 1
       },
       isDisable: false,
-      myShoppingcart: JSON.parse(localStorage.getItem('myCart')) || []
+      flag: false
     }
   },
 
@@ -141,53 +142,60 @@ export default {
         }
       })
     },
-    addToCart (data, direct) {
-      const cartId = []
-      this.myShoppingcart.forEach((params) => {
-        cartId.push(params.product_id)
-      })
-      if (cartId.indexOf(data.id) === -1) {
-        const cart = {
-          product_id: data.id,
-          qty: this.product.num,
-          title: data.title,
-          price: data.price,
-          imageUrl: data.imageUrl
-        }
-        this.myShoppingcart.push(cart)
-        localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
-      } else {
-        let price = {}
-        this.myShoppingcart.forEach((item, index) => {
-          if (item.product_id === data.id) {
-            price = {
-              product_id: data.id,
-              qty: (item.qty += this.product.num),
-              title: data.title,
-              price: data.price,
-              imageUrl: data.imageUrl
-            }
-            this.myShoppingcart.splice(index, 1)
-          }
+    getCart () {
+      this.$store.dispatch('getCart')
+    },
+    addToCart (id, direct, qty = 1) {
+      if (this.flag) {
+        return
+      }
+      const addApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      this.$store.dispatch('updateLoading', true)
+      this.$store.dispatch('getCart').then(cartItem => {
+        const cartProducts = cartItem.filter(item => {
+          return item.product_id === id
         })
-        this.myShoppingcart.push(price)
-        localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
-      }
-      if (direct) {
-        this.$router.push('../shopping_cart/front_cart_items')
-      }
+        let cart = {
+          product_id: id,
+          qty
+        }
+        if (cartProducts.length > 0) {
+          this.flag = true
+          const totalNum = cartProducts[0].qty
+          cart = {
+            product_id: id,
+            qty: qty + totalNum
+          }
+          const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${cartProducts[0].id}`
+          Promise.all([axios.post(addApi, { data: cart }), axios.delete(deleteApi)])
+            .then(() => {
+              this.flag = false
+            })
+        } else if (cartProducts.length === 0) {
+          this.$http.post(addApi, { data: cart }).then(response => {
+            this.flag = false
+            if (response.data.success) {
+              this.$store.dispatch('getCart')
+              this.$store.dispatch('updateLoading', false)
+            }
+          })
+        }
+        if (direct) {
+          this.$router.push('../shopping_cart/front_cart_items')
+        }
+      })
     },
     quantitySub () {
       if (this.product.num > 1) {
         this.product.num--
       }
-      localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
+      localStorage.setItem('myCart', JSON.stringify(this.cartData))
     },
     quantityPlus () {
-      if (this.product.num < 10) {
+      if (this.product.num < 15) {
         this.product.num++
       }
-      localStorage.setItem('myCart', JSON.stringify(this.myShoppingcart))
+      localStorage.setItem('myCart', JSON.stringify(this.cartData))
     },
     randomProduct (arr, num) {
       const newArr = []
@@ -230,6 +238,7 @@ export default {
       localStorage.getItem('filteredList')
     )
     this.getSingleProduct()
+    this.getCart()
   },
   components: {
     GoTop

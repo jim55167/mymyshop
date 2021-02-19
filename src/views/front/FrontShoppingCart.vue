@@ -2,7 +2,7 @@
   <div class="row justify-content-center">
     <Loading :active.sync="isLoading"></Loading>
 
-    <div class="container mt-4" v-if="myShoppingcart.length > 0">
+    <div class="container mt-4" v-if="cart.carts.length > 0">
       <div class="cart-wrap">
         <div class="shopping-step mb-4">
           <div class="step" :class="{ 'active-step' : activedPage == 'FrontCartItems' }">
@@ -32,7 +32,6 @@ export default {
   data () {
     return {
       couponCode: '',
-      myShoppingcart: JSON.parse(localStorage.getItem('myCart')),
       form: {
         user: {
           name: '',

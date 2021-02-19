@@ -35,15 +35,43 @@ export default new Vuex.Store({
         context.dispatch('updateLoading', false)
       })
     },
-    getCart (context) {
-      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+    updateCart (context, { id, productId, qty }) {
+      const deleteapi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
+      const addapi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      const cart = {
+        product_id: productId,
+        qty
+      }
       context.dispatch('updateLoading', true)
-      axios.get(api).then((response) => {
-        if (response.data.data.carts) {
-          context.commit('CART', response.data.data)
-          console.log(response.data.data.carts)
+      axios.delete(deleteapi).then(response => {
+        if (response.data.success) {
+          axios.post(addapi, { data: cart }).then(response => {
+            if (response.data.success) {
+              context.dispatch('getCart')
+            }
+          })
         }
+      })
+    },
+    getCart (context) {
+      return new Promise((resolve) => {
+        const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+        context.dispatch('updateLoading', true)
+        axios.get(api).then((response) => {
+          if (response.data.data.carts) {
+            context.commit('CART', response.data.data)
+            resolve(response.data.data.carts)
+          }
+          context.dispatch('updateLoading', false)
+        })
+      })
+    },
+    removeCart (context, id) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
+      context.dispatch('updateLoading', true)
+      axios.delete(api).then(() => {
         context.dispatch('updateLoading', false)
+        context.dispatch('getCart')
       })
     }
   }
